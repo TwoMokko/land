@@ -1,0 +1,48 @@
+@use '../../../shared/styles/variables' as *;
+
+.title {
+	padding-bottom: 40px;
+}
+
+.models {
+	padding-top: 120px;
+	padding-bottom: 120px;
+
+
+	.cardWrap {
+
+	}
+	.card {
+		height: fit-content;
+		display: flex;
+		gap: 20px;
+		max-height: 385px;
+		overflow: hidden;
+
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+
+		.imgWrap {
+			width: 50%;
+
+			.swiper {
+				height: 100%;
+			}
+
+			.image {
+				width: 100%;
+				height: auto;
+			}
+		}
+
+		.infoWrap {
+			flex: auto;
+			padding: 20px;
+			border: 1px solid $color-primary;
+		}
+
+	}
+}
+
+

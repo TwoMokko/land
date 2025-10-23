@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import styles from './page.module.scss';
-import { Button } from "../shared/ui/button/Button";
-import { ProductCarousel } from "@/src/widgets/product-carousel";
+import { Hero } from "@/src/widgets/hero";
+import { Actions } from "@/src/widgets/actions";
+import { Models } from "../widgets/models";
 
 export const metadata: Metadata = {
   title: 'Главная страница',
@@ -10,11 +10,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <div className="container">
-            <h1 className={styles.title}>Главная страница заголовок</h1>
-            <p>текст на главной тест</p>
-            <ProductCarousel />
-            <Button variant="primary">Кнопка</Button>
-        </div>
+        <>
+            <Hero />
+            <Actions />
+            <Models />
+        </>
     );
 }

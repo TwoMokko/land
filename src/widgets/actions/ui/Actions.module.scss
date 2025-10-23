@@ -1,0 +1,15 @@
+@use '../../../shared/styles/variables' as *;
+
+.actions {
+	padding-top: 120px;
+
+	.title {
+		padding-bottom: 40px;
+	}
+
+	.card {
+		background-color: $color-bg;
+		padding: 24px;
+		height: 235px;
+	}
+}
