@@ -1,0 +1,5 @@
+@use '@/shared/styles/variables' as *;
+
+.card {
+	border: 1px solid $color-bg;
+}
