@@ -1,6 +1,7 @@
+@import "../../../shared/styles/variables";
 
 .button {
-	background: #0070f3;
+	background: $color-primary;
 	padding: 12px 24px;
 	border: none;
 	border-radius: 8px;
@@ -17,8 +18,7 @@
 	}
 }
 
-// Переменные
-$breakpoint-mobile: 768px;
+
 
 @media (max-width: $breakpoint-mobile) {
 	.button {
