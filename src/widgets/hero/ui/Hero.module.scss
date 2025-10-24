@@ -1,9 +1,36 @@
+@import "../../../shared/styles/variables";
+
 .hero {
 	background-color: lightgoldenrodyellow;
+	overflow: hidden;
+	position: relative;
 
 	.image {
-		width: 100%;
+		width: 100vw;
 		height: auto;
 		object-fit: cover;
+		object-position: top;
 	}
+
+	.infoWrap {
+		position: absolute;
+		inset: 0;
+		padding-top: 160px;
+
+		.title {
+			color: $color-light;
+			font-size: 58px;
+			font-weight: 500;
+			line-height: 110%;
+			padding-bottom: 20px;
+
+			> span {
+				color: $color-primary;
+				font-size: 40px;
+				font-weight: 700;
+			}
+		}
+	}
+
+
 }

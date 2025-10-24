@@ -1,4 +1,5 @@
 @use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
 
 .actions {
 	padding-top: 120px;
@@ -8,8 +9,15 @@
 	}
 
 	.card {
-		background-color: $color-bg;
+		background-color: $color-more-light-gray;
 		padding: 24px;
 		height: 235px;
 	}
+
+	.actions__controls {
+		.btn__wrap {
+
+		}
+	}
+
 }

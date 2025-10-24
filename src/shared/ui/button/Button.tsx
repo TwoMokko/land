@@ -1,17 +1,32 @@
-import styles from './Button.module.scss'
+'use client'
+
+import styles from './Button.module.scss';
+import { FiArrowRight } from "react-icons/fi";
 
 interface ButtonProps {
     children: React.ReactNode
-    type?: 'primary' | 'secondary'
+    variant?: 'primary' | 'secondary'
+    withArrow?: boolean
+    minWidth?: number | string
+    type?: 'button' | 'submit' | 'reset' | undefined
+    disabled?: boolean
     onClick?: () => void
 }
 
-export function Button({ children, type = 'primary', onClick }: ButtonProps) {
-    const className = `${styles.button} ${type === 'secondary' ? styles.secondary : ''}`
+export function Button({ children, variant = 'primary', withArrow = false, minWidth, type = 'button', disabled = false, onClick }: ButtonProps) {
+    const buttonClass = `${styles.btn} ${styles[`${variant}`]} ${withArrow ? styles.btnArrowWrap : ''}`;
 
     return (
-        <button className={className} onClick={onClick}>
-            {children}
+        <button type={type} className={buttonClass} data-min-width={minWidth} disabled={disabled} onClick={onClick}>
+            {withArrow ? (
+                <span className={styles.btnArrowIcons}>
+                    <FiArrowRight className={styles.arrowLeft} />
+                    {children}
+                    <FiArrowRight className={styles.arrowRight} />
+                </span>
+            ) : (
+                children
+            )}
         </button>
     )
 }

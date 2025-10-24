@@ -1,5 +1,32 @@
 @import "../../../shared/styles/variables";
 
 .header {
-	background-color: $color-primary;
+	background-color: transparent;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 2;
+
+	.inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.logo {
+			width: 200px;
+		}
+
+		.nav {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex: auto;
+
+			.link {
+
+			}
+		}
+	}
+
+
 }

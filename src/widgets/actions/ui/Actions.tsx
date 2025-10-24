@@ -13,33 +13,34 @@ const data = [
 ]
 
 export function Actions() {
-    return <div className={`${styles.actions} container`}>
-        <h2 className={`${styles.title} section-title`}>Акции</h2>
-        <Swiper
-            modules={[Navigation]}
-            spaceBetween={20}
-            slidesPerView={3}
-            navigation
-            breakpoints={{
-                640: {slidesPerView: 1},
-                768: {slidesPerView: 2},
-                1024: {slidesPerView: 3},
-            }}
-        >
-            {data.map((item) => (
-                <SwiperSlide key={item.id}>
-                    <div className={styles.card}>
+    return <div className="container">
+        <div className={styles.actions}>
+            <h2 className={`${styles.title} section-title`}>Акции</h2>
+            <Swiper
+                modules={[Navigation]}
+                spaceBetween={20}
+                slidesPerView={3}
+                navigation
+                breakpoints={{
+                    768: {slidesPerView: "auto"},
+                    1024: {slidesPerView: 3},
+                }}
+            >
+                {data.map((item) => (
+                    <SwiperSlide key={item.id}>
+                        <div className={styles.card}>
 
-                        <h3>{item.title}</h3>
-                        <div>
-                            {item.subtitle}
+                            <h3>{item.title}</h3>
+                            <div>
+                                {item.subtitle}
+                            </div>
+                            <a href={item.link} target="_blank">
+                                Узнать подробнее
+                            </a>
                         </div>
-                        <a href={item.link} target="_blank">
-                            Узнать подробнее
-                        </a>
-                    </div>
-                </SwiperSlide>
-            ))}
-        </Swiper>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
     </div>
 }
