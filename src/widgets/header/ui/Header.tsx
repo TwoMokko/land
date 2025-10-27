@@ -4,6 +4,7 @@ import styles from './Header.module.scss'
 import { Button } from "@/src/shared/ui/button/Button";
 import React from "react";
 import Image from "next/image";
+import {useModal} from "@/src/app/providers/ModalProvider";
 
 const links: { title: string, href: string, class?: string }[] = [
     { title: 'Модельный ряд', href: '#models', class: '' },
@@ -12,6 +13,8 @@ const links: { title: string, href: string, class?: string }[] = [
 ]
 
 export function Header() {
+    const { openModal } = useModal();
+
     return (
         <header className={styles.header}>
             <div className='container'>
@@ -30,7 +33,13 @@ export function Header() {
                             </a>
                         ))}
                     </nav>
-                    <Button variant='secondary' withArrow >Рассчитать кредит</Button>
+                    <Button
+                        variant='secondary'
+                        withArrow
+                        onClick={() => openModal('credit')}
+                    >
+                        Рассчитать кредит
+                    </Button>
                 </div>
             </div>
         </header>

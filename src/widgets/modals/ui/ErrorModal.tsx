@@ -1,7 +1,7 @@
 'use client'
 
 import { useModal } from '@/src/app/providers/ModalProvider';
-import styles from './Modals.module.scss'
+import styles from './Modals.module.scss';
 
 export function ErrorModal() {
     const { closeModal } = useModal()

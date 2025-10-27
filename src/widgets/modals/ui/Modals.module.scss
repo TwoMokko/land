@@ -55,7 +55,9 @@
 .form {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	width: 370px;
+	gap: 10px;
+	padding-top: 40px;
 
 	.checkboxWrap {
 		display: flex;
@@ -83,4 +85,47 @@
 		}
 	}
 
+}
+
+.title {
+	font-size: 36px;
+	line-height: 100%;
+	letter-spacing: -0.04em;
+	margin: 0;
+	padding: 0;
+}
+
+.subtitle {
+	padding-top: 14px;
+	font-size: 16px;
+	line-height: 120%;
+}
+
+.list {
+	list-style: none;
+	padding-top: 40px;
+
+	> li {
+		font-size: 16px;
+		padding-left: 20px;
+		position: relative;
+		list-style: none;
+
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+
+		&::before {
+			content: "";
+			background-color: $color-primary;
+			width: 9px;
+			height: 9px;
+			border-radius: 50%;
+			position: absolute;
+			right: calc(100% - 9px);
+			top: 50%;
+			transform: translateY(-50%);
+			line-height: 1;
+		}
+	}
 }

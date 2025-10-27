@@ -1,9 +1,9 @@
 'use client'
 
 import React, { createContext, useContext, useState } from 'react';
-import { ErrorModal, OrderModal, SuccessModal } from "@/src/widgets/modals";
+import { ErrorModal, OrderModal, SuccessModal, CreditModal } from "@/src/widgets/modals";
 
-export type ModalType = 'order' | 'contact' | 'success' | 'error' | 'image' | 'video'
+export type ModalType = 'order' | 'credit' | 'success' | 'error' | 'image' | 'video'
 
 interface ModalData {
     model?: any
@@ -42,9 +42,9 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
             {children}
 
             {currentModal === 'order' && <OrderModal />}
+            {currentModal === 'credit' && <CreditModal />}
             {currentModal === 'success' && <SuccessModal />}
             {currentModal === 'error' && <ErrorModal />}
-            {/*{currentModal === 'contact' && <ContactModal />}*/}
         </ModalContext.Provider>
     )
 }

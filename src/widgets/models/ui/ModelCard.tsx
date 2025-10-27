@@ -7,20 +7,21 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Model } from "@/src/shared/api/types";
 import type { Swiper as SwiperType } from "swiper";
-import { useModal } from "@/src/app/providers/ModalProvider";
+import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
+import { Button } from "@/src/shared/ui/button/Button";
 
 interface ModelCardProps {
     model: Model
 }
 
 export function ModelCard({ model }: ModelCardProps) {
-    const { openModal } = useModal()
+    const { openModal } = useModal();
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
     const galleryId = `gallery-${model.id}`;
 
-    const handleModal = () => {
-        openModal('order', { model })
+    const handleModal = (id: ModalType) => {
+        openModal(id, { model });
     }
 
     return (
@@ -88,9 +89,9 @@ export function ModelCard({ model }: ModelCardProps) {
                 <div>
                     {model.price} ₽
                 </div>
-                <button onClick={handleModal}>
-                    Оставить заявку
-                </button>
+
+                <Button onClick={() => handleModal('credit')} >Рассчитать кредит</Button>
+                <Button onClick={() => handleModal('order')}  variant={'secondary'} withArrow>Получить предложение</Button>
             </div>
         </article>
     )

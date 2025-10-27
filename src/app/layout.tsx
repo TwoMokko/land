@@ -3,8 +3,8 @@ import localFont from 'next/font/local'
 import { Header } from "../widgets/header";
 import { Footer } from "../widgets/footer";
 import './globals.scss';
-import {FancyboxProvider} from "@/src/app/providers/FancyboxProvider";
-import {ModalProvider} from "@/src/app/providers/ModalProvider";
+import { FancyboxProvider } from "@/src/app/providers/FancyboxProvider";
+import { ModalProvider } from "@/src/app/providers/ModalProvider";
 
 const alibabaSans = localFont({
     src: [
