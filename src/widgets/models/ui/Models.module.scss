@@ -18,6 +18,7 @@
 
 	}
 	.card {
+		position: relative;
 		height: fit-content;
 		display: flex;
 		gap: 20px;
@@ -31,22 +32,32 @@
 
 		.imgWrap {
 			position: relative;
-			width: 50%;
+			width: 60%;
 			display: flex;
 			gap: 20px;
 		}
 
 		.mainSwiper {
+			position: relative;
 			width: 100%;
 			height: 100%;
 			flex: auto;
 
 			.swiperSlide {
+				position: relative;
 				aspect-ratio: 4 / 3;
 
-				.image {
-					object-fit: cover;
+				.imageContainer {
+					position: relative;
+					width: 100%;
+					height: 100%;
+
+					.image {
+						object-fit: cover;
+					}
 				}
+
+
 			}
 
 
@@ -80,8 +91,64 @@
 			flex: auto;
 			padding: 20px;
 			border: 1px solid $color-light-gray;
+
+			.btnWrap {
+				display: flex;
+				gap: 6px;
+
+				> button {
+					flex: 1;
+				}
+			}
 		}
 
+	}
+}
+
+
+
+.colorSelector {
+	display: flex;
+	gap: 4px;
+	margin-bottom: 16px;
+
+
+	.colorButton {
+		flex: none;
+		padding: 4px;
+		border: 1px solid transparent;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		background-color: transparent;
+
+		.color {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+
+			&.red {
+				background-color: $color-primary;
+			}
+
+			&.green {
+				background-color: #8bb998;
+			}
+
+			&.grey {
+				background-color: $color-light-gray;
+			}
+			&.blue {
+				background-color: #82a9c4;
+			}
+			&.black {
+				background-color: $color-bg;
+			}
+		}
+	}
+
+	.colorButtonActive {
+		border-color: $color-light-gray;
 	}
 }
 

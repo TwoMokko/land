@@ -5,6 +5,7 @@ import { Footer } from "../widgets/footer";
 import './globals.scss';
 import { FancyboxProvider } from "@/src/app/providers/FancyboxProvider";
 import { ModalProvider } from "@/src/app/providers/ModalProvider";
+import React from "react";
 
 const alibabaSans = localFont({
     src: [
@@ -34,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
       <html lang="ru" className={alibabaSans.variable}>
-          <body className={alibabaSans.className}>
+          <body>
               <ModalProvider>
                   <FancyboxProvider>
                       <Header/>
