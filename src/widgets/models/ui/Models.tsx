@@ -11,7 +11,7 @@ import { getModels } from "@/src/shared/api";
 import { ModelCard } from "@/src/widgets/models/ui/ModelCard";
 
 
-export function Models() {
+export function Models({ idSection }: { idSection: string }) {
     const [models, setModels] = useState<Model[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -46,7 +46,7 @@ export function Models() {
     }
 
     return (
-        <div className="container">
+        <section id={idSection} className="container">
             <div className={styles.models}>
                 <h2 className={`${styles.title} section-title`}>Модельный ряд </h2>
 
@@ -56,6 +56,6 @@ export function Models() {
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     )
 }

@@ -9,6 +9,7 @@ import { Model } from "@/src/shared/api/types";
 import type { Swiper as SwiperType } from "swiper";
 import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
 import { Button } from "@/src/shared/ui/button/Button";
+import { useModelImages } from "@/src/shared/lib/hooks/use-model-images";
 
 interface ModelCardProps {
     model: Model
@@ -17,6 +18,10 @@ interface ModelCardProps {
 export function ModelCard({ model }: ModelCardProps) {
     const { openModal } = useModal();
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+    const { currentImages, getImagePath, hasMultipleColors, availableColors, selectedColor, setSelectedColor } = useModelImages({
+        modelSlug: model.slug,
+        colors: model.colors
+    })
 
     const galleryId = `gallery-${model.id}`;
 
@@ -28,7 +33,7 @@ export function ModelCard({ model }: ModelCardProps) {
         <article key={model.id} className={styles.card}>
             <div className={styles.imgWrap}>
                 {/* Мини-галерея (превью) */}
-                {model.images && model.images.length > 1 && (
+                {currentImages.length > 1 && (
                     <Swiper
                         modules={[Thumbs]}
                         onSwiper={setThumbsSwiper}
@@ -38,10 +43,10 @@ export function ModelCard({ model }: ModelCardProps) {
                         className={styles.thumbSwiper}
                         direction="vertical"
                     >
-                        {model.images?.map((image, index) => (
+                        {currentImages?.map((image, index) => (
                             <SwiperSlide key={index} className={styles.thumbSlide}>
                                 <Image
-                                    src={image}
+                                    src={getImagePath(image)}
                                     alt={`${model.name} - превью ${index + 1}`}
                                     fill
                                     sizes="57px"
@@ -60,16 +65,16 @@ export function ModelCard({ model }: ModelCardProps) {
                     thumbs={{ swiper: thumbsSwiper }}
                     className={styles.mainSwiper}
                 >
-                    {model.images?.map((image, index) => (
+                    {currentImages.map((image, index) => (
                         <SwiperSlide key={index} className={styles.swiperSlide}>
                             <a
-                                href={image}
+                                href={getImagePath(image)}
                                 data-fancybox={galleryId}
                                 data-caption={model.name}
                                 data-thumb={image}
                             >
                                 <Image
-                                    src={image}
+                                    src={getImagePath(image)}
                                     alt={`${model.name} - изображение ${index + 1}`}
                                     fill
                                     sizes="(max-width: 768px) 50vw, 1000px"
@@ -86,12 +91,31 @@ export function ModelCard({ model }: ModelCardProps) {
             </div>
             <div className={styles.infoWrap}>
                 <h3>{model.name}</h3>
+
+                {hasMultipleColors && (
+                    <div className={styles.colorSelector}>
+                        {availableColors.map((colorSlug) => (
+                            <button
+                                key={colorSlug}
+                                className={`${styles.colorButton} ${
+                                    selectedColor === colorSlug ? styles.colorButtonActive : ''
+                                }`}
+                                onClick={() => setSelectedColor(colorSlug)}
+                            >
+                                <p className={`${styles.color} ${styles[colorSlug]}`}></p>
+                            </button>
+                        ))}
+                    </div>
+                )}
+
                 <div>
                     {model.price} ₽
                 </div>
 
-                <Button onClick={() => handleModal('credit')} >Рассчитать кредит</Button>
-                <Button onClick={() => handleModal('order')}  variant={'secondary'} withArrow>Получить предложение</Button>
+                <div className={styles.btnWrap}>
+                    <Button onClick={() => handleModal('credit')} >Рассчитать кредит</Button>
+                    <Button onClick={() => handleModal('order')}  variant={'secondary'} withArrow>Получить предложение</Button>
+                </div>
             </div>
         </article>
     )

@@ -2,5 +2,12 @@ export interface Model {
     id: number
     name: string
     price: number
-    images: string[]
+    slug: string
+    colors: string[]
+}
+
+export type ColorSlug = string;
+
+export interface ModelImages {
+    [color: string]: string[];
 }
