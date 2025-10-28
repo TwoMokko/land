@@ -4,22 +4,8 @@ import styles from './Actions.module.scss';
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import React from "react";
-import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
-
-interface dataActions {
-    id: number,
-    title: string,
-    subtitle: string,
-    link: ModalType,
-    icon: string | React.ReactNode
-}
-
-const data: dataActions[]  = [
-    { id: 1, title: 'Автокредит с выгодой до 400 000₽', subtitle: 'Одобрение по 2-ум документам', link: 'credit', icon: '' },
-    { id: 2, title: 'Гарантия 3 года или комплект резины в подарок!', subtitle: 'на любую модель при покупке', link: 'order', icon: '' },
-    { id: 3, title: 'Выгоды по Трейд-ин до 300 000₽', subtitle: 'Только 20 автомобилей', link: 'trade', icon: '' },
-    { id: 4, title: 'Новые SWM по сниженной цене от 1 395 000₽!', subtitle: 'Только 20 автомобилей', link: 'order', icon: '' },
-]
+import { useModal } from "@/src/app/providers/ModalProvider";
+import { dataActions } from "@/src/shared/config/model-actions";
 
 export function Actions() {
     const { openModal } = useModal();
@@ -37,7 +23,7 @@ export function Actions() {
                     1024: {slidesPerView: 3},
                 }}
             >
-                {data.map((item) => (
+                {dataActions.map((item) => (
                     <SwiperSlide key={item.id}>
                         <div className={styles.card}>
 

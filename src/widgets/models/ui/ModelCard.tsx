@@ -4,7 +4,7 @@ import styles from "@/src/widgets/models/ui/Models.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Model } from "@/src/shared/api/types";
 import type { Swiper as SwiperType } from "swiper";
 import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
@@ -17,17 +17,21 @@ interface ModelCardProps {
 
 export function ModelCard({ model }: ModelCardProps) {
     const { openModal } = useModal();
-    const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+    const [ thumbsSwiper, setThumbsSwiper ] = useState<SwiperType | null>(null);
     const { currentImages, getImagePath, hasMultipleColors, availableColors, selectedColor, setSelectedColor } = useModelImages({
         modelSlug: model.slug,
         colors: model.colors
     })
 
-    const galleryId = `gallery-${model.id}`;
+    const [ galleryId, setGalleryId ] = useState<string>(`gallery-${model.id}-${selectedColor}`);
 
     const handleModal = (id: ModalType) => {
         openModal(id, { model });
     }
+
+    useEffect(() => {
+        setGalleryId(`gallery-${model.id}-${selectedColor}`);
+    }, [model.id, selectedColor, currentImages])
 
     return (
         <article key={model.id} className={styles.card}>
@@ -49,7 +53,7 @@ export function ModelCard({ model }: ModelCardProps) {
                                     src={getImagePath(image)}
                                     alt={`${model.name} - превью ${index + 1}`}
                                     fill
-                                    sizes="57px"
+                                    sizes="100px"
                                     className={styles.thumbImage}
                                 />
                             </SwiperSlide>
@@ -71,21 +75,24 @@ export function ModelCard({ model }: ModelCardProps) {
                                 href={getImagePath(image)}
                                 data-fancybox={galleryId}
                                 data-caption={model.name}
-                                data-thumb={image}
+                                data-thumb={getImagePath(image)}
                             >
-                                <Image
-                                    src={getImagePath(image)}
-                                    alt={`${model.name} - изображение ${index + 1}`}
-                                    fill
-                                    sizes="(max-width: 768px) 50vw, 1000px"
-                                    className={styles.image}
-                                    loading={index === 0 ? "eager" : "lazy"}
-                                />
+                                <div className={styles.imageContainer}>
+                                    <Image
+                                        src={getImagePath(image)}
+                                        alt={`${model.name} - изображение ${index + 1}`}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw"
+                                        className={styles.image}
+                                        loading={index === 0 ? "eager" : "lazy"}
+                                        priority={index === 0}
+                                        quality={85}
+                                    />
+                                </div>
                             </a>
                         </SwiperSlide>
                     ))}
                 </Swiper>
-
 
 
             </div>

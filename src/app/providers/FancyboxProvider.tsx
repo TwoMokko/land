@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Fancybox as NativeFancybox } from '@fancyapps/ui'
 import '@fancyapps/ui/dist/fancybox/fancybox.css'
 // @ts-ignore
@@ -25,6 +25,8 @@ const options: Partial<OptionsType> = {
     Images: {
         zoom: true,
     },
+    // hideScrollbar: false,
+    // autoFocus: false,
 }
 
 export function FancyboxProvider({ children }: FancyboxProviderProps) {

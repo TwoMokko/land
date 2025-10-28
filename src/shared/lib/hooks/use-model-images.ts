@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
-import { modelImagesConfig, colorNames } from '../config/model-images';
+import { modelImagesConfig, colorNames } from '../../config/model-images';
 import { ColorSlug } from "@/src/shared/api/types";
 
 interface UseModelImagesProps {
@@ -8,17 +8,18 @@ interface UseModelImagesProps {
 }
 
 export function useModelImages({ modelSlug, colors = [] }: UseModelImagesProps) {
-    // Стабильное определение доступных цветов
+    // Определение доступных цветов
     const availableColors = useMemo((): ColorSlug[] => {
         if (colors && colors.length > 0) {
             return colors as ColorSlug[];
         }
 
+        // Если в ответе от сервера нет, то берем из конфигурации
         const configColors = Object.keys(modelImagesConfig[modelSlug] || {});
         return configColors.length > 0 ? configColors : ['default'];
     }, [modelSlug, colors]);
 
-    // Стабильное начальное состояние - всегда первый цвет
+    // Начальное состояние - всегда первый цвет
     const [selectedColor, setSelectedColor] = useState<ColorSlug>(
         availableColors[0] || 'default'
     );
@@ -27,7 +28,7 @@ export function useModelImages({ modelSlug, colors = [] }: UseModelImagesProps) 
         return modelImagesConfig[modelSlug]?.[selectedColor] || [];
     }, [modelSlug, selectedColor]);
 
-    // useCallback для стабильных функций
+    // useCallback для пути изображения
     const getImagePath = useCallback((image: string): string => {
         return `/images/models/${modelSlug}/${selectedColor}/${image}`;
     }, [modelSlug, selectedColor]);
