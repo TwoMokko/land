@@ -7,3 +7,34 @@
 @mixin swiperButtons {
 
 }
+
+// адаптив
+// Mobile (до 767px)
+@mixin mobile {
+	@media (max-width: #{$breakpoint-mobile - 1px}) {
+		@content;
+	}
+}
+
+// Tablet & Mobile (до 1023px)
+@mixin tablet {
+	@media (max-width: #{$breakpoint-tablet - 1px}) {
+		@content;
+	}
+}
+
+// Tablet & Mobile & Laptop (до 1599px)
+@mixin laptop {
+	@media (max-width: #{$breakpoint-laptop - 1px}) {
+		@content;
+	}
+}
+
+// Desktop (1024px и выше)
+@mixin desktop {
+	@media (min-width: #{$breakpoint-tablet}) {
+		@content;
+	}
+}
+
+

@@ -1,14 +1,6 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@use '../shared/styles/variables' as *;
+@use '../shared/styles/mixins' as *;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 html,
 body {
@@ -18,8 +10,6 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: var(--font-alibaba-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -55,19 +45,22 @@ a {
 
 .container {
   padding: 0 16%;
+
+  @include laptop {
+    padding: 0 4%;
+  }
+
+  @include tablet {
+    padding: 0 4%;
+  }
+
+  @include mobile {
+    padding: 0 10px;
+  }
 }
 
 .section-title {
   font-size: 36px;
   line-height: 100%;
   font-weight: 400;
-}
-
-
-
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
