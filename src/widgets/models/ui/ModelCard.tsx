@@ -10,6 +10,7 @@ import type { Swiper as SwiperType } from "swiper";
 import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
 import { Button } from "@/src/shared/ui/button/Button";
 import { useModelImages } from "@/src/shared/lib/hooks/use-model-images";
+import { formatPrice } from "@/src/shared/lib/utils/format-price";
 
 interface ModelCardProps {
     model: Model
@@ -98,7 +99,6 @@ export function ModelCard({ model }: ModelCardProps) {
                                         className={styles.image}
                                         loading={index === 0 ? "eager" : "lazy"}
                                         priority={index === 0}
-                                        quality={85}
                                     />
                                 </div>
                             </a>
@@ -109,7 +109,7 @@ export function ModelCard({ model }: ModelCardProps) {
 
             </div>
             <div className={styles.infoWrap}>
-                <h3>{model.name}</h3>
+                <h3 className={styles.modelTitle}>{model.name}</h3>
 
                 {hasMultipleColors && (
                     <div className={styles.colorSelector}>
@@ -127,9 +127,13 @@ export function ModelCard({ model }: ModelCardProps) {
                     </div>
                 )}
 
-                <div>
-                    {model.price} ₽
-                    {model.recprice} ₽
+                <div className={styles.prices}>
+                    <div className={styles.price}>
+                        { formatPrice(model.price) } ₽
+                    </div>
+                    <div className={styles.oldPrice}>
+                        { formatPrice(model.recprice) } ₽
+                    </div>
                 </div>
 
                 <div className={styles.btnWrap}>

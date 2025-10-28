@@ -1,3 +1,15 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
+
+.loading {
+	text-align: center;
+	padding: 40px 0;
+}
+
+.error {
+
+}
+
 .equipments {
 	padding-top: 120px;
 	padding-bottom: 120px;
@@ -6,9 +18,41 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		margin-bottom: 40px;
 
 		.title {
 
 		}
 	}
+
+	.cardWrap {
+
+		.card {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			align-items: center;
+			background-color: $color-more-light-gray;
+			padding: 10px 16%;
+
+			&:not(:last-child) {
+				margin-bottom: 20px;
+			}
+
+			.infoWrap {
+
+			}
+
+			.imageContainer {
+				position: relative;
+				min-height: 270px;
+
+				.image {
+					width: 100%;
+					height: auto;
+					object-fit: contain;
+				}
+			}
+		}
+	}
 }
+

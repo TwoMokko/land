@@ -20,7 +20,7 @@ export function Models({ idSection }: { idSection: string }) {
                 const models = await getModels();
                 setModels(models);
             } catch (err) {
-                setError(err instanceof Error ? err.message : 'Ошибка загрузки');
+                setError(err instanceof Error ? err.message : 'Ошибка загрузки моделей');
             } finally {
                 setIsLoading(false);
             }
