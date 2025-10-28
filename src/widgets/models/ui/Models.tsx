@@ -3,9 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Models.module.scss';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-
 import { Model } from "@/src/shared/api/types";
 import { getModels } from "@/src/shared/api";
 import { ModelCard } from "@/src/widgets/models/ui/ModelCard";
