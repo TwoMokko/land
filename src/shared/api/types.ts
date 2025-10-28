@@ -5,6 +5,7 @@ export interface Model {
     id: number
     name: string
     price: number
+    recprice: number
     slug: string
     colors: string[]
 }

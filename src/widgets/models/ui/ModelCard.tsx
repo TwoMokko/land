@@ -46,6 +46,18 @@ export function ModelCard({ model }: ModelCardProps) {
                         watchSlidesProgress
                         className={styles.thumbSwiper}
                         direction="vertical"
+                        breakpoints={{
+                            // На мобильных устройствах делаем горизонтальной
+                            320: {
+                                direction: "horizontal",
+                                slidesPerView: 5,
+                            },
+                            // На планшетах и выше - вертикальная
+                            1024: {
+                                direction: "vertical",
+                                slidesPerView: 5,
+                            }
+                        }}
                     >
                         {currentImages?.map((image, index) => (
                             <SwiperSlide key={index} className={styles.thumbSlide}>
@@ -117,6 +129,7 @@ export function ModelCard({ model }: ModelCardProps) {
 
                 <div>
                     {model.price} ₽
+                    {model.recprice} ₽
                 </div>
 
                 <div className={styles.btnWrap}>

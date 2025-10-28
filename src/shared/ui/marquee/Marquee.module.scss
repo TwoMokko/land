@@ -1,0 +1,25 @@
+@import "../../../shared/styles/variables";
+
+.marqueeContainer {
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	background-color: $color-bg;
+	color: $color-light;
+	padding: 10px 0;
+
+	.marqueeContent {
+		display: inline-block;
+		animation: marquee linear infinite;
+		padding-left: 100%;
+	}
+}
+
+@keyframes marquee {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
