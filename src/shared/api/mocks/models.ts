@@ -1,7 +1,7 @@
 import { Model } from "@/src/shared/api/types";
 
 export const mockModels: Model[] = [
-    { id: 1, name: 'Модель 1', slug: 'model1', price: 1000, recprice: 1200,
+    { id: 1, name: 'Модель 1', slug: 'model1', price: 1395000, recprice: 14580000,
         colors: [
             'red',
             'grey',
@@ -9,7 +9,7 @@ export const mockModels: Model[] = [
             'black'
         ]
     },
-    { id: 2, name: 'Модель 2', slug: 'model2', price: 2000, recprice: 1200,
+    { id: 2, name: 'Модель 2', slug: 'model2', price: 2678000, recprice: 15000200,
         colors: [
             'green',
             'blue',

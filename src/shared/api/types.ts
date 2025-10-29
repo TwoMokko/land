@@ -9,7 +9,12 @@ export interface Model {
     slug: string
     colors: string[]
 }
-
+export interface Equipment {
+    id: number
+    name: string
+    model: string
+    imagePath: string
+}
 export type ColorSlug = string;
 
 export interface ModelImages {
