@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
+import { Providers } from "@/src/app/providers/Providers";
 import { Header } from "../widgets/header";
 import { Footer } from "../widgets/footer";
 import './globals.scss';
-import { FancyboxProvider } from "@/src/app/providers/FancyboxProvider";
-import { ModalProvider } from "@/src/app/providers/ModalProvider";
 import React from "react";
 
 const alibabaSans = localFont({
@@ -36,15 +35,13 @@ export default function RootLayout({
   return (
       <html lang="ru" className={alibabaSans.variable}>
           <body>
-              <ModalProvider>
-                  <FancyboxProvider>
-                      <Header/>
-                      <main>
-                          {children}
-                      </main>
-                      <Footer/>
-                  </FancyboxProvider>
-              </ModalProvider>
+              <Providers>
+                  <Header/>
+                  <main>
+                      {children}
+                  </main>
+                  <Footer/>
+              </Providers>
           </body>
       </html>
   );

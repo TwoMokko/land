@@ -1,0 +1,74 @@
+@import "../../../shared/styles/variables";
+
+.trade {
+	position: relative;
+
+	.imgWrap {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+
+		> img {
+			object-fit: cover;
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	.info {
+		color: $color-light;
+		padding: 60px 0;
+
+		.title {
+			font-size: 36px;
+			font-weight: 400;
+			line-height: 100%;
+			letter-spacing: -0.04em;
+			margin: 0;
+			padding-bottom: 40px;
+		}
+
+		.list {
+			margin-bottom: 90px;
+		}
+	}
+}
+
+
+.form {
+
+	.formInputs {
+		display: flex;
+		gap: 10px;
+		margin-bottom: 6px;
+	}
+
+	.checkboxWrap {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-size: 12px;
+		line-height: 110%;
+		width: fit-content;
+
+		input[type="checkbox"] {
+			display: none;
+		}
+
+		.checkbox {
+			width: 20px;
+			height: 20px;
+			border: 1px solid $color-gray;
+			flex: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.policyLink {
+			text-decoration: underline;
+			padding-left: 4px;
+		}
+	}
+
+}

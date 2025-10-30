@@ -28,3 +28,18 @@ export interface ActionItem {
     link: ModalType,
     icon: string | React.ReactNode
 }
+export interface SubmitModel {
+    slug?: string
+    brand?: string
+    model?: string
+    equipment?: string
+    price?: number
+    reprice?: number
+    color?: string
+}
+export interface SubmitData {
+    name: string
+    phone: string
+    model?: SubmitModel
+}
+export type FormData = Pick<SubmitData, 'name' | 'phone'>

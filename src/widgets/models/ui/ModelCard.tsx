@@ -5,11 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
-import { Model } from "@/src/shared/api/types";
+import { Model, SubmitModel } from "@/src/shared/api/types";
 import type { Swiper as SwiperType } from "swiper";
 import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
 import { Button } from "@/src/shared/ui/button/Button";
-import { useModelImages } from "@/src/shared/lib/hooks/use-model-images";
+import { useModelImages } from "@/src/shared/lib/hooks/useModelImages";
 import { formatPrice } from "@/src/shared/lib/utils/format-price";
 
 interface ModelCardProps {
@@ -27,7 +27,16 @@ export function ModelCard({ model }: ModelCardProps) {
     const [ galleryId, setGalleryId ] = useState<string>(`gallery-${model.id}-${selectedColor}`);
 
     const handleModal = (id: ModalType) => {
-        openModal(id, { model });
+        const submitModel: SubmitModel = {
+            slug: model.slug,
+            brand: 'SWM',
+            model: model.name,
+            price: model.price,
+            reprice: model.recprice,
+            color: selectedColor
+        }
+
+        openModal(id, submitModel);
     }
 
     useEffect(() => {
@@ -97,8 +106,6 @@ export function ModelCard({ model }: ModelCardProps) {
                                         fill
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw"
                                         className={styles.image}
-                                        loading={index === 0 ? "eager" : "lazy"}
-                                        priority={index === 0}
                                     />
                                 </div>
                             </a>
