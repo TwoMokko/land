@@ -2,30 +2,25 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import { ErrorModal, OrderModal, SuccessModal, CreditModal, TradeModal } from "@/src/widgets/modals";
+import { SubmitModel } from "@/src/shared/api/types";
 
 export type ModalType = 'order' | 'credit' | 'trade' | 'success' | 'error' | 'image' | 'video'
 
-interface ModalData {
-    model?: any
-    price?: number
-    title?: string
-    imageUrl?: string
-}
 
 interface ModalContextType {
-    openModal: (type: ModalType, data?: ModalData) => void
+    openModal: (type: ModalType, data?: SubmitModel) => void
     closeModal: () => void
     currentModal: ModalType | null
-    modalData: ModalData | null
+    modalData: SubmitModel | null
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined)
 
 export function ModalProvider({ children }: { children: React.ReactNode }) {
     const [currentModal, setCurrentModal] = useState<ModalType | null>(null)
-    const [modalData, setModalData] = useState<ModalData | null>(null)
+    const [modalData, setModalData] = useState<SubmitModel | null>(null)
 
-    const openModal = (type: ModalType, data?: ModalData) => {
+    const openModal = (type: ModalType, data?: SubmitModel) => {
         document.body.classList.add('modal-open')
         setCurrentModal(type)
         setModalData(data || null)

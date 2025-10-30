@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react';
 import styles from './Modals.module.scss';
+import { FormData } from "@/src/shared/api/types";
 import { useModal } from '@/src/app/providers/ModalProvider';
+import { useSubmit } from "@/src/shared/lib/hooks/useSubmit";
 import { MdDone, MdOutlineClose } from "react-icons/md";
 import { Button } from "@/src/shared/ui/button/Button";
 import Link from "next/link";
@@ -15,62 +17,27 @@ interface BaseFormModalProps {
     onSubmit?: (formData: FormData) => Promise<void>
 }
 
-interface FormData {
-    name: string
-    phone: string
-    comment: string
-}
+
 
 export function BaseFormModal({ title, content }: BaseFormModalProps) {
-    const { closeModal, openModal, modalData } = useModal()
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const { closeModal } = useModal()
+    const { handleSubmit, isLoading } = useSubmit();
+    const [isAgreed, setIsAgreed] = useState(true);
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
-        comment: ''
-    })
+    });
 
-    const [isAgreed, setIsAgreed] = useState(true)
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const submit = async (e: React.FormEvent) => {
         e.preventDefault()
 
         if (!isAgreed) {
-            alert('Пожалуйста, согласитесь с обработкой персональных данных')
-            return
+            alert('Пожалуйста, согласитесь с обработкой персональных данных');
+            return;
         }
 
-        setIsLoading(true)
-
-        try {
-            // Отправка данных на API
-            const response = await fetch('/api/orders', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    ...formData,
-                    model: modalData?.model, // Данные о товаре
-                    productId: modalData?.model?.id,
-                    productName: modalData?.model?.name,
-                    productPrice: modalData?.model?.price
-                }),
-            })
-
-            if (response.ok) {
-                const result = await response.json()
-                console.log('Заявка отправлена:', result)
-                openModal('success')
-            } else {
-                throw new Error('Ошибка отправки')
-            }
-        } catch (error) {
-            console.error('Ошибка:', error)
-            openModal('error')
-        } finally {
-            setIsLoading(false)
-        }
+        await handleSubmit(formData);
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -91,7 +58,7 @@ export function BaseFormModal({ title, content }: BaseFormModalProps) {
                 { title }
                 { content }
 
-                <form onSubmit={handleSubmit} className={styles.form}>
+                <form onSubmit={submit} className={styles.form}>
                     <input
                         type="text"
                         name="name"
@@ -107,13 +74,6 @@ export function BaseFormModal({ title, content }: BaseFormModalProps) {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                    />
-                    <textarea
-                        name="comment"
-                        placeholder="Комментарий (необязательно)"
-                        value={formData.comment}
-                        onChange={handleInputChange}
-                        rows={3}
                     />
                     <Button type="submit" disabled={!isAgreed || isLoading}>
                         {isLoading ? 'Отправка...' : 'Отправить заявку'}

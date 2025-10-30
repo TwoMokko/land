@@ -1,32 +1,29 @@
 'use client'
 
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styles from "./Equipments.module.scss";
 
-import { Equipment } from "@/src/shared/api/types";
-import { getEquipments } from "@/src/shared/api/equipments";
 import { EquipCard } from "@/src/widgets/equipments/ui/EquipCard";
+import Select from "react-select";
+import { Button } from "@/src/shared/ui/button/Button";
+import { useEquipments } from "@/src/shared/lib/hooks/useEquipments";
+import { customSelectStyles } from "@/src/shared/config/model-select-styles";
 
 export function Equipments({ idSection }: { idSection: string }) {
-    const [equipments, setEquipments] = useState<Equipment[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const {
+        displayedEquipments,
+        isLoading,
+        error,
+        selectedModel,
+        selectedEquipment,
+        modelOptions,
+        equipmentOptions,
+        showMoreVisible,
+        handleModelChange,
+        handleEquipmentChange,
+        handleShowMore
+    } = useEquipments();
 
-    useEffect(() => {
-        const loadEquipments = async () => {
-            try {
-                setIsLoading(true);
-                const equipments = await getEquipments();
-                setEquipments(equipments);
-            } catch (err) {
-                setError(err instanceof Error ? err.message : 'Ошибка загрузки комплектаций')
-            } finally {
-                setIsLoading(false);
-            }
-        }
-
-        loadEquipments();
-    }, [])
 
     if (isLoading) {
         return (
@@ -45,14 +42,41 @@ export function Equipments({ idSection }: { idSection: string }) {
         <div className={styles.equipments}>
             <div className={`${styles.top} container`} >
                 <h2 className={`${styles.title} section-title`}>Комплектации</h2>
-                <div>filter</div>
+                <div className={styles.filters}>
+                    <Select
+                        options={modelOptions}
+                        value={selectedModel}
+                        onChange={handleModelChange}
+                        placeholder="Модель"
+                        className={styles.select}
+                        styles={customSelectStyles}
+                        isClearable
+                    />
+                    <Select
+                        options={equipmentOptions}
+                        value={selectedEquipment}
+                        onChange={handleEquipmentChange}
+                        placeholder="Комплектация"
+                        className={styles.select}
+                        styles={customSelectStyles}
+                        isClearable
+                    />
+                </div>
             </div>
 
             <div className={styles.cardWrap}>
-                {equipments.map(equip => (
-                    <EquipCard key={equip.id} equip={equip} />
+                {displayedEquipments.map(equip => (
+                    <EquipCard key={equip.id} equip={equip}/>
                 ))}
             </div>
+
+            { showMoreVisible && (
+                <div className={`${styles.showMoreWrap} container`}>
+                    <Button onClick={handleShowMore} variant='secondary'>
+                        Показать ещё
+                    </Button>
+                </div>
+            )}
         </div>
     </section>
 }
