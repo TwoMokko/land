@@ -2,16 +2,21 @@
 
 import styles from './Hero.module.scss';
 import Image from "next/image";
-import React from "react";
 import { Button } from "@/src/shared/ui/button/Button";
 import { useModal } from "@/src/app/providers/ModalProvider";
+import { useDevice } from "@/src/shared/lib/hooks/useDevice";
 
 export function Hero() {
     const { openModal } = useModal();
+    const { isMobile, isReady } = useDevice();
+
+    const imageSrc = !isReady ? '/images/zag.webp' :
+        isMobile ? '/images/hero/hero-mob.png' :
+            '/images/hero/hero-desk.png'
 
     return <div className={styles.hero}>
         <Image
-            src='/images/hero/hero-desk.png'
+            src={imageSrc}
             alt='hero'
             width={100}
             height={100}
