@@ -1,5 +1,5 @@
-@use '../../../shared/styles/variables' as *;
-@use '../../../shared/styles/mixins' as *;
+@use "../../../shared/styles/variables" as *;
+@use "../../../shared/styles/mixins" as *;
 
 .headerWrapper {
     width: 100%;
@@ -331,7 +331,7 @@
         }
     }
 
-    @include laptop {
+    @include tablet {
         margin-top: 0 !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         background-color: $color-light;
@@ -366,13 +366,6 @@
                 z-index: 101;
             }
         }
-    }
-
-    @include mobile {
-        &Logo {
-            max-width: 150px;
-            height: 20px;
-        }
 
         &BurgerMenu {
             top: 50px;
@@ -400,6 +393,13 @@
                 flex: none;
                 align-items: center;
             }
+        }
+    }
+
+    @include mobile {
+        &Logo {
+            max-width: 150px;
+            height: 20px;
         }
     }
 }
