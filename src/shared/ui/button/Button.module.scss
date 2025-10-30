@@ -1,117 +1,122 @@
 @import "../../../shared/styles/variables";
 
 .btn {
-	font-size: 14px;
-	line-height: 100%;
-	font-weight: 400;
-	height: 43px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 0 12px;
-	text-transform: uppercase;
-	border: none;
-	cursor: pointer;
-	transition: all 0.3s ease;
+    font-size: 14px;
+    line-height: 100%;
+    font-weight: 400;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 12px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
-	// Сброс стандартных стилей
-	background: none;
+    background: none;
 
-	&[data-min-width] {
-		min-width: attr(data-min-width px);
-	}
+    &[data-min-width] {
+        min-width: attr(data-min-width px);
+    }
 }
 
 .primary {
-	color: $color-light;
-	background-color: $color-primary;
+    color: $color-light;
+    background-color: $color-primary;
 
-	&:not(.btnArrowWrap):hover {
-		background-color: $color-dark;
-	}
+    &:not(.btnArrowWrap):hover {
+        background-color: $color-dark;
+    }
 }
 
 .secondary {
-	border: 1px solid $color-dark;
-	background-color: $color-light;
+    border: 1px solid $color-dark;
+    background-color: $color-light;
 
-	&:not(.btnArrowWrap):hover {
-		background-color: $color-dark;
-		color: $color-light;
-	}
+    &:not(.btnArrowWrap):hover {
+        background-color: $color-dark;
+        color: $color-light;
+    }
+}
+
+.outline {
+    background-color: $color-light;
+	height: fit-content;
+
+    &:not(.btnArrowWrap):hover {
+        color: $color-primary;
+    }
 }
 
 .btnArrowIcons {
-	position: relative;
-	padding-right: 30px;
-	white-space: nowrap;
-	transition: all 0.3s ease;
-	display: flex;
-	align-items: center;
-	width: 100%;
+    position: relative;
+    padding-right: 30px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    width: 100%;
 
-	.arrowLeft,
-	.arrowRight {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 18px;
-		height: 18px;
-		transition: opacity 0.3s ease, transform 0.3s ease;
-	}
+    .arrowLeft,
+    .arrowRight {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
 
-	/* Иконка справа (по умолчанию видима) */
-	.arrowRight {
-		right: 0;
-		opacity: 1;
-	}
+    .arrowRight {
+        right: 0;
+        opacity: 1;
+    }
 
-	/* Иконка слева (изначально скрыта) */
-	.arrowLeft {
-		left: 0;
-		opacity: 0;
-		transform: translateY(-50%) translateX(-12px);
-	}
+    .arrowLeft {
+        left: 0;
+        opacity: 0;
+        transform: translateY(-50%) translateX(-12px);
+    }
 
-	/* Текст у левого края по умолчанию */
-	.btnText {
-		transition: all 0.3s ease;
-		position: absolute;
-		left: 0; // Начальная позиция - левый край
-	}
+    .btnText {
+        transition: all 0.3s ease;
+        position: absolute;
+        left: 0; 
+    }
 
-	.btnArrowWrap:hover & {
-		padding-right: 0;
-		padding-left: 30px;
-	}
+    .btnArrowWrap:hover & {
+        padding-right: 0;
+        padding-left: 30px;
+    }
 
-	.btnArrowWrap:hover & .btnText {
-		left: auto;
-		right: 0; // Конечная позиция - правый край
-	}
+    .btnArrowWrap:hover & .btnText {
+        left: auto;
+        right: 0; 
+    }
 
-	.btnArrowWrap:hover & .arrowRight {
-		opacity: 0;
-		transform: translateY(-50%) translateX(12px);
-	}
+    .btnArrowWrap:hover & .arrowRight {
+        opacity: 0;
+        transform: translateY(-50%) translateX(12px);
+    }
 
-	.btnArrowWrap:hover & .arrowLeft {
-		opacity: 1;
-		transform: translateY(-50%) translateX(0);
-	}
+    .btnArrowWrap:hover & .arrowLeft {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
 }
 
 @media (max-width: $breakpoint-mobile) {
-	.btn {
-		width: 100%;
-		padding: 15px;
-	}
+    .btn {
+        width: 100%;
+        padding: 15px;
+    }
 
-	.btnArrowIcons {
-		padding-right: 25px;
+    .btnArrowIcons {
+        padding-right: 25px;
 
-		.btnArrowWrap:hover & {
-			padding-left: 25px;
-		}
-	}
+        .btnArrowWrap:hover & {
+            padding-left: 25px;
+        }
+    }
 }

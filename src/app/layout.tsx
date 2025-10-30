@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import { Header } from "../widgets/header";
 import { Footer } from "../widgets/footer";
 import './globals.scss';
+import '../shared/styles/reset.scss';
 import { FancyboxProvider } from "@/src/app/providers/FancyboxProvider";
 import { ModalProvider } from "@/src/app/providers/ModalProvider";
 import React from "react";
