@@ -1,7 +1,131 @@
-@import "../../../shared/styles/variables";
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
 
 .footer {
 	background-color: $color-bg;
 	color: $color-light;
 	padding: 32px;
+
+	.iconsWrap {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 28px;
+		border-bottom: 1px solid $color-transparent-light;
+
+		@include mobile {
+			flex-direction: column;
+		}
+
+		.social {
+			display: flex;
+			gap: 10px;
+			color: $color-transparent-light;
+		}
+	}
+
+	.main {
+		display: flex;
+		padding-top: 32px;
+		padding-bottom: 60px;
+		justify-content: space-between;
+
+		@include mobile {
+			flex-direction: column;
+		}
+	}
+
+	.form {
+
+		.formTitle {
+			font-size: 16px;
+			margin-bottom: 16px;
+		}
+
+		.formInputs {
+			display: flex;
+			background-color: $color-transparent-light-gray;
+			justify-content: space-between;
+			align-items: center;
+			height: 40px;
+			padding: 8px 16px;
+			margin-bottom: 10px;
+
+			> input {
+				flex: auto;
+				width: 100%;
+				background-color: transparent;
+				border: none;
+				outline: none;
+				text-transform: uppercase;
+				color: $color-gray;
+			}
+
+			> button {
+				flex: none;
+				background-color: transparent;
+				border: none;
+				outline: none;
+				color: $color-light;
+				cursor: pointer;
+			}
+		}
+
+		.checkboxWrap {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-size: 12px;
+			line-height: 110%;
+			width: fit-content;
+			color: $color-gray;
+
+			input[type="checkbox"] {
+				display: none;
+			}
+
+			.checkbox {
+				width: 20px;
+				height: 20px;
+				border: 1px solid $color-transparent-light;
+				flex: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.policyLink {
+				text-decoration: underline;
+				padding-left: 4px;
+			}
+		}
+	}
+
+	.info {
+		padding-bottom: 16px;
+		border-bottom: 1px solid $color-transparent-light;
+		font-size: 12px;
+		color: $color-transparent-light;
+
+		> p:not(:last-child) {
+			padding-bottom: 10px;
+		}
+	}
+
+	.links {
+		font-size: 12px;
+		line-height: 100%;
+		font-weight: 400;
+		color: $color-gray;
+		padding-top: 16px;
+		display: flex;
+		justify-content: space-between;
+
+		@include mobile {
+			flex-direction: column;
+		}
+
+		.link {
+			text-decoration: underline;
+		}
+	}
 }

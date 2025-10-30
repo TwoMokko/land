@@ -10,7 +10,7 @@ export function Hero() {
     const { openModal } = useModal();
     const { isMobile, isReady } = useDevice();
 
-    const imageSrc = !isReady ? '/images/zag.webp' :
+    const imageSrc = !isReady ? '/images/hero/hero-desk.png' :
         isMobile ? '/images/hero/hero-mob.png' :
             '/images/hero/hero-desk.png'
 
