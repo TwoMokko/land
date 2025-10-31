@@ -4,6 +4,7 @@ import { Providers } from "@/src/app/providers/Providers";
 import { Header } from "../widgets/header";
 import { Footer } from "../widgets/footer";
 import './globals.scss';
+import '../shared/styles/reset.scss';
 import React from "react";
 
 const alibabaSans = localFont({

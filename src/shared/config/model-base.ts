@@ -5,3 +5,5 @@ export const about = {
     address: 'г. Москва 44км МКАД, влд. 1 стр. 2',
     time: 'с 08:00 до 22:00'
 }
+
+export const scrollThreshold = 20;
