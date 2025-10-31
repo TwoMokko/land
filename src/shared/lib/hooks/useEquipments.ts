@@ -1,5 +1,5 @@
-import { Equipment, Model } from "@/src/shared/api/types";
-import { useEffect, useState } from "react";
+import { Equipment, Model } from "@/src/shared/types/types";
+import {useCallback, useEffect, useState} from "react";
 import { getEquipments } from "@/src/shared/api/equipments";
 import { getModels } from "@/src/shared/api";
 
@@ -36,9 +36,7 @@ export function useEquipments(): UseEquipmentsReturn {
 
     const [selectedModel, setSelectedModel] = useState<OptionType | null>(null);
     const [selectedEquipment, setSelectedEquipment] = useState<OptionType | null>(null);
-    const [equipmentOptions, setEquipmentOptions] = useState<OptionType[]>([
-        { value: '', label: 'Комплектация' }
-    ]);
+    const [equipmentOptions, setEquipmentOptions] = useState<OptionType[]>([{ value: '', label: 'Комплектация' }]);
 
     const [itemsPerPage] = useState<number>(3);
     const [visibleCount, setVisibleCount] = useState<number>(3);
@@ -62,6 +60,8 @@ export function useEquipments(): UseEquipmentsReturn {
                 setEquipments(equipmentsData);
                 setModels(modelsData);
                 setFilteredEquipments(equipmentsData);
+
+                updateEquipmentOptions(null, equipmentsData);
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Ошибка загрузки комплектаций');
             } finally {
@@ -72,10 +72,20 @@ export function useEquipments(): UseEquipmentsReturn {
         loadData();
     }, []);
 
-    // Применение фильтров
     useEffect(() => {
-        applyFilter();
-    }, [selectedModel, selectedEquipment, equipments]);
+        let filtered = [...equipments];
+
+        if (selectedModel?.value) {
+            filtered = filtered.filter(equip => equip.model === selectedModel.value);
+        }
+
+        if (selectedEquipment?.value) {
+            filtered = filtered.filter(equip => equip.id.toString() === selectedEquipment.value);
+        }
+
+        setFilteredEquipments(filtered);
+        setVisibleCount(itemsPerPage);
+    }, [selectedModel, selectedEquipment, equipments, itemsPerPage]);
 
     // Обновление массива для отображения
     useEffect(() => {
@@ -95,10 +105,12 @@ export function useEquipments(): UseEquipmentsReturn {
         setVisibleCount(itemsPerPage);
     };
 
-    const updateEquipmentOptions = (modelSlug: string | null): void => {
+    const updateEquipmentOptions = useCallback((modelSlug: string | null, equipmentsData?: Equipment[]): void => {
+        const currentEquipments = equipmentsData || equipments;
+
         const currentEquips = !modelSlug
-            ? equipments
-            : equipments.filter(equip => equip.model === modelSlug);
+            ? currentEquipments
+            : currentEquipments.filter(equip => equip.model === modelSlug);
 
         const uniqueOptions = [...new Map(
             currentEquips.map(equip => [equip.id, {
@@ -107,24 +119,9 @@ export function useEquipments(): UseEquipmentsReturn {
             }])
         ).values()];
 
-        setEquipmentOptions(uniqueOptions);
+        setEquipmentOptions(uniqueOptions.length > 0 ? uniqueOptions : [{ value: '', label: 'Комплектация' }]);
         setSelectedEquipment(null);
-    };
-
-    const applyFilter = (): void => {
-        let filtered = [...equipments];
-
-        if (selectedModel?.value) {
-            filtered = filtered.filter(equip => equip.model === selectedModel.value);
-        }
-
-        if (selectedEquipment?.value) {
-            filtered = filtered.filter(equip => equip.id.toString() === selectedEquipment.value);
-        }
-
-        setFilteredEquipments(filtered);
-        setVisibleCount(itemsPerPage);
-    };
+    }, [equipments]);
 
     const handleShowMore = (): void => {
         setVisibleCount(prevCount => prevCount + itemsPerPage);

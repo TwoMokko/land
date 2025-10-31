@@ -3,17 +3,27 @@
 import styles from './Footer.module.scss'
 import Image from "next/image";
 import React, {useState} from "react";
+import { useSubmit } from "@/src/shared/lib/hooks/useSubmit";
+import { usePhoneMask } from "@/src/shared/lib/hooks/usePhoneMask";
 import { BiLogoInstagramAlt } from "react-icons/bi";
 import { AiFillYoutube } from "react-icons/ai";
 import { RiTelegram2Fill, RiVkFill } from "react-icons/ri";
+import { FiArrowRight } from "react-icons/fi";
 import { MdDone } from "react-icons/md";
 import Link from "next/link";
-import { useSubmit } from "@/src/shared/lib/hooks/useSubmit";
-import { FormData } from "@/src/shared/api/types";
-import { FiArrowRight } from "react-icons/fi";
+import { FormData, SectionId } from "@/src/shared/types/types";
+import { about } from "@/src/shared/config/model-base";
+
+// ПЕРЕПИСАТЬ (чтобы приходило извне)
+const modelsTitle = [
+    { slug: 'model1', title: 'Модель 1' },
+    { slug: 'model2', title: 'Модель 2' },
+    { slug: 'model3', title: 'Модель 3' },
+]
 
 export function Footer() {
     const { handleSubmit, isLoading } = useSubmit();
+    const { phoneValue, onPhoneChange } = usePhoneMask();
     const [isAgreed, setIsAgreed] = useState(true);
     const [formData, setFormData] = useState<FormData>({
         name: 'переписать, чтобы было необязательным',
@@ -31,13 +41,21 @@ export function Footer() {
         await handleSubmit(formData);
     }
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onPhoneChange(e);
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            phone: e.target.value
         }))
     }
+
+    // сделать как в header
+    const handleScrollToSection = (sectionId: SectionId | string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <footer className={styles.footer}>
@@ -60,6 +78,7 @@ export function Footer() {
                             href="/"
                             target="_blank"
                             rel="noopener noreferrer"
+                            className='inst'
                         >
                             <BiLogoInstagramAlt size={25} />
                         </Link>
@@ -95,12 +114,12 @@ export function Footer() {
                                     type="tel"
                                     name="phone"
                                     placeholder="Телефон"
-                                    value={formData.phone}
-                                    onChange={handleInputChange}
+                                    value={phoneValue}
+                                    onChange={handlePhoneChange}
                                     required
                                 />
                                 <button type="submit" disabled={!isAgreed || isLoading}>
-                                    <FiArrowRight size={20} />
+                                    <FiArrowRight size={20}/>
                                 </button>
                             </div>
 
@@ -127,9 +146,40 @@ export function Footer() {
                             </label>
                         </form>
                     </div>
-                    <div>Модели</div>
-                    <div>Автокредит</div>
-                    <div>Контакты</div>
+                    <div>
+                        <h4 className={styles.navModelsTitle}>Модели</h4>
+                        <div className={styles.navModels}>
+                            {modelsTitle.map(itm => <span
+                                key={itm.slug}
+                                role="button"
+                                onClick={() => handleScrollToSection(itm.slug)}
+                                className={styles.navLink}
+                            >
+                                {itm.title}
+                            </span>)}
+                        </div>
+                    </div>
+                    <div className={styles.navSections}>
+                        <span role="button" onClick={() => handleScrollToSection(SectionId.CREDIT)} className={styles.navLink}>
+                            Автокредит
+                        </span>
+                        <span role="button" onClick={() => handleScrollToSection(SectionId.TRADE_IN)} className={styles.navLink}>
+                            Trade-in
+                        </span>
+                        <span role="button" onClick={() => handleScrollToSection(SectionId.EQUIPMENTS)} className={styles.navLink}>
+                            Комплектации
+                        </span>
+                    </div>
+                    <div>
+                        <h4 className={styles.contactsTitle}>Контакты</h4>
+                        <div className={styles.contactsList}>
+                            {/*может быть, на Link заменить*/}
+                            <a href={`tel:${about.phoneLink}`} className={styles.contactsItem}>{about.phone}</a>
+                            <a href={`mailto:${about.email}`} className={styles.contactsItem}>{about.email}</a>
+                            <span className={styles.contactsItem}>{about.address}</span>
+                            <span className={styles.contactsItem}>{about.time}</span>
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.info}>
                     <p>

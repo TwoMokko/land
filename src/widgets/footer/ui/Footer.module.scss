@@ -4,7 +4,7 @@
 .footer {
 	background-color: $color-bg;
 	color: $color-light;
-	padding: 32px;
+	padding: 32px 0;
 
 	.iconsWrap {
 		display: flex;
@@ -20,6 +20,10 @@
 			display: flex;
 			gap: 10px;
 			color: $color-transparent-light;
+
+			a:hover {
+				color: $color-light;
+			}
 		}
 	}
 
@@ -31,71 +35,147 @@
 
 		@include mobile {
 			flex-direction: column;
-		}
-	}
+			gap: 32px;
+			padding-top: 20px;
+			padding-bottom: 30px;
 
-	.form {
-
-		.formTitle {
-			font-size: 16px;
-			margin-bottom: 16px;
-		}
-
-		.formInputs {
-			display: flex;
-			background-color: $color-transparent-light-gray;
-			justify-content: space-between;
-			align-items: center;
-			height: 40px;
-			padding: 8px 16px;
-			margin-bottom: 10px;
-
-			> input {
-				flex: auto;
-				width: 100%;
-				background-color: transparent;
-				border: none;
-				outline: none;
-				text-transform: uppercase;
-				color: $color-gray;
-			}
-
-			> button {
-				flex: none;
-				background-color: transparent;
-				border: none;
-				outline: none;
-				color: $color-light;
-				cursor: pointer;
-			}
+			> div:nth-child(1) { order: 1; }
+			> div:nth-child(2) { order: 3; }
+			> div:nth-child(3) { order: 4; }
+			> div:nth-child(4) { order: 2; }
 		}
 
-		.checkboxWrap {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-			font-size: 12px;
-			line-height: 110%;
-			width: fit-content;
-			color: $color-gray;
-
-			input[type="checkbox"] {
-				display: none;
+		.form {
+			.formTitle {
+				font-size: 16px;
+				margin-bottom: 16px;
 			}
 
-			.checkbox {
-				width: 20px;
-				height: 20px;
-				border: 1px solid $color-transparent-light;
-				flex: none;
+			.formInputs {
 				display: flex;
-				justify-content: center;
+				background-color: $color-transparent-light-gray;
+				justify-content: space-between;
 				align-items: center;
+				height: 40px;
+				padding: 8px 16px;
+				margin-bottom: 10px;
+
+				> input {
+					flex: auto;
+					width: 100%;
+					background-color: transparent;
+					border: none;
+					outline: none;
+					text-transform: uppercase;
+					color: $color-gray;
+				}
+
+				> button {
+					flex: none;
+					background-color: transparent;
+					border: none;
+					outline: none;
+					color: $color-light;
+					cursor: pointer;
+				}
 			}
 
-			.policyLink {
-				text-decoration: underline;
-				padding-left: 4px;
+			.checkboxWrap {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				font-size: 12px;
+				line-height: 110%;
+				width: fit-content;
+				color: $color-gray;
+
+				input[type="checkbox"] {
+					display: none;
+				}
+
+				.checkbox {
+					width: 20px;
+					height: 20px;
+					border: 1px solid $color-transparent-light;
+					flex: none;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+
+				.policyLink {
+					text-decoration: underline;
+					padding-left: 4px;
+				}
+			}
+		}
+
+		.navModelsTitle {
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 120%;
+			color: $color-gray;
+			margin-bottom: 20px;
+		}
+
+		.navModels {
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 120%;
+			color: $color-light;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+
+			.navLink {
+				cursor: pointer;
+
+				&:hover {
+					color: $color-primary;
+				}
+			}
+		}
+
+		.navSections {
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 120%;
+			color: $color-gray;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+
+			.navLink {
+				cursor: pointer;
+
+				&:hover {
+					color: $color-primary;
+				}
+			}
+		}
+
+		.contactsTitle {
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 120%;
+			color: $color-gray;
+			margin-bottom: 20px;
+		}
+
+		.contactsList {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+
+			.contactsItem {
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 120%;
+				color: $color-light;
+			}
+
+			a.contactsItem:hover {
+				color: $color-primary;
 			}
 		}
 	}
@@ -105,6 +185,11 @@
 		border-bottom: 1px solid $color-transparent-light;
 		font-size: 12px;
 		color: $color-transparent-light;
+
+		@include mobile {
+			border: none;
+			padding-bottom: 0;
+		}
 
 		> p:not(:last-child) {
 			padding-bottom: 10px;
@@ -122,6 +207,7 @@
 
 		@include mobile {
 			flex-direction: column;
+			gap: 18px;
 		}
 
 		.link {

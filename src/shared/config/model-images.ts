@@ -1,4 +1,4 @@
-import { ModelImages } from "@/src/shared/api/types";
+import { ModelImages } from "@/src/shared/types/types";
 
 export const modelImagesConfig: Record<string, ModelImages> = {
     'model1': {

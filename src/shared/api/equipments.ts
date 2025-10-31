@@ -1,5 +1,5 @@
 import { mockEquipments } from "@/src/shared/api/mocks/equipments";
-import { Equipment } from "@/src/shared/api/types";
+import { Equipment } from "@/src/shared/types/types";
 
 export async function getEquipments(): Promise<Equipment[]> {
     // Для разработки - моки
