@@ -1,4 +1,4 @@
-import { Model } from "@/src/shared/api/types";
+import { Model } from "@/src/shared/types/types";
 
 export const mockModels: Model[] = [
     { id: 1, name: 'Модель 1', slug: 'model1', price: 1395000, recprice: 14580000,

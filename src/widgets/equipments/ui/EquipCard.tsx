@@ -1,6 +1,6 @@
 'use client'
 
-import { Equipment, SubmitModel } from "@/src/shared/api/types";
+import { Equipment, SubmitModel } from "@/src/shared/types/types";
 import Image from "next/image";
 import styles from "./Equipments.module.scss";
 import { ModalType, useModal } from "@/src/app/providers/ModalProvider";

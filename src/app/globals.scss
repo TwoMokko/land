@@ -44,6 +44,9 @@ a {
     color: inherit;
     text-decoration: none;
 }
+input:focus-visible, input:focus {
+  outline: none;
+}
 
 .container {
     padding: 0 16%;
@@ -62,9 +65,25 @@ a {
 }
 
 .section-title {
-    font-size: 36px;
-    line-height: 100%;
-    font-weight: 400;
+  font-size: 36px;
+  line-height: 100%;
+  font-weight: 400;
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.inst {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '*';
+    position: absolute;
+    top: -4px;
+    left: 100%;
+  }
 }
 
 .mob-hide {

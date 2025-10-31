@@ -1,4 +1,4 @@
-import { ActionItem } from "@/src/shared/api/types";
+import { ActionItem } from "@/src/shared/types/types";
 
 export const dataActions: ActionItem[] = [
     {

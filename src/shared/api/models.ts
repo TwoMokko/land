@@ -1,5 +1,5 @@
 import { mockModels } from "@/src/shared/api/mocks/models";
-import { Model } from "@/src/shared/api/types";
+import { Model } from "@/src/shared/types/types";
 
 export async function getModels(): Promise<Model[]> {
     // Для разработки - моки

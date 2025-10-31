@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react';
 import styles from './Modals.module.scss';
-import { FormData } from "@/src/shared/api/types";
+import { FormData } from "@/src/shared/types/types";
 import { useModal } from '@/src/app/providers/ModalProvider';
 import { useSubmit } from "@/src/shared/lib/hooks/useSubmit";
+import { usePhoneMask } from "@/src/shared/lib/hooks/usePhoneMask";
 import { MdDone, MdOutlineClose } from "react-icons/md";
 import { Button } from "@/src/shared/ui/button/Button";
 import Link from "next/link";
@@ -22,6 +23,7 @@ interface BaseFormModalProps {
 export function BaseFormModal({ title, content }: BaseFormModalProps) {
     const { closeModal } = useModal()
     const { handleSubmit, isLoading } = useSubmit();
+    const { phoneValue, onPhoneChange } = usePhoneMask();
     const [isAgreed, setIsAgreed] = useState(true);
     const [formData, setFormData] = useState<FormData>({
         name: '',
@@ -48,6 +50,14 @@ export function BaseFormModal({ title, content }: BaseFormModalProps) {
         }))
     }
 
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onPhoneChange(e);
+        setFormData(prev => ({
+            ...prev,
+            phone: e.target.value
+        }))
+    }
+
     return (
         <div className={styles.modalOverlay} onClick={closeModal}>
             <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
@@ -71,8 +81,8 @@ export function BaseFormModal({ title, content }: BaseFormModalProps) {
                         type="tel"
                         name="phone"
                         placeholder="Телефон"
-                        value={formData.phone}
-                        onChange={handleInputChange}
+                        value={phoneValue}
+                        onChange={handlePhoneChange}
                         required
                     />
                     <Button type="submit" disabled={!isAgreed || isLoading}>
@@ -89,14 +99,14 @@ export function BaseFormModal({ title, content }: BaseFormModalProps) {
                         <span className={styles.checkbox}>
                             { isAgreed && <MdDone /> }
                         </span>
-                        <div>Согласен на обработку персональных данных <br/>согласно
+                        <div>Согласен на обработку
                             <Link
                                 href="/policy"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.policyLink}
                             >
-                                политике конфиденциальности*
+                                персональных данных*
                             </Link>
                         </div>
                     </label>

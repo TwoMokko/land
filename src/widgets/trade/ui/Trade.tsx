@@ -2,10 +2,11 @@
 
 import styles from './Trade.module.scss';
 import Image from "next/image";
-import { FormData } from "@/src/shared/api/types";
+import { FormData } from "@/src/shared/types/types";
 import { useDevice } from "@/src/shared/lib/hooks/useDevice";
-import React, { useState } from "react";
+import { usePhoneMask } from "@/src/shared/lib/hooks/usePhoneMask";
 import { useSubmit } from "@/src/shared/lib/hooks/useSubmit";
+import React, { useState } from "react";
 import { Button } from "@/src/shared/ui/button/Button";
 import { MdDone } from "react-icons/md";
 import Link from "next/link";
@@ -13,6 +14,7 @@ import Link from "next/link";
 export function Trade({ idSection }: { idSection: string }) {
     const { isMobile, isReady } = useDevice();
     const { handleSubmit, isLoading } = useSubmit();
+    const { phoneValue, onPhoneChange } = usePhoneMask();
     const [isAgreed, setIsAgreed] = useState(true);
     const [formData, setFormData] = useState<FormData>({
         name: 'переписать, чтобы было необязательным',
@@ -30,11 +32,11 @@ export function Trade({ idSection }: { idSection: string }) {
         await handleSubmit(formData);
     }
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onPhoneChange(e);
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            phone: e.target.value
         }))
     }
 
@@ -68,8 +70,8 @@ export function Trade({ idSection }: { idSection: string }) {
                                 type="tel"
                                 name="phone"
                                 placeholder="Телефон"
-                                value={formData.phone}
-                                onChange={handleInputChange}
+                                value={phoneValue}
+                                onChange={handlePhoneChange}
                                 required
                             />
                             <Button type="submit" disabled={!isAgreed || isLoading}>

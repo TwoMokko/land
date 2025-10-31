@@ -1,4 +1,4 @@
-import { Equipment } from "@/src/shared/api/types";
+import { Equipment } from "@/src/shared/types/types";
 
 export const mockEquipments: Equipment[] = [
     {

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
-import { Model, SubmitModel } from "@/src/shared/api/types";
+import { Model, SubmitModel } from "@/src/shared/types/types";
 import type { Swiper as SwiperType } from "swiper";
 import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
 import { Button } from "@/src/shared/ui/button/Button";
@@ -44,7 +44,7 @@ export function ModelCard({ model }: ModelCardProps) {
     }, [model.id, selectedColor, currentImages])
 
     return (
-        <article key={model.id} className={styles.card}>
+        <article key={model.id} className={styles.card} id={model.slug}>
             <div className={styles.imgWrap}>
                 {/* Мини-галерея (превью) */}
                 {currentImages.length > 1 && (
