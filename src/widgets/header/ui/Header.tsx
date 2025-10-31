@@ -7,9 +7,11 @@ import { useModal } from "@/src/app/providers/ModalProvider";
 import Link from "next/link";
 import { ArrowIcon } from "@/src/shared/ui/icons/ArrowIcon";
 import { NAVIGATION_LINKS, CONTACT_INFO, SCROLL } from "../constants/navigation";
+import { useDevice } from "@/src/shared/lib/hooks/useDevice";
 
 export function Header() {
     const { openModal } = useModal();
+    const { isMobile, isReady } = useDevice();
     const [isScrolled, setIsScrolled] = useState(false);
     const [burgerOpen, setBurgerOpen] = useState(false);
     const burgerMenuRef = useRef<HTMLDivElement>(null);
@@ -73,24 +75,26 @@ export function Header() {
 
     return (
         <header className={`${styles.headerWrapper} ${burgerOpen ? styles.active : ""}`}>
-            <div className={`${styles.headerContacts} mob-hide`}>
-                <div className={`${styles.container} container`}>
-                    <div>{CONTACT_INFO.address}</div>
-                    <div>
+            {isReady && !isMobile && (
+                <div className={styles.headerContacts}>
+                    <div className={`${styles.container} container`}>
+                        <div>{CONTACT_INFO.address}</div>
                         <div>
-                            <a href={CONTACT_INFO.phoneLink}>{CONTACT_INFO.phone}</a>
+                            <div>
+                                <a href={CONTACT_INFO.phoneLink}>{CONTACT_INFO.phone}</a>
+                            </div>
+                            <Button
+                                variant="outline"
+                                className={styles.headerTopBtn}
+                                onClick={handleOpenCreditModal}
+                            >
+                                <ArrowIcon />
+                                <span>Обратный звонок</span>
+                            </Button>
                         </div>
-                        <Button
-                            variant="outline"
-                            className={styles.headerTopBtn}
-                            onClick={handleOpenCreditModal}
-                        >
-                            <ArrowIcon />
-                            <span>Обратный звонок</span>
-                        </Button>
                     </div>
                 </div>
-            </div>
+            )}
 
             <div className={`${styles.header} ${isScrolled ? styles.scroll : ""}`}>
                 <div className={`${styles.container} container`}>
@@ -103,18 +107,21 @@ export function Header() {
                             </ul>
                         </nav>
 
-                        <Button
-                            className="mob-hide tablet-hide"
-                            variant="secondary"
-                            withArrow
-                            onClick={handleOpenCreditModal}
-                        >
-                            Рассчитать кредит
-                        </Button>
+                        {isReady && !isMobile && (
+                            <Button
+                                variant="secondary"
+                                withArrow
+                                onClick={handleOpenCreditModal}
+                            >
+                                Рассчитать кредит
+                            </Button>
+                        )}
 
-                        <div className={`${styles.headerPhone} desk-hide`}>
-                            <a href={CONTACT_INFO.phoneLink}>{CONTACT_INFO.phone}</a>
-                        </div>
+                        {isReady && isMobile && (
+                            <div className={styles.headerPhone}>
+                                <a href={CONTACT_INFO.phoneLink}>{CONTACT_INFO.phone}</a>
+                            </div>
+                        )}
 
                         <div
                             ref={burgerButtonRef}
