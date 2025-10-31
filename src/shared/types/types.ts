@@ -53,13 +53,9 @@ export enum SectionId {
     CREDIT = 'credit',
 }
 
-export const SectionTitles = {
-    [SectionId.MODELS]: 'Модели',
-    [SectionId.SOCIAL]: 'Социальные сети',
-    [SectionId.EQUIPMENTS]: 'Комплектации',
-    [SectionId.TRADE_IN]: 'Трейд-ин',
-    [SectionId.CONTACTS]: 'Контакты',
-    [SectionId.CREDIT]: 'Кредит',
-} as const;
-
 export type SectionKey = keyof typeof SectionId;
+
+export interface NavigationLink {
+    title: string;
+    href: string;
+}

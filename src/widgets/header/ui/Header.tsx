@@ -6,7 +6,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { useModal } from "@/src/app/providers/ModalProvider";
 import Link from "next/link";
 import { ArrowIcon } from "@/src/shared/ui/icons/ArrowIcon";
-import { NAVIGATION_LINKS, CONTACT_INFO, SCROLL } from "../constants/navigation";
+import { navigationLinks, about, scrollThreshold } from "@/src/shared/config";
+import { NavigationLink } from "@/src/shared/types/types";
 import { useDevice } from "@/src/shared/lib/hooks/useDevice";
 
 export function Header() {
@@ -17,11 +18,13 @@ export function Header() {
     const burgerMenuRef = useRef<HTMLDivElement>(null);
     const burgerButtonRef = useRef<HTMLDivElement>(null);
 
+    // мб вынести логику из компонента
+
     useEffect(() => {
         if (typeof window === 'undefined') return;
         
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > SCROLL);
+            setIsScrolled(window.scrollY > scrollThreshold);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -60,7 +63,7 @@ export function Header() {
     };
 
     const renderNavLinks = (onClickHandler?: () => void) => (
-        NAVIGATION_LINKS.map((link) => (
+        navigationLinks.map((link: NavigationLink) => (
             <li key={link.href}>
                 <a 
                     className={styles.link} 
@@ -78,10 +81,10 @@ export function Header() {
             {isReady && !isMobile && (
                 <div className={styles.headerContacts}>
                     <div className={`${styles.container} container`}>
-                        <div>{CONTACT_INFO.address}</div>
+                        <div>{about.address}</div>
                         <div>
                             <div>
-                                <a href={CONTACT_INFO.phoneLink}>{CONTACT_INFO.phone}</a>
+                                <a href={`tel:${about.phoneLink}`}>{about.phone}</a>
                             </div>
                             <Button
                                 variant="outline"
@@ -119,7 +122,7 @@ export function Header() {
 
                         {isReady && isMobile && (
                             <div className={styles.headerPhone}>
-                                <a href={CONTACT_INFO.phoneLink}>{CONTACT_INFO.phone}</a>
+                                <a href={`tel:${about.phoneLink}`}>{about.phone}</a>
                             </div>
                         )}
 
@@ -144,11 +147,11 @@ export function Header() {
 
                             <ul className={styles.headerBurgerMenuContacts}>
                                 <li className={styles.headerBurgerMenuContactsItem}>
-                                    {CONTACT_INFO.address}
+                                    {about.address}
                                 </li>
                                 <li className={styles.headerBurgerMenuContactsItem}>
-                                    <a href={CONTACT_INFO.phoneLink}>
-                                        <strong>{CONTACT_INFO.phone}</strong>
+                                    <a href={`tel:${about.phoneLink}`}>
+                                        <strong>{about.phone}</strong>
                                     </a>
                                 </li>
                             </ul>
