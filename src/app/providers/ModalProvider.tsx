@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import { ErrorModal, OrderModal, SuccessModal, CreditModal, TradeModal } from "@/src/widgets/modals";
-import { SubmitModel } from "@/src/shared/api/types";
+import { SubmitModel } from "@/src/shared/types/types";
 
 export type ModalType = 'order' | 'credit' | 'trade' | 'success' | 'error' | 'image' | 'video'
 

@@ -14,6 +14,11 @@
 	padding-top: 120px;
 	padding-bottom: 120px;
 
+	@include mobile {
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+
 	.top {
 		display: flex;
 		justify-content: space-between;
@@ -23,6 +28,8 @@
 
 		@include mobile {
 			flex-direction: column;
+			align-items: flex-start;
+			margin-bottom: 20px;
 		}
 
 		.title {
@@ -39,10 +46,14 @@
 			background-color: $color-more-light-gray;
 			padding: 10px 16%;
 
+			@include laptop {
+				padding: 10px 4%;
+			}
+
 			@include mobile {
 				display: flex;
 				flex-direction: column-reverse;
-				padding: 10px 4%;
+				padding: 10px;
 			}
 
 			animation: fadeInUp 0.5s ease forwards;
@@ -64,6 +75,7 @@
 				flex-direction: column;
 				justify-content: space-between;
 				height: 100%;
+				width: 100%;
 
 				.name {
 					flex: none;
@@ -128,6 +140,7 @@
 	@include mobile {
 		flex-direction: column;
 		width: 100%;
+		gap: 6px;
 	}
 
 	.select {
@@ -147,8 +160,5 @@
 	}
 }
 
-.selectWrapper {
-	width: 100%;
-	margin-bottom: 16px;
-}
+
 

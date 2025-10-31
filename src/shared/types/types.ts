@@ -43,3 +43,23 @@ export interface SubmitData {
     model?: SubmitModel
 }
 export type FormData = Pick<SubmitData, 'name' | 'phone'>
+
+export enum SectionId {
+    MODELS = 'models',
+    SOCIAL = 'social',
+    EQUIPMENTS = 'equipments',
+    TRADE_IN = 'tradein',
+    CONTACTS = 'contacts',
+    CREDIT = 'credit',
+}
+
+export const SectionTitles = {
+    [SectionId.MODELS]: 'Модели',
+    [SectionId.SOCIAL]: 'Социальные сети',
+    [SectionId.EQUIPMENTS]: 'Комплектации',
+    [SectionId.TRADE_IN]: 'Трейд-ин',
+    [SectionId.CONTACTS]: 'Контакты',
+    [SectionId.CREDIT]: 'Кредит',
+} as const;
+
+export type SectionKey = keyof typeof SectionId;

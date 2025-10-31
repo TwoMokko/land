@@ -1,4 +1,4 @@
-import { FormData } from "@/src/shared/api/types";
+import { FormData } from "@/src/shared/types/types";
 import { useModal } from "@/src/app/providers/ModalProvider";
 import { useState } from "react";
 

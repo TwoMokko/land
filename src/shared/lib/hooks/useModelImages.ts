@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import { modelImagesConfig, colorNames } from '../../config/model-images';
-import { ColorSlug } from "@/src/shared/api/types";
+import { ColorSlug } from "@/src/shared/types/types";
 
 interface UseModelImagesProps {
     modelSlug: string;

@@ -1,4 +1,5 @@
 @use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
 
 .modalOverlay {
 	position: fixed;
@@ -23,6 +24,11 @@
 	overflow-y: auto;
 	position: relative;
 	animation: modalAppear 0.3s ease-out;
+
+	@include mobile {
+		max-width: 360px;
+		padding: 40px 30px 40px;
+	}
 }
 
 @keyframes modalAppear {
@@ -59,12 +65,29 @@
 	gap: 10px;
 	padding-top: 40px;
 
+	@include mobile {
+		width: 100%;
+	}
+
+	input {
+		width: 100%;
+		background-color: $color-light-gray;
+		border: none;
+		height: 43px;
+		padding: 10px;
+
+		&::placeholder {
+			text-transform: uppercase;
+		}
+	}
+
 	.checkboxWrap {
 		display: flex;
 		gap: 10px;
 		font-size: 12px;
 		line-height: 110%;
 		width: fit-content;
+		align-items: center;
 
 		input[type="checkbox"] {
 			display: none;
@@ -94,17 +117,31 @@
 	letter-spacing: -0.04em;
 	margin: 0;
 	padding: 0;
+	font-weight: 400;
+
+	@include  mobile {
+		font-size: 24px;
+		line-height: 100%;
+	}
 }
 
 .subtitle {
 	padding-top: 14px;
 	font-size: 16px;
 	line-height: 120%;
+
+	@include mobile {
+		font-size: 14px;
+	}
 }
 
 .list {
 	list-style: none;
 	padding-top: 40px;
+
+	@include mobile {
+		padding-top: 20px;
+	}
 
 	> li {
 		font-size: 16px;
@@ -114,6 +151,10 @@
 
 		&:not(:last-child) {
 			margin-bottom: 20px;
+
+			@include mobile {
+				margin-bottom: 10px;
+			}
 		}
 
 		&::before {
