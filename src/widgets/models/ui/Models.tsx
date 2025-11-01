@@ -7,6 +7,7 @@ import { Model } from "@/src/shared/types/types";
 import { getModels } from "@/src/shared/api";
 import { ModelCard } from "@/src/widgets/models/ui/ModelCard";
 import {Button} from "@/src/shared/ui/button/Button";
+import { ModelNav } from "@/src/widgets/models/ui/ModelNav";
 
 
 export function Models({ idSection }: { idSection: string }) {
@@ -63,6 +64,8 @@ export function Models({ idSection }: { idSection: string }) {
         <section id={idSection} className="container">
             <div className={styles.models}>
                 <h2 className={`${styles.title} section-title`}>Модельный ряд </h2>
+
+                <ModelNav models={models} />
 
                 <div className={styles.cardWrap}>
                     {displayedModels.map(model => (

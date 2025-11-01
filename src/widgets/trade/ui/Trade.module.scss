@@ -106,6 +106,7 @@
 			border: 0;
 			text-transform: uppercase;
 			height: 43px;
+			background-color: $color-light;
 
 			@include mobile {
 				width: 100%;

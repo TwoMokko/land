@@ -50,12 +50,12 @@ export function Footer() {
     }
 
     // сделать как в header
-    const handleScrollToSection = (sectionId: SectionId | string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+    // const handleScrollToSection = (sectionId: SectionId | string) => {
+    //     const element = document.getElementById(sectionId);
+    //     if (element) {
+    //         element.scrollIntoView({ behavior: 'smooth' });
+    //     }
+    // };
 
     return (
         <footer className={styles.footer}>
@@ -149,26 +149,25 @@ export function Footer() {
                     <div>
                         <h4 className={styles.navModelsTitle}>Модели</h4>
                         <div className={styles.navModels}>
-                            {modelsTitle.map(itm => <span
+                            {modelsTitle.map(itm => <a
                                 key={itm.slug}
-                                role="button"
-                                onClick={() => handleScrollToSection(itm.slug)}
+                                href={`#${itm.slug}`}
                                 className={styles.navLink}
                             >
                                 {itm.title}
-                            </span>)}
+                            </a>)}
                         </div>
                     </div>
                     <div className={styles.navSections}>
-                        <span role="button" onClick={() => handleScrollToSection(SectionId.CREDIT)} className={styles.navLink}>
+                        <a href={`#${SectionId.CREDIT}`} className={styles.navLink}>
                             Автокредит
-                        </span>
-                        <span role="button" onClick={() => handleScrollToSection(SectionId.TRADE_IN)} className={styles.navLink}>
+                        </a>
+                        <a href={`#${SectionId.TRADE_IN}`} className={styles.navLink}>
                             Trade-in
-                        </span>
-                        <span role="button" onClick={() => handleScrollToSection(SectionId.EQUIPMENTS)} className={styles.navLink}>
+                        </a>
+                        <a href={`#${SectionId.EQUIPMENTS}`} className={styles.navLink}>
                             Комплектации
-                        </span>
+                        </a>
                     </div>
                     <div>
                         <h4 className={styles.contactsTitle}>Контакты</h4>
