@@ -8,12 +8,11 @@ import { useDevice } from "@/src/shared/lib/hooks/useDevice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation } from "swiper/modules";
 import { SwiperOptions } from "swiper/types";
+import { useModels } from "@/src/app/providers/ModelsContext";
 
-interface ModelNavProps {
-    models: Model[]
-}
 
-export function ModelNav({ models }: ModelNavProps) {
+export function ModelNav() {
+    const { ensureModelVisible, models } = useModels();
     const { isMobile } = useDevice();
 
     const swiperConfig: SwiperOptions = {
@@ -43,10 +42,10 @@ export function ModelNav({ models }: ModelNavProps) {
             >
                 {models.map(model => (
                     <SwiperSlide key={model.slug} className={styles.swiperSlide}>
-                        <a href={`#${model.slug}`} className={styles.navItem}>
+                        <a href={`#${model.slug}`} className={styles.navItem} onClick={() => ensureModelVisible(model.slug)}>
                             <div className={styles.imageContainer}>
                                 <Image
-                                    src={`/images/models/${model.slug}/blue/1.webp`}
+                                    src={`/images/equipments/${model.slug}.png`}
                                     alt={model.name}
                                     fill
                                     sizes={isMobile ? "150px" : "100px"}

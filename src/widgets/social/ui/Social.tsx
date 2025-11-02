@@ -6,6 +6,7 @@ import React from "react";
 import { FaSquareInstagram, FaTelegram, FaVk } from "react-icons/fa6";
 import Image from "next/image";
 import { useDevice } from "@/src/shared/lib/hooks/useDevice";
+import { socialLinks } from "@/src/shared/config/model-base";
 
 export function Social({ idSection }: { idSection: string }) {
     const { isMobile, isLaptop, isReady } = useDevice();
@@ -22,7 +23,7 @@ export function Social({ idSection }: { idSection: string }) {
             <div className={styles.list}>
                 <div className={styles.listItem}>
                     <Link
-                        href="/"
+                        href={socialLinks.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
                         className='inst'
@@ -35,7 +36,7 @@ export function Social({ idSection }: { idSection: string }) {
                 </div>
                 <div className={styles.listItem}>
                     <Link
-                        href="/"
+                        href={socialLinks.telegram}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -47,7 +48,7 @@ export function Social({ idSection }: { idSection: string }) {
                 </div>
                 <div className={styles.listItem}>
                     <Link
-                        href="/"
+                        href={socialLinks.vkontakte}
                         target="_blank"
                         rel="noopener noreferrer"
                     >

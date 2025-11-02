@@ -6,4 +6,11 @@ export const about = {
     time: 'с 08:00 до 22:00'
 }
 
+export const socialLinks = {
+    instagram: 'https://www.instagram.com/peleton_msk?igsh=MXYwZzMwdnFvaXRmaQ==',
+    youtube: 'https://youtube.com/@peleton_msk',
+    vkontakte: 'https://vk.com/peletonauto',
+    telegram: 'https://t.me/peletonofficial',
+}
+
 export const scrollThreshold = 20;

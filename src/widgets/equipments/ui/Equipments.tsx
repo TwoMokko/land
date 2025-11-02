@@ -9,7 +9,7 @@ import { Button } from "@/src/shared/ui/button/Button";
 import { useEquipments } from "@/src/shared/lib/hooks/useEquipments";
 import { customSelectStyles } from "@/src/shared/config/model-select-styles";
 
-export function Equipments({ idSection }: { idSection: string }) {
+export function Equipments({ idSection, titleSection }: { idSection: string, titleSection: string }) {
     const {
         displayedEquipments,
         isLoading,
@@ -41,7 +41,7 @@ export function Equipments({ idSection }: { idSection: string }) {
     return <section id={idSection}>
         <div className={styles.equipments}>
             <div className={`${styles.top} container`} >
-                <h2 className={`${styles.title} section-title`}>Комплектации</h2>
+                <h2 className={`${styles.title} section-title`}>{titleSection}</h2>
                 <div className={styles.filters}>
                     <Select
                         options={modelOptions}

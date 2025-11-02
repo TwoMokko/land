@@ -13,6 +13,7 @@ import { Equipments } from "@/src/widgets/equipments";
 import { Trade } from "@/src/widgets/trade";
 import { Contacts } from "@/src/widgets/contact";
 import { SectionId } from "@/src/shared/types/types";
+import { sectionTitles } from "@/src/shared/config";
 
 export const metadata: Metadata = {
   title: 'Главная страница',
@@ -25,11 +26,11 @@ export default function Home() {
             <Hero />
             <Marquee text={'тестовый текст'} />
             <Actions />
-            <Models idSection={SectionId.MODELS} />
+            <Models idSection={SectionId.MODELS} titleSection={sectionTitles[SectionId.MODELS]} />
             <Social idSection={SectionId.SOCIAL} />
-            <Equipments idSection={SectionId.EQUIPMENTS} />
+            <Equipments idSection={SectionId.EQUIPMENTS} titleSection={sectionTitles[SectionId.EQUIPMENTS]} />
             <Trade idSection={SectionId.TRADE_IN} />
-            <Contacts idSection={SectionId.CONTACTS} />
+            <Contacts idSection={SectionId.CONTACTS} titleSection={sectionTitles[SectionId.CONTACTS]} />
         </>
     );
 }
