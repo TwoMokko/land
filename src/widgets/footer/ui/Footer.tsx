@@ -12,16 +12,13 @@ import { FiArrowRight } from "react-icons/fi";
 import { MdDone } from "react-icons/md";
 import Link from "next/link";
 import { FormData, SectionId } from "@/src/shared/types/types";
-import { about } from "@/src/shared/config/model-base";
+import { about, socialLinks } from "@/src/shared/config/model-base";
+import { useModels } from "@/src/app/providers/ModelsContext";
 
-// ПЕРЕПИСАТЬ (чтобы приходило извне)
-const modelsTitle = [
-    { slug: 'model1', title: 'Модель 1' },
-    { slug: 'model2', title: 'Модель 2' },
-    { slug: 'model3', title: 'Модель 3' },
-]
+
 
 export function Footer() {
+    const { ensureModelVisible, models } = useModels();
     const { handleSubmit, isLoading } = useSubmit();
     const { phoneValue, onPhoneChange } = usePhoneMask();
     const [isAgreed, setIsAgreed] = useState(true);
@@ -29,6 +26,13 @@ export function Footer() {
         name: 'переписать, чтобы было необязательным',
         phone: '',
     });
+
+    const icons = [
+        { name: 'instagram', icon: <BiLogoInstagramAlt size={25} />, className: 'inst' },
+        { name: 'youtube', icon: <AiFillYoutube size={25} /> },
+        { name: 'vkontakte', icon: <RiVkFill size={25} /> },
+        { name: 'telegram', icon: <RiTelegram2Fill size={25} /> },
+    ];
 
     const submit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -49,14 +53,6 @@ export function Footer() {
         }))
     }
 
-    // сделать как в header
-    const handleScrollToSection = (sectionId: SectionId | string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     return (
         <footer className={styles.footer}>
             <div className='container'>
@@ -74,35 +70,15 @@ export function Footer() {
                         />
                     </Link>
                     <div className={styles.social}>
-                        <Link
-                            href="/"
+                        {icons.map(link => <Link
+                            key={link.name}
+                            href={socialLinks[link.name as keyof typeof socialLinks]}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className='inst'
-                        >
-                            <BiLogoInstagramAlt size={25} />
-                        </Link>
-                        <Link
-                            href="/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <AiFillYoutube size={25} />
-                        </Link>
-                        <Link
-                            href="/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <RiVkFill size={25} />
-                        </Link>
-                        <Link
-                            href="/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <RiTelegram2Fill size={25} />
-                        </Link>
+                            className={link.name === 'instagram' ? 'inst' : ''}
+                            >
+                                {link.icon}
+                            </Link>)}
                     </div>
                 </div>
                 <div className={styles.main}>
@@ -149,26 +125,26 @@ export function Footer() {
                     <div>
                         <h4 className={styles.navModelsTitle}>Модели</h4>
                         <div className={styles.navModels}>
-                            {modelsTitle.map(itm => <span
+                            {models.map(itm => <a
                                 key={itm.slug}
-                                role="button"
-                                onClick={() => handleScrollToSection(itm.slug)}
+                                href={`#${itm.slug}`}
                                 className={styles.navLink}
+                                onClick={() => ensureModelVisible(itm.slug)}
                             >
-                                {itm.title}
-                            </span>)}
+                                {itm.name}
+                            </a>)}
                         </div>
                     </div>
                     <div className={styles.navSections}>
-                        <span role="button" onClick={() => handleScrollToSection(SectionId.CREDIT)} className={styles.navLink}>
+                        <a href={`#${SectionId.CREDIT}`} className={styles.navLink}>
                             Автокредит
-                        </span>
-                        <span role="button" onClick={() => handleScrollToSection(SectionId.TRADE_IN)} className={styles.navLink}>
+                        </a>
+                        <a href={`#${SectionId.TRADE_IN}`} className={styles.navLink}>
                             Trade-in
-                        </span>
-                        <span role="button" onClick={() => handleScrollToSection(SectionId.EQUIPMENTS)} className={styles.navLink}>
+                        </a>
+                        <a href={`#${SectionId.EQUIPMENTS}`} className={styles.navLink}>
                             Комплектации
-                        </span>
+                        </a>
                     </div>
                     <div>
                         <h4 className={styles.contactsTitle}>Контакты</h4>

@@ -11,11 +11,11 @@
 }
 
 .models {
-	padding-top: 120px;
+	margin-top: 120px;
 	padding-bottom: 120px;
 
 	@include mobile {
-		padding-top: 60px;
+		margin-top: 60px;
 		padding-bottom: 60px;
 	}
 
@@ -269,5 +269,75 @@
 		border-color: $color-light-gray;
 	}
 }
+
+.navWrap {
+	width: 100%;
+	position: relative;
+	margin-bottom: 40px;
+
+	.navImage {
+		object-fit: contain;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+	}
+
+	.navInfo {
+		font-weight: 700;
+	}
+
+	.swiperContainer {
+		width: 100%;
+		padding: 10px 0;
+	}
+
+	.swiperSlide {
+		width: auto;
+
+		@include desktop {
+			flex: 1;
+			min-width: 0;
+		}
+
+		@include mobile {
+			max-width: 100px;
+		}
+	}
+
+	.navItem {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-decoration: none;
+		color: inherit;
+		height: 100%;
+		border: 1px solid $color-light-gray;
+		padding: 10px;
+		transition: all 0.2s ease-in-out;
+
+		@include mobile {
+			min-width: 120px;
+		}
+
+		&:hover {
+			border-color: $color-primary;
+		}
+	}
+
+	.imageContainer {
+		position: relative;
+		width: 100%;
+		height: 80px;
+
+		@include mobile {
+			width: 100px;
+			height: 60px;
+		}
+	}
+}
+
+
+
+
 
 

@@ -40,11 +40,11 @@ export function ModelCard({ model }: ModelCardProps) {
     }
 
     useEffect(() => {
-        setGalleryId(`gallery-${model.id}-${selectedColor}`);
+        setGalleryId(`gallery-${model.slug}-${selectedColor}`);
     }, [model.id, selectedColor, currentImages])
 
     return (
-        <article key={model.id} className={styles.card} id={model.slug}>
+        <article key={model.slug} className={styles.card} id={model.slug}>
             <div className={styles.imgWrap}>
                 {/* Мини-галерея (превью) */}
                 {currentImages.length > 1 && (

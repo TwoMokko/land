@@ -2,10 +2,10 @@
 @use '../../../shared/styles/mixins' as *;
 
 .contacts {
-	padding: 120px 0;
+	margin: 120px 0;
 
 	@include mobile {
-		padding: 60px 0;
+		margin: 60px 0;
 	}
 
 	.title {

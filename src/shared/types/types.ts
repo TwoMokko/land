@@ -1,19 +1,19 @@
-import {ModalType} from "@/src/app/providers/ModalProvider";
+import { ModalType } from "@/src/app/providers/ModalProvider";
 import React from "react";
 
 export interface Model {
-    id: number
-    name: string
-    price: number
-    recprice: number
-    slug: string
-    colors: string[]
+    id: number;
+    name: string;
+    price: number;
+    recprice: number;
+    slug: string;
+    colors: string[];
 }
 export interface Equipment {
-    id: number
-    name: string
-    model: string
-    imagePath: string
+    id: number;
+    name: string;
+    model: string;
+    imagePath: string;
 }
 export type ColorSlug = string;
 
@@ -22,35 +22,35 @@ export interface ModelImages {
 }
 
 export interface ActionItem {
-    id: number,
-    title: string,
-    subtitle: string,
-    link: ModalType,
-    icon: string | React.ReactNode
+    id: number;
+    title: string;
+    subtitle: string;
+    link: ModalType;
+    icon: string;
 }
 export interface SubmitModel {
-    slug?: string
-    brand?: string
-    model?: string
-    equipment?: string
-    price?: number
-    reprice?: number
-    color?: string
+    slug?: string;
+    brand?: string;
+    model?: string;
+    equipment?: string;
+    price?: number;
+    reprice?: number;
+    color?: string;
 }
 export interface SubmitData {
-    name: string
-    phone: string
-    model?: SubmitModel
+    name: string;
+    phone: string;
+    model?: SubmitModel;
 }
-export type FormData = Pick<SubmitData, 'name' | 'phone'>
+export type FormData = Pick<SubmitData, "name" | "phone">;
 
 export enum SectionId {
-    MODELS = 'models',
-    SOCIAL = 'social',
-    EQUIPMENTS = 'equipments',
-    TRADE_IN = 'tradein',
-    CONTACTS = 'contacts',
-    CREDIT = 'credit',
+    MODELS = "models",
+    SOCIAL = "social",
+    EQUIPMENTS = "equipments",
+    TRADE_IN = "tradein",
+    CONTACTS = "contacts",
+    CREDIT = "credit",
 }
 
 export type SectionKey = keyof typeof SectionId;
