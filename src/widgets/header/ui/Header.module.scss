@@ -90,20 +90,21 @@
         height: 30px;
         margin-right: 70px;
         display: block;
+
+        @include tablet {
+            margin-right: auto;
+        }
+
+        @include mobile {
+            max-width: 150px;
+            height: 20px;
+        }
     }
 
     &.scroll {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         background-color: $color-light;
         transition: background-color 0.5s ease-out;
-
-        .headerNav li a {
-            color: $color-dark;
-
-            &:hover {
-                color: $color-primary;
-            }
-        }
 
         .headerLogo {
             background-image: url("/images/icons/logo-scroll.svg");
@@ -119,28 +120,36 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-    }
 
-    nav {
-        flex: auto;
+        @include tablet {
+            justify-content: flex-start;
+        }
 
-        .headerNav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            column-gap: 70px;
+        nav {
+            flex: auto;
 
-            li {
-                position: relative;
-                font-size: 16px;
+            @include tablet {
+                display: none;
             }
 
-            li a {
-                transition: $transition-0-3s;
-                color: $color-light;
+            .headerNav {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                column-gap: 70px;
 
-                &:hover {
-                    color: $color-primary;
+                li {
+                    position: relative;
+                    font-size: 16px;
+
+                    a {
+                        transition: $transition-0-3s;
+                        color: $color-light;
+
+                        &:hover {
+                            color: $color-primary;
+                        }
+                    }
                 }
             }
         }
@@ -152,17 +161,25 @@
         background-color: $color-light;
     }
 
-    .headerPhone a {
-        color: $color-dark;
-        font-size: 12px;
-        padding-right: 20px;
+    .headerPhone {
+        a {
+            color: $color-dark;
+            font-size: 12px;
+            padding-right: 20px;
+        }
     }
 
-    &Burger {
+    .headerBurger {
         display: none;
         position: relative;
         width: 25px;
         height: 14px;
+
+        @include tablet {
+            display: block;
+            z-index: 101;
+            margin-left: 22px;
+        }
 
         span {
             position: absolute;
@@ -194,6 +211,10 @@
         }
 
         &.active {
+            @include tablet {
+                z-index: 101;
+            }
+
             span {
                 transform: scale(0);
             }
@@ -216,11 +237,26 @@
         opacity: 0;
         transition: $transition-0-3s;
 
+        @include tablet {
+            top: 50px;
+            width: 100%;
+            border-radius: 0;
+            height: calc(100svh - 50px);
+        }
+
         .headerBurgerMenuWrapper {
             position: relative;
             padding: 35px 20px 30px;
             border-radius: 30px;
             background-color: $color-light;
+
+            @include tablet {
+                border-radius: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+            }
 
             .headerBurgerMenuList {
                 display: flex;
@@ -228,13 +264,22 @@
                 margin-bottom: 42px;
                 row-gap: 14px;
 
-                li a {
-                    color: $color-dark;
-                    font-weight: 500;
-                    transition: $transition-0-3s;
+                @include tablet {
+                    flex: auto;
+                    row-gap: 36px;
+                    align-items: center;
+                    justify-content: center;
+                }
 
-                    &:hover {
-                        color: $color-primary;
+                li {
+                    a {
+                        color: $color-dark;
+                        font-weight: 500;
+                        transition: $transition-0-3s;
+
+                        &:hover {
+                            color: $color-primary;
+                        }
                     }
                 }
             }
@@ -244,6 +289,11 @@
                 flex-direction: column;
                 margin-bottom: 21px;
                 row-gap: 7px;
+
+                @include tablet {
+                    flex: none;
+                    align-items: center;
+                }
 
                 .headerBurgerMenuContactsItem {
                     display: flex;
@@ -299,7 +349,10 @@
         margin: 0;
         padding: 0;
         list-style: none;
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s;
         transform: translateY(-10px);
         opacity: 0;
         border: 1px solid rgba(211, 211, 211, 1);
@@ -331,6 +384,16 @@
         }
     }
 
+    &.scroll {
+        .headerInner nav .headerNav li a {
+            color: $color-dark;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+    }
+
     @include tablet {
         margin-top: 0 !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -346,60 +409,6 @@
 
         .headerLogo {
             background-image: url("/images/icons/logo-scroll.svg");
-            margin-right: auto;
-        }
-
-        &Inner {
-            justify-content: flex-start;
-
-            nav {
-                display: none;
-            }
-        }
-
-        &Burger {
-            display: block;
-            z-index: 101;
-            margin-left: 22px;
-
-            &.active {
-                z-index: 101;
-            }
-        }
-
-        &BurgerMenu {
-            top: 50px;
-            width: 100%;
-            border-radius: 0;
-            height: calc(100svh - 50px);
-
-            &Wrapper {
-                border-radius: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
-            }
-
-            &List {
-                flex: auto;
-                margin-bottom: 42px;
-                row-gap: 36px;
-                align-items: center;
-                justify-content: center;
-            }
-
-            &Contacts {
-                flex: none;
-                align-items: center;
-            }
-        }
-    }
-
-    @include mobile {
-        &Logo {
-            max-width: 150px;
-            height: 20px;
         }
     }
 }

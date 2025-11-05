@@ -7,202 +7,202 @@
     @include mobile {
         padding-top: 60px;
     }
-}
 
-.swiperAction {
-    @include mobile {
-        position: relative;
-        padding-bottom: 40px;
-    }
-}
-
-.actionTop {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 40px;
-
-    @include mobile {
-        padding-bottom: 30px;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
-.actionLinksTitle {
-    font-size: 36px;
-
-    @include mobile {
-        font-size: 24px;
-    }
-}
-
-.actionControls {
-    align-items: flex-start;
-    justify-content: space-between;
-    flex: none;
-    width: 50%;
-
-    @include mobile {
-        width: 100%;
-        padding-top: 10px;
-        position: absolute;
-        bottom: 0;
-    }
-}
-
-.actionControlsTop {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-    color: $color-gray;
-    font-size: 14px;
-}
-
-.actionPagination {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    padding-top: 6px;
-
-    :global(.swiper-pagination-bullet) {
-        flex: 1;
-        border-radius: 0;
-        height: 1px;
-        opacity: 1;
-        background-color: #ededed;
-        margin: 0 !important;
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: flex-start;
-    }
-
-    :global(.swiper-pagination-bullet.swiper-pagination-bullet-active) {
-        background-color: $color-primary;
-        border: 1.5px solid $color-primary;
-    }
-
-    :global(.pagination-text) {
-        padding-bottom: 10px;
-        font-size: 12px;
-    }
-}
-
-.actionButtonWrap {
-    display: flex;
-    gap: 4px;
-    justify-content: flex-end;
-}
-
-.actionButtonPrev,
-.actionButtonNext {
-    cursor: pointer;
-    height: 20px;
-    width: 20px;
-    background: $color-primary;
-    border: 1px solid $color-primary;
-    transition: $transition-0-3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $color-light;
-    user-select: none;
-    border-radius: 50%;
-
-    &:hover {
-        opacity: 0.7;
-    }
-
-    svg path {
-        fill: $color-light;
-    }
-
-    &:global(.swiper-button-disabled) {
-        background: $color-light;
-        border-color: $color-primary;
-
-        svg path {
-            fill: $color-primary;
+    .swiperAction {
+        @include mobile {
+            position: relative;
+            padding-bottom: 40px;
         }
     }
-}
 
-.actionSlide {
-    padding: 24px;
-    background-color: $color-more-light-gray;
-    height: 235px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    .actionTop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 40px;
 
-    @include mobile {
-        padding: 20px;
-        max-width: 215px;
+        @include mobile {
+            padding-bottom: 30px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .actionLinksTitle {
+            font-size: 36px;
+
+            @include mobile {
+                font-size: 24px;
+            }
+        }
+
+        .actionControls {
+            align-items: flex-start;
+            justify-content: space-between;
+            flex: none;
+            width: 50%;
+
+            @include mobile {
+                width: 100%;
+                padding-top: 10px;
+                position: absolute;
+                bottom: 0;
+            }
+
+            .actionControlsTop {
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                justify-content: space-between;
+                color: $color-gray;
+                font-size: 14px;
+
+                .actionButtonWrap {
+                    display: flex;
+                    gap: 4px;
+                    justify-content: flex-end;
+
+                    .actionButtonPrev,
+                    .actionButtonNext {
+                        cursor: pointer;
+                        height: 20px;
+                        width: 20px;
+                        background: $color-primary;
+                        border: 1px solid $color-primary;
+                        transition: $transition-0-3s;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: $color-light;
+                        user-select: none;
+                        border-radius: 50%;
+
+                        &:hover {
+                            opacity: 0.7;
+                        }
+
+                        svg path {
+                            fill: $color-light;
+                        }
+
+                        &:global(.swiper-button-disabled) {
+                            background: $color-light;
+                            border-color: $color-primary;
+
+                            svg path {
+                                fill: $color-primary;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .actionPagination {
+                flex: 1;
+                text-align: center;
+                display: flex;
+                padding-top: 6px;
+
+                :global(.swiper-pagination-bullet) {
+                    flex: 1;
+                    border-radius: 0;
+                    height: 1px;
+                    opacity: 1;
+                    background-color: #ededed;
+                    margin: 0 !important;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    align-items: flex-start;
+                }
+
+                :global(.swiper-pagination-bullet.swiper-pagination-bullet-active) {
+                    background-color: $color-primary;
+                    border: 1.5px solid $color-primary;
+                }
+
+                :global(.pagination-text) {
+                    padding-bottom: 10px;
+                    font-size: 12px;
+                }
+            }
+        }
     }
-}
 
-.actionIconWrap {
-    margin-bottom: 33px;
-    flex: none;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $color-primary;
+    .actionSlide {
+        padding: 24px;
+        background-color: $color-more-light-gray;
+        height: 235px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
-    svg {
-        width: 100%;
-        height: 100%;
-    }
+        @include mobile {
+            padding: 20px;
+            max-width: 215px;
+        }
 
-    @include mobile {
-        width: 26px;
-        height: 26px;
-    }
-}
+        .actionIconWrap {
+            margin-bottom: 33px;
+            flex: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-primary;
 
-.actionTitle {
-    padding-bottom: 10px;
-    font-size: 20px;
-    line-height: 110%;
-    font-weight: 500;
-    flex: none;
+            svg {
+                width: 100%;
+                height: 100%;
+            }
 
-    @include mobile {
-        font-size: 16px;
-    }
-}
+            @include mobile {
+                width: 26px;
+                height: 26px;
+            }
+        }
 
-.actionSubtitle {
-    font-size: 16px;
-    line-height: 120%;
-    font-weight: 400;
-    color: $color-gray;
-    flex: auto;
+        .actionTitle {
+            padding-bottom: 10px;
+            font-size: 20px;
+            line-height: 110%;
+            font-weight: 500;
+            flex: none;
 
-    @include mobile {
-        padding-bottom: 0;
-        font-size: 12px;
-    }
-}
+            @include mobile {
+                font-size: 16px;
+            }
+        }
 
-.actionLink {
-    color: $color-dark-gray;
-    border-bottom: 1px solid $color-dark-gray;
-    font-size: 14px;
-    line-height: 100%;
-    font-weight: 400;
-    flex: none;
-    width: fit-content;
+        .actionSubtitle {
+            font-size: 16px;
+            line-height: 120%;
+            font-weight: 400;
+            color: $color-gray;
+            flex: auto;
 
-    &:hover {
-        color: $color-primary;
-        border-color: $color-primary;
-    }
+            @include mobile {
+                padding-bottom: 0;
+                font-size: 12px;
+            }
+        }
 
-    @include mobile {
-        font-size: 14px;
+        .actionLink {
+            color: $color-dark-gray;
+            border-bottom: 1px solid $color-dark-gray;
+            font-size: 14px;
+            line-height: 100%;
+            font-weight: 400;
+            flex: none;
+            width: fit-content;
+
+            &:hover {
+                color: $color-primary;
+                border-color: $color-primary;
+            }
+
+            @include mobile {
+                font-size: 14px;
+            }
+        }
     }
 }
