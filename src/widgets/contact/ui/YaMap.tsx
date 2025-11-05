@@ -1,29 +1,34 @@
-'use client'
+"use client";
 
-import React from 'react';
+import { useYandexMap } from "@/src/shared/lib/hooks/useYandexMap";
+import { useDevice } from "@/src/shared/lib/hooks/useDevice";
+import { YaMapProps } from "@/src/shared/types/types";
+import styles from "./YaMap.module.scss";
 
-interface YaMapProps {
-    address: string;
-    width?: string;
-    height?: string;
-    className?: string;
-}
+export function YaMap({ address, className = "" }: YaMapProps) {
+    const { isMobile } = useDevice();
+    const { mapRef, isLoading, error } = useYandexMap({ address, isMobile });
 
-export function YaMap({ address, width = '100%', height = '400px', className = ''}: YaMapProps) {
-    const encodedAddress = encodeURIComponent(address);
-    const src = `https://yandex.ru/map-widget/v1/?text=${encodedAddress}&z=16&lang=ru_RU`;
+    if (error) {
+        return (
+            <div className={`${styles.mapError} ${className}`}>
+                <p className={styles.errorTitle}>Не удалось загрузить карту</p>
+                <p className={styles.errorMessage}>{error}</p>
+            </div>
+        );
+    }
 
     return (
-        <iframe
-            src={src}
-            width={width}
-            height={height}
-            frameBorder="0"
-            className={className}
-            style={{ border: 0, borderRadius: '8px' }}
-            allowFullScreen
-            loading="lazy"
-            title={`Карта: ${address}`}
-        />
+        <div
+            id="map"
+            ref={mapRef}
+            className={`${styles.mapContainer} ${isLoading ? styles.loading : ""} ${className}`}
+        >
+            {isLoading && (
+                <div className={styles.loadingOverlay}>
+                    <p className={styles.loadingText}>Загрузка карты...</p>
+                </div>
+            )}
+        </div>
     );
 }

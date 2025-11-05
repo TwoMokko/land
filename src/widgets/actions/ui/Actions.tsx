@@ -32,7 +32,7 @@ export function Actions() {
                         renderCustom: function (swiper, current, total) {
                             if (currentSlideRef.current && totalSlidesRef.current) {
                                 currentSlideRef.current.textContent = "0" + current;
-                                totalSlidesRef.current.textContent = "/ 0" + total;
+                                totalSlidesRef.current.textContent = " / 0" + total;
                             }
 
                             let bullets = "";
@@ -88,7 +88,7 @@ export function Actions() {
                                 </div>
                                 <div className={styles.actionPaginationCounter}>
                                     <span ref={currentSlideRef}>01</span>
-                                    <span ref={totalSlidesRef}>/ 04</span>
+                                    <span ref={totalSlidesRef}> / 04</span>
                                 </div>
                             </div>
                             <div className={styles.actionPagination}></div>
@@ -97,16 +97,7 @@ export function Actions() {
 
                     {dataActions.map((item) => (
                         <SwiperSlide key={item.id} className={styles.actionSlide}>
-                            {item.icon && (
-                                <div className={styles.actionIconWrap}>
-                                    <img
-                                        className={styles.actionIcon}
-                                        src={item.icon as string}
-                                        alt={item.title}
-                                        loading="lazy"
-                                    />
-                                </div>
-                            )}
+                            {item.icon && <div className={styles.actionIconWrap}>{item.icon}</div>}
                             <h3 className={styles.actionTitle}>{item.title}</h3>
                             <p className={styles.actionSubtitle}>{item.subtitle}</p>
                             <a

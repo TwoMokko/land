@@ -18,11 +18,17 @@ export function Header() {
     const burgerMenuRef = useRef<HTMLDivElement>(null);
     const burgerButtonRef = useRef<HTMLDivElement>(null);
 
-    // мб вынести логику из компонента
+    useEffect(() => {
+        document.body.classList.toggle("lock", burgerOpen);
+
+        return () => {
+            document.body.classList.remove("lock");
+        };
+    }, [burgerOpen]);
 
     useEffect(() => {
-        if (typeof window === 'undefined') return;
-        
+        if (typeof window === "undefined") return;
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > scrollThreshold);
         };
@@ -35,14 +41,14 @@ export function Header() {
         if (!burgerOpen) return;
 
         const handleClickOutside = (event: MouseEvent) => {
-            if (!(event.target instanceof Node)) return; 
+            if (!(event.target instanceof Node)) return;
             if (!burgerMenuRef.current || !burgerButtonRef.current) return;
-          
+
             if (
-              !burgerMenuRef.current.contains(event.target) &&
-              !burgerButtonRef.current.contains(event.target)
+                !burgerMenuRef.current.contains(event.target) &&
+                !burgerButtonRef.current.contains(event.target)
             ) {
-              setBurgerOpen(false);
+                setBurgerOpen(false);
             }
         };
 
@@ -62,19 +68,14 @@ export function Header() {
         setBurgerOpen(false);
     };
 
-    const renderNavLinks = (onClickHandler?: () => void) => (
+    const renderNavLinks = (onClickHandler?: () => void) =>
         navigationLinks.map((link: NavigationLink) => (
             <li key={link.href}>
-                <a 
-                    className={styles.link} 
-                    href={link.href}
-                    onClick={onClickHandler}
-                >
+                <a className={styles.link} href={link.href} onClick={onClickHandler}>
                     {link.title}
                 </a>
             </li>
-        ))
-    );
+        ));
 
     return (
         <header className={`${styles.headerWrapper} ${burgerOpen ? styles.active : ""}`}>
@@ -102,20 +103,18 @@ export function Header() {
             <div className={`${styles.header} ${isScrolled ? styles.scroll : ""}`}>
                 <div className={`${styles.container} container`}>
                     <div className={styles.headerInner}>
-                        <Link href="/" className={styles.headerLogo} aria-label="Главная страница" />
+                        <Link
+                            href="/"
+                            className={styles.headerLogo}
+                            aria-label="Главная страница"
+                        />
 
                         <nav>
-                            <ul className={styles.headerNav}>
-                                {renderNavLinks()}
-                            </ul>
+                            <ul className={styles.headerNav}>{renderNavLinks()}</ul>
                         </nav>
 
                         {isReady && !isMobile && (
-                            <Button
-                                variant="secondary"
-                                withArrow
-                                onClick={handleOpenCreditModal}
-                            >
+                            <Button variant="secondary" withArrow onClick={handleOpenCreditModal}>
                                 Рассчитать кредит
                             </Button>
                         )}
@@ -157,9 +156,7 @@ export function Header() {
                             </ul>
 
                             <div className={styles.headerBurgerMenuBtns}>
-                                <Button onClick={handleOpenCreditModal}>
-                                    Обратный звонок
-                                </Button>
+                                <Button onClick={handleOpenCreditModal}>Обратный звонок</Button>
                                 <Button
                                     variant="secondary"
                                     withArrow

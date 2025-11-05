@@ -32,7 +32,7 @@ export interface ActionItem {
     title: string;
     subtitle: string;
     link: ModalType;
-    icon: string;
+    icon: React.ReactNode;
 }
 export interface SubmitModel {
     slug?: string;
@@ -65,4 +65,32 @@ export type SectionKey = keyof typeof SectionId;
 export interface NavigationLink {
     title: string;
     href: string;
+}
+
+export interface YaMapConfig {
+    center: [number, number];
+    zoom: number;
+    address: string;
+    apiKey: string;
+}
+
+export interface PinConfig {
+    size: [number, number];
+    offset: [number, number];
+}
+
+export interface YaMapProps {
+    address: string;
+    className?: string;
+}
+
+export interface UseYandexMapProps {
+    address: string;
+    isMobile: boolean;
+}
+
+export interface UseYandexMapReturn {
+    mapRef: React.RefObject<HTMLDivElement | null>;
+    isLoading: boolean;
+    error: string | null;
 }
