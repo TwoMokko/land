@@ -158,11 +158,14 @@
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				gap: 16px;
 
 				@include tablet {
 					padding: 0;
 					border: none;
+				}
+
+				> div:not(.list) {
+					flex: none;
 				}
 
 				.modelTitle {
@@ -170,6 +173,54 @@
 					font-size: 32px;
 					font-weight: 400;
 					line-height: 100%;
+					padding-bottom: 10px;
+
+					> span {
+						color: $color-primary;
+					}
+
+					@include mobile {
+						font-size: 20px;
+					}
+				}
+
+				.list {
+					flex: auto;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+
+					@include mobile {
+						padding: 10px 0 15px;
+					}
+
+					.listItem {
+						display: flex;
+						justify-content: space-between;
+						align-items: baseline;
+						border-bottom: 1px solid $color-light-gray;
+						padding: 4px 0;
+
+						&:not(:last-child) {
+							margin-bottom: 4px;
+						}
+
+						.listTitle {
+							font-size: 16px;
+
+							@include mobile {
+								font-size: 14px;
+							}
+						}
+
+						.listValue {
+							font-size: 20px;
+
+							@include mobile {
+								font-size: 14px;
+							}
+						}
+					}
 				}
 
 				.prices {
@@ -182,7 +233,7 @@
 						font-size: 32px;
 						font-weight: 400;
 						line-height: 100%;
-						margin-bottom: 10px;
+						margin-bottom: 6px;
 					}
 
 					.oldPrice {
@@ -191,6 +242,11 @@
 						font-size: 14px;font-weight: 400;
 						line-height: 100%;
 					}
+				}
+
+				.creditPay {
+					padding-bottom: 10px;
+					font-size: 18px;
 				}
 
 				.btnWrap {

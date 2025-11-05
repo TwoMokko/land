@@ -41,7 +41,7 @@ export function Trade({ idSection }: { idSection: string }) {
     }
 
 
-    const imageSrc = !isReady ? '/images/zag.webp' :
+    const imageSrc = !isReady ? '/images/trade/trade-desk.png' :
         isMobile ? '/images/trade/trade-mob.png' :
             '/images/trade/trade-desk.png'
 

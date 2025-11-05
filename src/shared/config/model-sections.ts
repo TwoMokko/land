@@ -7,4 +7,5 @@ export const sectionTitles = {
     [SectionId.TRADE_IN]: 'Трейд-ин',
     [SectionId.CONTACTS]: 'Контакты',
     [SectionId.CREDIT]: 'Кредит',
+    [SectionId.STOCK]: 'Авто в наличии',
 } as const;

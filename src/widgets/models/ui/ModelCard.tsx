@@ -116,7 +116,7 @@ export function ModelCard({ model }: ModelCardProps) {
 
             </div>
             <div className={styles.infoWrap}>
-                <h3 className={styles.modelTitle}>{model.name}</h3>
+                <h3 className={styles.modelTitle}>Brand <span>{model.name}</span></h3>
 
                 {hasMultipleColors && (
                     <div className={styles.colorSelector}>
@@ -134,18 +134,37 @@ export function ModelCard({ model }: ModelCardProps) {
                     </div>
                 )}
 
-                <div className={styles.prices}>
-                    <div className={styles.price}>
-                        { formatPrice(model.price) } ₽
+                <div className={styles.list}>
+                    <div className={styles.listItem}>
+                        <span className={styles.listTitle}>Скидка за приезд день в день</span>
+                        <span className={styles.listValue}>до 30 000 ₽</span>
                     </div>
-                    <div className={styles.oldPrice}>
-                        { formatPrice(model.recprice) } ₽
+                    <div className={styles.listItem}>
+                        <span className={styles.listTitle}>Трейд-ин   </span>
+                        <span className={styles.listValue}>до 300 000 ₽</span>
+                    </div>
+                    <div className={styles.listItem}>
+                        <span className={styles.listTitle}>Гарантия</span>
+                        <span className={styles.listValue}>3 года</span>
                     </div>
                 </div>
 
+                <div className={styles.prices}>
+                    <div className={styles.price}>
+                        {formatPrice(model.price)} ₽
+                    </div>
+                    <div className={styles.oldPrice}>
+                        {formatPrice(model.recprice)} ₽
+                    </div>
+                </div>
+                <div className={styles.creditPay}>
+                    платеж от {formatPrice(model.creditPay)} ₽/мес
+                </div>
+
                 <div className={styles.btnWrap}>
-                    <Button onClick={() => handleModal('credit')} >Рассчитать кредит</Button>
-                    <Button onClick={() => handleModal('order')}  variant={'secondary'} withArrow>Получить предложение</Button>
+                    <Button onClick={() => handleModal('credit')}>Рассчитать кредит</Button>
+                    <Button onClick={() => handleModal('order')} variant={'secondary'} withArrow>Получить
+                        предложение</Button>
                 </div>
             </div>
         </article>

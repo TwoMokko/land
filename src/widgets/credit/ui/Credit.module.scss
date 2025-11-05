@@ -1,0 +1,155 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
+
+.credit {
+	position: relative;
+	margin-left: 10%;
+	margin-right: 10%;
+
+	@include laptop {
+		margin-left: 4%;
+		margin-right: 4%;
+	}
+
+	@include mobile {
+		margin-left: 10px;
+		margin-right: 10px;
+		height: 550px;
+	}
+
+	.imgWrap {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+
+		> img {
+			object-fit: cover;
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	.info {
+		color: $color-light;
+		padding: 24px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		@include mobile {
+			padding: 200px 10px 10px;
+			flex-direction: column;
+			height: 100%;
+			align-items: flex-start;
+		}
+
+		.title {
+			font-size: 36px;
+			font-weight: 400;
+			line-height: 100%;
+			letter-spacing: -0.04em;
+			margin: 0;
+			padding-bottom: 40px;
+			max-width: 500px;
+
+			br {
+				display: none;
+			}
+
+			@include mobile {
+				font-size: 24px;
+				padding-bottom: 20px;
+				max-width: 100%;
+
+				br {
+					display: block;
+				}
+			}
+		}
+
+		.list {
+			font-size: 18px;
+			font-weight: 500;
+			line-height: 110%;
+			list-style: none;
+
+			@include laptop {
+				font-size: 14px;
+				font-weight: 400;
+			}
+
+			> li {
+				padding: 6px 10px;
+				background-color: $color-primary;
+				width: fit-content;
+
+				> span {
+					opacity: 0.7;
+				}
+			}
+
+			> li:not(:last-child) {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+
+
+.form {
+	@include mobile {
+		width: 100%;
+	}
+
+	.formInputs {
+		display: flex;
+		gap: 6px;
+		margin-bottom: 6px;
+
+		@include mobile {
+			flex-direction: column;
+		}
+
+		input {
+			width: 215px;
+			padding: 10px;
+			border: 0;
+			text-transform: uppercase;
+			height: 43px;
+			background-color: $color-light;
+
+			@include mobile {
+				width: 100%;
+			}
+		}
+	}
+
+	.checkboxWrap {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-size: 12px;
+		line-height: 110%;
+		width: fit-content;
+
+		input[type="checkbox"] {
+			display: none;
+		}
+
+		.checkbox {
+			width: 20px;
+			height: 20px;
+			border: 1px solid $color-gray;
+			flex: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.policyLink {
+			text-decoration: underline;
+			padding-left: 4px;
+		}
+	}
+
+}
