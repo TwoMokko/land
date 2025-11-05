@@ -1,12 +1,13 @@
 import { ModalType } from "@/src/app/providers/ModalProvider";
-import React from "react";
 
 export interface Model {
     id: number;
+    brand: string;
     name: string;
     price: number;
     recprice: number;
     slug: string;
+    creditPay: number;
     colors: string[];
 }
 export interface Equipment {
@@ -14,6 +15,11 @@ export interface Equipment {
     name: string;
     model: string;
     imagePath: string;
+    brand: string;
+    engine_capacity: number;
+    power: string;
+    kpp: string;
+    drive: string;
 }
 export type ColorSlug = string;
 
@@ -51,6 +57,7 @@ export enum SectionId {
     TRADE_IN = "tradein",
     CONTACTS = "contacts",
     CREDIT = "credit",
+    STOCK = 'stock'
 }
 
 export type SectionKey = keyof typeof SectionId;

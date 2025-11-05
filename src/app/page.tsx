@@ -14,6 +14,8 @@ import { Trade } from "@/src/widgets/trade";
 import { Contacts } from "@/src/widgets/contact";
 import { SectionId } from "@/src/shared/types/types";
 import { modelMarquee, sectionTitles } from "@/src/shared/config";
+import { Credit } from "@/src/widgets/credit";
+import { StockModels } from "@/src/widgets/stock";
 
 export const metadata: Metadata = {
   title: 'Главная страница',
@@ -30,6 +32,8 @@ export default function Home() {
             <Social idSection={SectionId.SOCIAL} />
             <Equipments idSection={SectionId.EQUIPMENTS} titleSection={sectionTitles[SectionId.EQUIPMENTS]} />
             <Trade idSection={SectionId.TRADE_IN} />
+            <StockModels idSection={SectionId.STOCK} titleSection={sectionTitles[SectionId.STOCK]} />
+            <Credit idSection={SectionId.CREDIT} />
             <Contacts idSection={SectionId.CONTACTS} titleSection={sectionTitles[SectionId.CONTACTS]} />
         </>
     );

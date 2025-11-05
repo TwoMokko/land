@@ -1,0 +1,16 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
+
+.stockModels {
+	margin-top: 120px;
+	padding-bottom: 120px;
+
+	@include mobile {
+		margin-top: 60px;
+		padding-bottom: 60px;
+	}
+
+	.title {
+		padding-bottom: 40px;
+	}
+}

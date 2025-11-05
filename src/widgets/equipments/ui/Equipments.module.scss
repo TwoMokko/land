@@ -52,8 +52,10 @@
 
 			@include mobile {
 				display: flex;
-				flex-direction: column-reverse;
+				flex-direction: column;
 				padding: 10px;
+				margin-left: 10px;
+				margin-right: 10px;
 			}
 
 			animation: fadeInUp 0.5s ease forwards;
@@ -70,6 +72,10 @@
 				margin-bottom: 20px;
 			}
 
+			.brandModelName {
+				font-size: 24px;
+			}
+
 			.infoWrap {
 				display: flex;
 				flex-direction: column;
@@ -79,10 +85,42 @@
 
 				.name {
 					flex: none;
+					font-size: 20px;
+					padding: 5px 10px;
+					border: 1px solid $color-primary;
+					color: $color-primary;
+					border-radius: 20px;
+					margin-bottom: 10px;
+					width: fit-content;
+					font-weight: 700;
+
+					@include mobile {
+						font-size: 14px;
+						padding: 4px 10px;
+						font-weight: 400;
+					}
 				}
 
 				.chars {
 					flex: auto;
+
+					.charsItem {
+						display: flex;
+						justify-content: space-between;
+						align-items: baseline;
+						font-size: 16px;
+						line-height: 120%;
+						border-bottom: 1px solid $color-light-gray;
+						padding: 6px;
+
+						.charsTitle {
+
+						}
+
+						.charsValue {
+
+						}
+					}
 				}
 
 				.btnWrap {
