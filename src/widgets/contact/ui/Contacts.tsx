@@ -90,7 +90,7 @@ export function Contacts({ idSection, titleSection }: { idSection: string; title
                             в России
                         </div>
                     </div>
-                    <YaMap address="МКАД, 44-й километр, 1Вс2" height="500px" />
+                    <YaMap address="МКАД, 44-й километр, 1Вс2" />
                 </div>
             </div>
         </section>
