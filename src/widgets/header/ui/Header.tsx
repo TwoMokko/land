@@ -5,10 +5,10 @@ import { Button } from "@/src/shared/ui/button/Button";
 import React, { useEffect, useState, useRef } from "react";
 import { useModal } from "@/src/app/providers/ModalProvider";
 import Link from "next/link";
-import { ArrowIcon } from "@/src/shared/ui/icons/ArrowIcon";
 import { navigationLinks, about, scrollThreshold } from "@/src/shared/config";
 import { NavigationLink } from "@/src/shared/types/types";
 import { useDevice } from "@/src/shared/lib/hooks/useDevice";
+import { FiArrowRight } from "react-icons/fi";
 
 export function Header() {
     const { openModal } = useModal();
@@ -91,7 +91,7 @@ export function Header() {
                                 className={styles.headerTopBtn}
                                 onClick={handleOpenCreditModal}
                             >
-                                <ArrowIcon />
+                                <FiArrowRight />
                                 <span>Обратный звонок</span>
                             </Button>
                         </div>

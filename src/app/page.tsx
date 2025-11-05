@@ -13,7 +13,7 @@ import { Equipments } from "@/src/widgets/equipments";
 import { Trade } from "@/src/widgets/trade";
 import { Contacts } from "@/src/widgets/contact";
 import { SectionId } from "@/src/shared/types/types";
-import { sectionTitles } from "@/src/shared/config";
+import { modelMarquee, sectionTitles } from "@/src/shared/config";
 
 export const metadata: Metadata = {
   title: 'Главная страница',
@@ -24,7 +24,7 @@ export default function Home() {
     return (
         <>
             <Hero />
-            <Marquee text={'тестовый текст'} />
+            <Marquee text={modelMarquee} speed={50} />
             <Actions />
             <Models idSection={SectionId.MODELS} titleSection={sectionTitles[SectionId.MODELS]} />
             <Social idSection={SectionId.SOCIAL} />
