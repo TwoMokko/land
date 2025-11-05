@@ -26,7 +26,7 @@ export interface ActionItem {
     title: string;
     subtitle: string;
     link: ModalType;
-    icon: string;
+    icon: React.ReactNode;
 }
 export interface SubmitModel {
     slug?: string;

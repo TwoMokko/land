@@ -147,15 +147,20 @@
     flex: none;
     width: 30px;
     height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-primary;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 
     @include mobile {
         width: 26px;
         height: 26px;
     }
-}
-
-.actionIcon {
-    object-fit: contain;
 }
 
 .actionTitle {
