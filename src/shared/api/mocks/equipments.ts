@@ -50,7 +50,7 @@ export const mockEquipments: Equipment[] = [
         name: 'equip brand test',
         model: 'model5',
         imagePath: '/images/equipments/model4.png',
-        brand: 'test brand',
+        brand: 'OTHER',
         engine_capacity: 1498,
         power: '138 (101) / 5600',
         kpp: 'РКПП 7',

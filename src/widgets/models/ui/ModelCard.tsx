@@ -116,7 +116,7 @@ export function ModelCard({ model }: ModelCardProps) {
 
             </div>
             <div className={styles.infoWrap}>
-                <h3 className={styles.modelTitle}>Brand <span>{model.name}</span></h3>
+                <h3 className={styles.modelTitle}>{model.brand} <span>{model.name}</span></h3>
 
                 {hasMultipleColors && (
                     <div className={styles.colorSelector}>
