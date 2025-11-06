@@ -2,413 +2,413 @@
 @use "../../../shared/styles/mixins" as *;
 
 .headerWrapper {
-    width: 100%;
-    display: block;
-    z-index: 10;
+	width: 100%;
+	display: block;
+	z-index: 10;
 
-    .headerContacts {
-        height: 40px;
+	.headerContacts {
+		height: 40px;
 
-        .container {
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: $color-light;
+		.container {
+			height: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background-color: $color-light;
 
-            > div {
-                display: flex;
-                align-items: center;
-                gap: 20px;
-            }
+			> div {
+				display: flex;
+				align-items: center;
+				gap: 20px;
+			}
 
-            a {
-                color: $color-dark;
-                text-decoration: none;
-                transition: $transition-0-3s;
+			a {
+				color: $color-dark;
+				text-decoration: none;
+				transition: $transition-0-3s;
 
-                &:hover {
-                    color: $color-primary;
-                }
-            }
-        }
-    }
+				&:hover {
+					color: $color-primary;
+				}
+			}
+		}
+	}
 
-    .headerTopBtn {
-        color: $color-dark;
-        transition: color 0.3s ease-out;
-        font-size: 14px;
-        text-transform: uppercase;
-        display: flex;
-        gap: 4px;
-        align-items: center;
+	.headerTopBtn {
+		color: $color-dark;
+		transition: color 0.3s ease-out;
+		font-size: 14px;
+		text-transform: uppercase;
+		display: flex;
+		gap: 4px;
+		align-items: center;
 
-        svg {
-            transform: rotate(45deg);
-            transition: transform 0.3s ease-out;
-        }
+		svg {
+			transform: rotate(45deg);
+			transition: transform 0.3s ease-out;
+		}
 
-        &:hover {
-            color: $color-primary;
+		&:hover {
+			color: $color-primary;
 
-            svg {
-                transform: rotate(0);
+			svg {
+				transform: rotate(0);
 
-                path {
-                    fill: $color-primary;
-                    transition: fill 0.3s ease-out;
-                }
-            }
-        }
-    }
+				path {
+					fill: $color-primary;
+					transition: fill 0.3s ease-out;
+				}
+			}
+		}
+	}
 
-    &.active {
-        @include laptop {
-            .headerBurgerMenu {
-                right: 0;
-                opacity: 1;
-            }
-        }
-    }
+	&.active {
+		@include laptop {
+			.headerBurgerMenu {
+				right: 0;
+				opacity: 1;
+			}
+		}
+	}
 }
 
 .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 0;
-    background-color: transparent;
-    transition: $transition-0-3s;
-    z-index: 10;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 20px 0;
+	background-color: transparent;
+	transition: $transition-0-3s;
+	z-index: 10;
 
-    .headerLogo {
-        background-image: url("/images/icons/logo.svg");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        width: 245px;
-        height: 30px;
-        margin-right: 70px;
-        display: block;
+	.headerLogo {
+		background-image: url("/images/icons/logo.svg");
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		width: 245px;
+		height: 30px;
+		margin-right: 70px;
+		display: block;
 
-        @include tablet {
-            margin-right: auto;
-        }
+		@include tablet {
+			margin-right: auto;
+		}
 
-        @include mobile {
-            max-width: 150px;
-            height: 20px;
-        }
-    }
+		@include mobile {
+			max-width: 150px;
+			height: 20px;
+		}
+	}
 
-    &.scroll {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        background-color: $color-light;
-        transition: background-color 0.5s ease-out;
+	&.scroll {
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+		background-color: $color-light;
+		transition: background-color 0.5s ease-out;
 
-        .headerLogo {
-            background-image: url("/images/icons/logo-scroll.svg");
-        }
-    }
+		.headerLogo {
+			background-image: url("/images/icons/logo-scroll.svg");
+		}
+	}
 
-    &:not(.scroll) {
-        margin-top: 40px;
-        transition: margin-top 0.2s ease-out;
-    }
+	&:not(.scroll) {
+		margin-top: 40px;
+		transition: margin-top 0.2s ease-out;
+	}
 
-    .headerInner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+	.headerInner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 
-        @include tablet {
-            justify-content: flex-start;
-        }
+		@include tablet {
+			justify-content: flex-start;
+		}
 
-        nav {
-            flex: auto;
+		nav {
+			flex: auto;
 
-            @include tablet {
-                display: none;
-            }
+			@include tablet {
+				display: none;
+			}
 
-            .headerNav {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                column-gap: 70px;
+			.headerNav {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				column-gap: 70px;
 
-                li {
-                    position: relative;
-                    font-size: 16px;
+				li {
+					position: relative;
+					font-size: 16px;
 
-                    a {
-                        transition: $transition-0-3s;
-                        color: $color-light;
+					a {
+						transition: $transition-0-3s;
+						color: $color-light;
 
-                        &:hover {
-                            color: $color-primary;
-                        }
-                    }
-                }
-            }
-        }
-    }
+						&:hover {
+							color: $color-primary;
+						}
+					}
+				}
+			}
+		}
+	}
 
-    .headerBtnCall {
-        margin-left: 70px;
-        font-size: 14px;
-        background-color: $color-light;
-    }
+	.headerBtnCall {
+		margin-left: 70px;
+		font-size: 14px;
+		background-color: $color-light;
+	}
 
-    .headerPhone {
-        a {
-            color: $color-dark;
-            font-size: 12px;
-            padding-right: 20px;
-        }
-    }
+	.headerPhone {
+		a {
+			color: $color-dark;
+			font-size: 12px;
+			padding-right: 20px;
+		}
+	}
 
-    .headerBurger {
-        display: none;
-        position: relative;
-        width: 25px;
-        height: 14px;
+	.headerBurger {
+		display: none;
+		position: relative;
+		width: 25px;
+		height: 14px;
 
-        @include tablet {
-            display: block;
-            z-index: 101;
-            margin-left: 22px;
-        }
+		@include tablet {
+			display: block;
+			z-index: 101;
+			margin-left: 22px;
+		}
 
-        span {
-            position: absolute;
-            top: 6px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: $color-dark;
-            transition: all 0.2s ease-in-out;
-        }
+		span {
+			position: absolute;
+			top: 6px;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background-color: $color-dark;
+			transition: all 0.2s ease-in-out;
+		}
 
-        &::before,
-        &::after {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            content: "";
-            background-color: $color-dark;
-            transition: all 0.2s ease-in-out;
-        }
+		&::before,
+		&::after {
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			content: "";
+			background-color: $color-dark;
+			transition: all 0.2s ease-in-out;
+		}
 
-        &::before {
-            top: 0;
-        }
+		&::before {
+			top: 0;
+		}
 
-        &::after {
-            bottom: 0;
-        }
+		&::after {
+			bottom: 0;
+		}
 
-        &.active {
-            @include tablet {
-                z-index: 101;
-            }
+		&.active {
+			@include tablet {
+				z-index: 101;
+			}
 
-            span {
-                transform: scale(0);
-            }
+			span {
+				transform: scale(0);
+			}
 
-            &::before {
-                top: 6px;
-                transform: rotate(45deg);
-            }
+			&::before {
+				top: 6px;
+				transform: rotate(45deg);
+			}
 
-            &::after {
-                bottom: 6px;
-                transform: rotate(-45deg);
-            }
-        }
-    }
+			&::after {
+				bottom: 6px;
+				transform: rotate(-45deg);
+			}
+		}
+	}
 
-    .headerBurgerMenu {
-        position: absolute;
-        right: -100%;
-        opacity: 0;
-        transition: $transition-0-3s;
+	.headerBurgerMenu {
+		position: absolute;
+		right: -100%;
+		opacity: 0;
+		transition: $transition-0-3s;
 
-        @include tablet {
-            top: 50px;
-            width: 100%;
-            border-radius: 0;
-            height: calc(100svh - 50px);
-        }
+		@include tablet {
+			top: 50px;
+			width: 100%;
+			border-radius: 0;
+			height: calc(100svh - 50px);
+		}
 
-        .headerBurgerMenuWrapper {
-            position: relative;
-            padding: 35px 20px 30px;
-            border-radius: 30px;
-            background-color: $color-light;
+		.headerBurgerMenuWrapper {
+			position: relative;
+			padding: 35px 20px 30px;
+			border-radius: 30px;
+			background-color: $color-light;
 
-            @include tablet {
-                border-radius: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
-            }
+			@include tablet {
+				border-radius: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				height: 100%;
+			}
 
-            .headerBurgerMenuList {
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 42px;
-                row-gap: 14px;
+			.headerBurgerMenuList {
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 42px;
+				row-gap: 14px;
 
-                @include tablet {
-                    flex: auto;
-                    row-gap: 36px;
-                    align-items: center;
-                    justify-content: center;
-                }
+				@include tablet {
+					flex: auto;
+					row-gap: 36px;
+					align-items: center;
+					justify-content: center;
+				}
 
-                li {
-                    a {
-                        color: $color-dark;
-                        font-weight: 500;
-                        transition: $transition-0-3s;
+				li {
+					a {
+						color: $color-dark;
+						font-weight: 500;
+						transition: $transition-0-3s;
 
-                        &:hover {
-                            color: $color-primary;
-                        }
-                    }
-                }
-            }
+						&:hover {
+							color: $color-primary;
+						}
+					}
+				}
+			}
 
-            .headerBurgerMenuContacts {
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 21px;
-                row-gap: 7px;
+			.headerBurgerMenuContacts {
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 21px;
+				row-gap: 7px;
 
-                @include tablet {
-                    flex: none;
-                    align-items: center;
-                }
+				@include tablet {
+					flex: none;
+					align-items: center;
+				}
 
-                .headerBurgerMenuContactsItem {
-                    display: flex;
-                    font-size: 14px;
-                    column-gap: 7px;
+				.headerBurgerMenuContactsItem {
+					display: flex;
+					font-size: 14px;
+					column-gap: 7px;
 
-                    a {
-                        color: $color-dark;
-                        transition: $transition-0-3s;
+					a {
+						color: $color-dark;
+						transition: $transition-0-3s;
 
-                        &:hover {
-                            color: $color-primary;
-                        }
-                    }
-                }
-            }
+						&:hover {
+							color: $color-primary;
+						}
+					}
+				}
+			}
 
-            .headerBurgerMenuBtns {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
+			.headerBurgerMenuBtns {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
 
-                button {
-                    width: 100%;
-                    height: 43px;
-                    text-transform: uppercase;
-                    font-size: 14px;
-                }
-            }
-        }
-    }
+				button {
+					width: 100%;
+					height: 43px;
+					text-transform: uppercase;
+					font-size: 14px;
+				}
+			}
+		}
+	}
 
-    .headerModels {
-        display: flex;
-        align-items: center;
-        column-gap: 11px;
+	.headerModels {
+		display: flex;
+		align-items: center;
+		column-gap: 11px;
 
-        svg {
-            transition: $transition-0-3s;
-        }
+		svg {
+			transition: $transition-0-3s;
+		}
 
-        &.active svg {
-            transform: rotate(180deg);
-        }
-    }
+		&.active svg {
+			transform: rotate(180deg);
+		}
+	}
 
-    .headerModelsDropdown {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        visibility: hidden;
-        min-width: 150px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        transition:
-            opacity 0.3s ease,
-            transform 0.3s ease,
-            visibility 0.3s;
-        transform: translateY(-10px);
-        opacity: 0;
-        border: 1px solid rgba(211, 211, 211, 1);
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px;
-        background: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	.headerModelsDropdown {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		visibility: hidden;
+		min-width: 150px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease,
+			visibility 0.3s;
+		transform: translateY(-10px);
+		opacity: 0;
+		border: 1px solid rgba(211, 211, 211, 1);
+		border-bottom-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		background: #fff;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
-        &.active {
-            visibility: visible;
-            transform: translateY(0);
-            opacity: 1;
-        }
+		&.active {
+			visibility: visible;
+			transform: translateY(0);
+			opacity: 1;
+		}
 
-        li {
-            margin: 0;
-            border-bottom: 1px solid rgba(211, 211, 211, 1);
+		li {
+			margin: 0;
+			border-bottom: 1px solid rgba(211, 211, 211, 1);
 
-            a {
-                display: block;
-                padding: 10px 15px;
-                color: #222222;
-                font-size: 12px;
+			a {
+				display: block;
+				padding: 10px 15px;
+				color: #222222;
+				font-size: 12px;
 
-                &:hover {
-                    background: #f5f5f5;
-                }
-            }
-        }
-    }
+				&:hover {
+					background: #f5f5f5;
+				}
+			}
+		}
+	}
 
-    &.scroll {
-        .headerInner nav .headerNav li a {
-            color: $color-dark;
+	&.scroll {
+		.headerInner nav .headerNav li a {
+			color: $color-dark;
 
-            &:hover {
-                color: $color-primary;
-            }
-        }
-    }
+			&:hover {
+				color: $color-primary;
+			}
+		}
+	}
 
-    @include tablet {
-        margin-top: 0 !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        background-color: $color-light;
+	@include tablet {
+		margin-top: 0 !important;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+		background-color: $color-light;
 
-        .headerNav li a {
-            color: $color-dark;
+		.headerNav li a {
+			color: $color-dark;
 
-            &:hover {
-                color: $color-primary;
-            }
-        }
+			&:hover {
+				color: $color-primary;
+			}
+		}
 
-        .headerLogo {
-            background-image: url("/images/icons/logo-scroll.svg");
-        }
-    }
+		.headerLogo {
+			background-image: url("/images/icons/logo-scroll.svg");
+		}
+	}
 }

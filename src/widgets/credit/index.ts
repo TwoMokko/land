@@ -1,1 +1,1 @@
-export { Credit } from './ui/Credit'
+export { Credit } from "./ui/Credit";

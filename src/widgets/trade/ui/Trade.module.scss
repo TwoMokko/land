@@ -1,5 +1,5 @@
-@use '../../../shared/styles/variables' as *;
-@use '../../../shared/styles/mixins' as *;
+@use "../../../shared/styles/variables" as *;
+@use "../../../shared/styles/mixins" as *;
 
 .trade {
 	position: relative;
@@ -82,15 +82,12 @@
 				top: 50%;
 				transform: translateY(-50%);
 				line-height: 1;
-
 			}
 		}
 	}
 }
 
-
 .form {
-
 	.formInputs {
 		display: flex;
 		gap: 6px;
@@ -141,5 +138,4 @@
 			padding-left: 4px;
 		}
 	}
-
 }

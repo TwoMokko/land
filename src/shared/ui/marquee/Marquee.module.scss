@@ -1,5 +1,5 @@
-@use '../../../shared/styles/variables' as *;
-@use '../../../shared/styles/mixins' as *;
+@use "../../../shared/styles/variables" as *;
+@use "../../../shared/styles/mixins" as *;
 
 .marqueeContainer {
 	width: 100%;
@@ -41,7 +41,7 @@
 	}
 
 	&::after {
-		content: '/';
+		content: "/";
 		padding-left: 40px;
 
 		@include mobile {
