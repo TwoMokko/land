@@ -1,1 +1,1 @@
-export { StockModels } from './ui/StockModels'
+export { StockModels } from "./ui/StockModels";

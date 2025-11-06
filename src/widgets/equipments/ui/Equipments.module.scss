@@ -1,5 +1,5 @@
-@use '../../../shared/styles/variables' as *;
-@use '../../../shared/styles/mixins' as *;
+@use "../../../shared/styles/variables" as *;
+@use "../../../shared/styles/mixins" as *;
 
 .loading {
 	text-align: center;
@@ -7,7 +7,6 @@
 }
 
 .error {
-
 }
 
 .equipments {
@@ -33,12 +32,10 @@
 		}
 
 		.title {
-
 		}
 	}
 
 	.cardWrap {
-
 		.card {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
@@ -114,11 +111,9 @@
 						padding: 6px;
 
 						.charsTitle {
-
 						}
 
 						.charsValue {
-
 						}
 					}
 				}
@@ -197,6 +192,3 @@
 		margin: auto;
 	}
 }
-
-
-

@@ -1,5 +1,5 @@
-@use '../../../shared/styles/variables' as *;
-@use '../../../shared/styles/mixins' as *;
+@use "../../../shared/styles/variables" as *;
+@use "../../../shared/styles/mixins" as *;
 
 .loading {
 	text-align: center;
@@ -7,7 +7,6 @@
 }
 
 .error {
-
 }
 
 .models {
@@ -24,7 +23,6 @@
 	}
 
 	.cardWrap {
-
 		.card {
 			position: relative;
 			height: fit-content;
@@ -51,7 +49,6 @@
 			&:not(:last-child) {
 				margin-bottom: 20px;
 			}
-
 
 			.imgWrap {
 				position: relative;
@@ -89,8 +86,6 @@
 							object-fit: cover;
 						}
 					}
-
-
 				}
 
 				// переопределение стилей для стрелок
@@ -128,8 +123,6 @@
 				:global(.swiper-button-disabled) {
 					opacity: 0.5;
 				}
-
-
 			}
 
 			.thumbSwiper {
@@ -148,7 +141,6 @@
 					transition: opacity 0.3s ease;
 
 					&:hover {
-
 					}
 
 					&.swiper-slide-thumb-active {
@@ -249,7 +241,8 @@
 					.oldPrice {
 						color: $color-gray;
 						text-decoration: line-through;
-						font-size: 14px;font-weight: 400;
+						font-size: 14px;
+						font-weight: 400;
 						line-height: 100%;
 					}
 				}
@@ -276,7 +269,6 @@
 					}
 				}
 			}
-
 		}
 	}
 
@@ -287,7 +279,6 @@
 			margin: auto;
 		}
 	}
-
 }
 @keyframes fadeInUp {
 	from {
@@ -304,7 +295,6 @@
 .colorSelector {
 	display: flex;
 	gap: 4px;
-
 
 	.colorButton {
 		flex: none;
@@ -406,9 +396,3 @@
 		}
 	}
 }
-
-
-
-
-
-
