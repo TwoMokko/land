@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+// если будет много страниц, вынести в layout для swiper
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -13,14 +14,11 @@ import { Equipments } from "@/src/widgets/equipments";
 import { Trade } from "@/src/widgets/trade";
 import { Contacts } from "@/src/widgets/contact";
 import { SectionId } from "@/src/shared/types/types";
-import { modelMarquee, sectionTitles } from "@/src/shared/config";
+import { metaDataHomePage, modelMarquee, sectionTitles } from "@/src/shared/config";
 import { Credit } from "@/src/widgets/credit";
 import { StockModels } from "@/src/widgets/stock";
 
-export const metadata: Metadata = {
-  title: 'Главная страница',
-  description: 'Дескрипшн главной страницы',
-}
+export const metadata: Metadata = metaDataHomePage;
 
 export default function Home() {
     return (

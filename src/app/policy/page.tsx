@@ -1,9 +1,7 @@
 import { Metadata } from 'next'
+import { metaDataPolicyPage } from "@/src/shared/config";
 
-export const metadata: Metadata = {
-    title: 'Политика',
-    description: 'Дескрипшн политики',
-}
+export const metadata: Metadata = metaDataPolicyPage;
 
 export default function Policy() {
     return (

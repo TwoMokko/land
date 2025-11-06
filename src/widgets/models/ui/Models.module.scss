@@ -26,6 +26,8 @@
 	.cardWrap {
 
 		.card {
+			@include fadeInCard;
+
 			position: relative;
 			height: fit-content;
 			display: flex;
@@ -36,16 +38,6 @@
 			@include tablet {
 				flex-direction: column;
 				max-height: fit-content;
-			}
-
-			animation: fadeInUp 0.5s ease forwards;
-			opacity: 0;
-
-			// Последовательное появление карточек
-			@for $i from 1 through 10 {
-				&:nth-child(#{$i}) {
-					animation-delay: #{$i * 0.1}s;
-				}
 			}
 
 			&:not(:last-child) {
@@ -288,16 +280,6 @@
 		}
 	}
 
-}
-@keyframes fadeInUp {
-	from {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
 }
 
 // переключение цвета

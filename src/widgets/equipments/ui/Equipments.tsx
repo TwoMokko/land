@@ -7,7 +7,7 @@ import { EquipCard } from "@/src/widgets/equipments/ui/EquipCard";
 import Select from "react-select";
 import { Button } from "@/src/shared/ui/button/Button";
 import { useEquipments } from "@/src/shared/lib/hooks/useEquipments";
-import { customSelectStyles } from "@/src/shared/config/model-select-styles";
+import { customSelectStyles } from "@/src/shared/config";
 
 export function Equipments({ idSection, titleSection }: { idSection: string, titleSection: string }) {
     const {

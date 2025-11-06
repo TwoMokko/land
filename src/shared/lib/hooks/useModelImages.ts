@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
-import { modelImagesConfig, colorNames } from '../../config/model-images';
+import { modelImagesConfig, colorNames } from "@/src/shared/config";
 import { ColorSlug } from "@/src/shared/types/types";
 
 interface UseModelImagesProps {
