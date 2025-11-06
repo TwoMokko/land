@@ -1,4 +1,5 @@
-import { Metadata } from 'next'
+import { Metadata } from "next";
+
 import { metaDataPolicyPage } from "@/src/shared/config";
 
 export const metadata: Metadata = metaDataPolicyPage;

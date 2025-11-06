@@ -4,10 +4,10 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import React, { useRef } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import { useModal } from "@/src/app/providers/ModalProvider";
 import { dataActions } from "@/src/shared/config/model-actions";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import styles from "./Actions.module.scss";
 
@@ -39,43 +39,43 @@ export function Actions() {
 								totalSlidesRef.current.textContent = " / 0" + total;
 							}
 
-                            let bullets = "";
-                            for (let i = 1; i <= total; i++) {
-                                bullets += `<span class="swiper-pagination-bullet ${
-                                    i === current ? "swiper-pagination-bullet-active" : ""
-                                }"></span>`;
-                            }
-                            return bullets;
-                        },
-                    }}
-                    breakpoints={{
-                        768: {
-                            slidesPerView: 3,
-                            spaceBetween: 18,
-                        },
-                    }}
-                    className={styles.swiperAction}
-                >
-                    <div slot="container-start" className={styles.actionTop}>
-                        <h2 className={`${styles.actionLinksTitle} section-title`}>Акции</h2>
-                        <div className={styles.actionControls}>
-                            <div className={styles.actionControlsTop}>
-                                <div className={styles.actionButtonWrap}>
-                                    <div className={styles.actionButtonPrev}>
-                                        <IoIosArrowBack />
-                                    </div>
-                                    <div className={styles.actionButtonNext}>
-                                        <IoIosArrowForward />
-                                    </div>
-                                </div>
-                                <div className={styles.actionPaginationCounter}>
-                                    <span ref={currentSlideRef}>01</span>
-                                    <span ref={totalSlidesRef}> / 04</span>
-                                </div>
-                            </div>
-                            <div className={styles.actionPagination}></div>
-                        </div>
-                    </div>
+							let bullets = "";
+							for (let i = 1; i <= total; i++) {
+								bullets += `<span class="swiper-pagination-bullet ${
+									i === current ? "swiper-pagination-bullet-active" : ""
+								}"></span>`;
+							}
+							return bullets;
+						},
+					}}
+					breakpoints={{
+						768: {
+							slidesPerView: 3,
+							spaceBetween: 18,
+						},
+					}}
+					className={styles.swiperAction}
+				>
+					<div slot="container-start" className={styles.actionTop}>
+						<h2 className={`${styles.actionLinksTitle} section-title`}>Акции</h2>
+						<div className={styles.actionControls}>
+							<div className={styles.actionControlsTop}>
+								<div className={styles.actionButtonWrap}>
+									<div className={styles.actionButtonPrev}>
+										<IoIosArrowBack />
+									</div>
+									<div className={styles.actionButtonNext}>
+										<IoIosArrowForward />
+									</div>
+								</div>
+								<div className={styles.actionPaginationCounter}>
+									<span ref={currentSlideRef}>01</span>
+									<span ref={totalSlidesRef}> / 04</span>
+								</div>
+							</div>
+							<div className={styles.actionPagination}></div>
+						</div>
+					</div>
 
 					{dataActions.map((item) => (
 						<SwiperSlide key={item.id} className={styles.actionSlide}>

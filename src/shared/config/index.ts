@@ -1,4 +1,4 @@
-export { metaDataHomePage, metaDataPolicyPage } from "./model-seo-pages"
+export { metaDataHomePage, metaDataPolicyPage } from "./model-seo-pages";
 export { about, scrollThreshold, socialLinks } from "./model-base";
 export { dataActions } from "./model-actions";
 export { navigationLinks } from "./model-navigation";
