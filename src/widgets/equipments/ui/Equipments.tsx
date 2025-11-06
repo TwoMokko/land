@@ -7,8 +7,9 @@ import { customSelectStyles } from "@/src/shared/config";
 import { useEquipments } from "@/src/shared/lib/hooks/useEquipments";
 import { Button } from "@/src/shared/ui/button/Button";
 
-import styles from "./Equipments.module.scss";
 import { EquipCard } from "./EquipCard";
+
+import styles from "./Equipments.module.scss";
 
 export function Equipments({
 	idSection,
