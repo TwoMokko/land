@@ -1,6 +1,14 @@
 @use "../../../shared/styles/variables" as *;
 @use "../../../shared/styles/mixins" as *;
 
+.loading {
+	text-align: center;
+	padding: 40px 0;
+}
+
+.error {
+}
+
 .stockModels {
 	margin-top: 120px;
 	padding-bottom: 120px;
@@ -12,5 +20,131 @@
 
 	.title {
 		padding-bottom: 40px;
+	}
+
+	.cardWrap {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+
+		@include tablet {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include mobile {
+			grid-template-columns: repeat(1, 1fr);
+		}
+
+		.card {
+			width: 100%;
+			overflow: hidden;
+
+			.imgWrap {
+				position: relative;
+				width: 100%;
+				aspect-ratio: 16 / 9;
+
+				.label {
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-color: $color-primary;
+					color: $color-light;
+					padding: 4px 10px;
+					z-index: 1;
+				}
+				.mainSwiper {
+					position: relative;
+
+					.swiperSlide {
+						position: relative;
+
+						> a {
+							.imageContainer {
+								position: relative;
+								width: 100%;
+								height: 100%;
+								aspect-ratio: 16 / 9;
+
+								.image {
+									object-fit: cover;
+								}
+							}
+						}
+					}
+
+					// переопределение стилей для стрелок
+					:global(.swiper-button-prev),
+					:global(.swiper-button-next) {
+						width: 22px;
+						height: 22px;
+						background: $color-light;
+						border-radius: 50%;
+						top: auto;
+						bottom: 10px;
+						transform: translateY(0);
+						margin-top: 0;
+						box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+						> svg {
+							height: 10px;
+
+							> path {
+								fill: $color-primary;
+							}
+						}
+					}
+
+					:global(.swiper-button-prev) {
+						left: 50%;
+						transform: translateX(-25px);
+					}
+
+					:global(.swiper-button-next) {
+						right: 50%;
+						transform: translateX(25px);
+					}
+
+					:global(.swiper-button-disabled) {
+						opacity: 0.5;
+					}
+				}
+			}
+
+			.infoWrap {
+				.modelTitle {
+					font-size: 24px;
+				}
+
+				.chars {
+					display: flex;
+					gap: 6px;
+					flex-wrap: wrap;
+
+					> span {
+						border: 1px solid $color-light-gray;
+						padding: 4px 8px;
+						border-radius: 6px;
+						font-size: 14px;
+					}
+				}
+
+				.prices {
+					display: flex;
+					align-items: center;
+					gap: 10px;
+
+					.price {
+						font-size: 24px;
+					}
+
+					.oldPrice {
+						font-size: 16px;
+						text-decoration: line-through;
+						color: $color-light-gray;
+					}
+				}
+			}
+		}
 	}
 }

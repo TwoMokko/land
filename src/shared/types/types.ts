@@ -94,3 +94,61 @@ export interface UseYandexMapReturn {
 	isLoading: boolean;
 	error: string | null;
 }
+
+export interface Stock {
+	id: number;
+	dmsCarId: number;
+	vin: string;
+	is_new: number;
+	brand_id: number;
+	model_id: number;
+	mileage: number;
+	year: number;
+	modification: string;
+	equipment: null;
+	power: number;
+	drive: string;
+	wheel: string;
+	body: string;
+	gear: string;
+	engine: string;
+	volume: number;
+	owners_number: string;
+	pts: string;
+	doors_count: number;
+	custom: string;
+	color: string;
+	description: string;
+	state: string;
+	discountCredit: number;
+	discountInsurance: number;
+	discountTradeIn: number;
+	max_discount: number;
+	sellingPrice: number;
+	discountSellingPrice: number;
+	published: number;
+	created_at: string;
+	updated_at: string;
+	generation: string;
+	source: string;
+	pseudoModel: string;
+	sellingPricePercent: number;
+	brand: {
+		id: number;
+		autoru_id: number | null;
+		name: string;
+	};
+	model: {
+		id: number;
+		autoru_id: number | null;
+		name: string;
+		brand_id: number;
+	};
+	options: any;
+	photos: {
+		id: number;
+		car_id: number;
+		path: string;
+		order: number;
+	}[];
+}
