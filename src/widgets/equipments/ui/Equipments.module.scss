@@ -37,6 +37,8 @@
 
 	.cardWrap {
 		.card {
+			@include fadeInCard;
+
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 			align-items: center;
@@ -53,16 +55,6 @@
 				padding: 10px;
 				margin-left: 10px;
 				margin-right: 10px;
-			}
-
-			animation: fadeInUp 0.5s ease forwards;
-			opacity: 0;
-
-			// Последовательное появление карточек
-			@for $i from 1 through 10 {
-				&:nth-child(#{$i}) {
-					animation-delay: #{$i * 0.1}s;
-				}
 			}
 
 			&:not(:last-child) {
@@ -152,17 +144,6 @@
 				}
 			}
 		}
-	}
-}
-
-@keyframes fadeInUp {
-	from {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
 	}
 }
 

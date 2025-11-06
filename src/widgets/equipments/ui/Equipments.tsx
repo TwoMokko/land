@@ -3,12 +3,12 @@
 import React from "react";
 import Select from "react-select";
 
-import { customSelectStyles } from "@/src/shared/config/model-select-styles";
+import { customSelectStyles } from "@/src/shared/config";
 import { useEquipments } from "@/src/shared/lib/hooks/useEquipments";
 import { Button } from "@/src/shared/ui/button/Button";
-import { EquipCard } from "@/src/widgets/equipments/ui/EquipCard";
 
 import styles from "./Equipments.module.scss";
+import { EquipCard } from "./EquipCard";
 
 export function Equipments({
 	idSection,

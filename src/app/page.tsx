@@ -2,25 +2,26 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { Metadata } from "next";
+// если будет много страниц, вынести в layout для swiper
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-import { modelMarquee, sectionTitles } from "@/src/shared/config";
-import { SectionId } from "@/src/shared/types/types";
 import Marquee from "@/src/shared/ui/marquee/Marquee";
 import { Actions } from "@/src/widgets/actions";
-import { Contacts } from "@/src/widgets/contact";
-import { Credit } from "@/src/widgets/credit";
-import { Equipments } from "@/src/widgets/equipments";
 import { Hero } from "@/src/widgets/hero";
 import { Models } from "@/src/widgets/models";
 import { Social } from "@/src/widgets/social";
+import { Equipments } from "@/src/widgets/equipments";
+import { Contacts } from "@/src/widgets/contact";
+import { SectionId } from "@/src/shared/types/types";
+import { metaDataHomePage, modelMarquee, sectionTitles } from "@/src/shared/config";
+import { Credit } from "@/src/widgets/credit";
 import { StockModels } from "@/src/widgets/stock";
 import { Trade } from "@/src/widgets/trade";
+import { Metadata } from "next";
 
-export const metadata: Metadata = {
-	title: "Главная страница",
-	description: "Дескрипшн главной страницы",
-};
+export const metadata: Metadata = metaDataHomePage;
 
 export default function Home() {
 	return (
