@@ -66,7 +66,7 @@ export function Social({ idSection }: { idSection: string }) {
                 src={imageSrc}
                 alt='hero'
                 fill
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className={styles.image}
             />
         </div>

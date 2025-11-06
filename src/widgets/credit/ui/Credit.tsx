@@ -50,9 +50,8 @@ export function Credit({ idSection }: { idSection: string }) {
             <div className={styles.imgWrap}>
                 <Image
                     src={imageSrc}
-                    alt='hero'
+                    alt='credit-bg'
                     fill
-                    sizes="100vw"
                     className={styles.image}
                 />
             </div>

@@ -1,7 +1,7 @@
 import { Equipment, Model } from "@/src/shared/types/types";
-import {useCallback, useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { getEquipments } from "@/src/shared/api/equipments";
-import { getModels } from "@/src/shared/api";
+import { useModels } from "@/src/app/providers/ModelsContext";
 
 interface OptionType {
     value: string;
@@ -15,25 +15,29 @@ interface UseEquipmentsReturn {
     displayedEquipments: Equipment[];
     isLoading: boolean;
     error: string | null;
+    selectedBrand: OptionType | null;
     selectedModel: OptionType | null;
     selectedEquipment: OptionType | null;
+    brandOptions: OptionType[];
     modelOptions: OptionType[];
     equipmentOptions: OptionType[];
     showMoreVisible: boolean;
+    handleBrandChange: (selectedOption: OptionType | null) => void;
     handleModelChange: (selectedOption: OptionType | null) => void;
     handleEquipmentChange: (selectedOption: OptionType | null) => void;
     handleShowMore: () => void;
 }
 
 export function useEquipments(): UseEquipmentsReturn {
+    const { models, isLoading: modelsLoading, error: modelsError } = useModels();
     const [equipments, setEquipments] = useState<Equipment[]>([]);
-    const [models, setModels] = useState<Model[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     const [filteredEquipments, setFilteredEquipments] = useState<Equipment[]>([]);
     const [displayedEquipments, setDisplayedEquipments] = useState<Equipment[]>([]);
 
+    const [selectedBrand, setSelectedBrand] = useState<OptionType | null>(null);
     const [selectedModel, setSelectedModel] = useState<OptionType | null>(null);
     const [selectedEquipment, setSelectedEquipment] = useState<OptionType | null>(null);
     const [equipmentOptions, setEquipmentOptions] = useState<OptionType[]>([{ value: '', label: 'Комплектация' }]);
@@ -42,26 +46,37 @@ export function useEquipments(): UseEquipmentsReturn {
     const [visibleCount, setVisibleCount] = useState<number>(3);
     const [showMoreVisible, setShowMoreVisible] = useState<boolean>(true);
 
-    const modelOptions: OptionType[] = models.map(model => ({
-        value: model.slug,
-        label: model.name
-    }));
+    const brandOptions: OptionType[] = (() => {
+        const uniqueBrands = [...new Set(models.map(model => model.brand))]
+            .filter(brand => brand)
+            .map(brand => ({
+                value: brand,
+                label: brand
+            }));
 
-    // Загрузка данных
+        return uniqueBrands.length > 0
+            ? [...uniqueBrands]
+            : [{ value: '', label: 'Бренд' }];
+    })();
+
+    const modelOptions: OptionType[] = models
+        .filter(model => !selectedBrand?.value || model.brand === selectedBrand.value)
+        .map(model => ({
+            value: model.slug,
+            label: model.name
+        }));
+
+    const combinedIsLoading = isLoading || modelsLoading;
+    const combinedError = error || modelsError;
+
     useEffect(() => {
-        const loadData = async () => {
+        const loadEquipments = async () => {
             try {
                 setIsLoading(true);
-                const [equipmentsData, modelsData] = await Promise.all([
-                    getEquipments(),
-                    getModels()
-                ]);
+                const equipmentsData = await getEquipments();
 
                 setEquipments(equipmentsData);
-                setModels(modelsData);
                 setFilteredEquipments(equipmentsData);
-
-                updateEquipmentOptions(null, equipmentsData);
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Ошибка загрузки комплектаций');
             } finally {
@@ -69,11 +84,26 @@ export function useEquipments(): UseEquipmentsReturn {
             }
         };
 
-        loadData();
+        loadEquipments();
     }, []);
 
     useEffect(() => {
+        if (selectedModel && selectedBrand?.value) {
+            const modelBelongsToBrand = models.some(model =>
+                model.slug === selectedModel.value && model.brand === selectedBrand.value
+            );
+            if (!modelBelongsToBrand) {
+                setSelectedModel(null);
+            }
+        }
+    }, [selectedBrand, selectedModel, models]);
+
+    useEffect(() => {
         let filtered = [...equipments];
+
+        if (selectedBrand?.value) {
+            filtered = filtered.filter(equip => equip.brand === selectedBrand.value);
+        }
 
         if (selectedModel?.value) {
             filtered = filtered.filter(equip => equip.model === selectedModel.value);
@@ -85,18 +115,49 @@ export function useEquipments(): UseEquipmentsReturn {
 
         setFilteredEquipments(filtered);
         setVisibleCount(itemsPerPage);
-    }, [selectedModel, selectedEquipment, equipments, itemsPerPage]);
+    }, [selectedBrand, selectedModel, selectedEquipment, equipments, itemsPerPage]);
 
-    // Обновление массива для отображения
     useEffect(() => {
         const displayed = filteredEquipments.slice(0, visibleCount);
         setDisplayedEquipments(displayed);
         setShowMoreVisible(visibleCount < filteredEquipments.length);
     }, [filteredEquipments, visibleCount]);
 
+    useEffect(() => {
+        let filtered = [...(equipments)];
+
+        if (selectedBrand?.value) {
+            filtered = filtered.filter(equip => equip.brand === selectedBrand.value);
+        }
+
+        if (selectedModel?.value) {
+            filtered = filtered.filter(equip => equip.model === selectedModel.value);
+        }
+
+        const uniqueOptions = [...new Map(
+            filtered.map(equip => [equip.id, {
+                value: equip.id.toString(),
+                label: equip.name
+            }])
+        ).values()];
+
+        setEquipmentOptions(uniqueOptions.length > 0 ? uniqueOptions : [{ value: '', label: 'Комплектация' }]);
+
+        if (selectedEquipment && !uniqueOptions.some(option => option.value === selectedEquipment.value)) {
+            setSelectedEquipment(null);
+        }
+    }, [equipments, selectedBrand, selectedModel, selectedEquipment]);
+
+    const handleBrandChange = (selectedOption: OptionType | null): void => {
+        setSelectedBrand(selectedOption);
+        setSelectedModel(null);
+        setSelectedEquipment(null);
+        setVisibleCount(itemsPerPage);
+    };
+
     const handleModelChange = (selectedOption: OptionType | null): void => {
         setSelectedModel(selectedOption);
-        updateEquipmentOptions(selectedOption?.value || null);
+        setSelectedEquipment(null);
         setVisibleCount(itemsPerPage);
     };
 
@@ -104,24 +165,6 @@ export function useEquipments(): UseEquipmentsReturn {
         setSelectedEquipment(selectedOption);
         setVisibleCount(itemsPerPage);
     };
-
-    const updateEquipmentOptions = useCallback((modelSlug: string | null, equipmentsData?: Equipment[]): void => {
-        const currentEquipments = equipmentsData || equipments;
-
-        const currentEquips = !modelSlug
-            ? currentEquipments
-            : currentEquipments.filter(equip => equip.model === modelSlug);
-
-        const uniqueOptions = [...new Map(
-            currentEquips.map(equip => [equip.id, {
-                value: equip.id.toString(),
-                label: equip.name
-            }])
-        ).values()];
-
-        setEquipmentOptions(uniqueOptions.length > 0 ? uniqueOptions : [{ value: '', label: 'Комплектация' }]);
-        setSelectedEquipment(null);
-    }, [equipments]);
 
     const handleShowMore = (): void => {
         setVisibleCount(prevCount => prevCount + itemsPerPage);
@@ -132,13 +175,16 @@ export function useEquipments(): UseEquipmentsReturn {
         models,
         filteredEquipments,
         displayedEquipments,
-        isLoading,
-        error,
+        isLoading: combinedIsLoading,
+        error: combinedError,
+        selectedBrand,
         selectedModel,
         selectedEquipment,
+        brandOptions,
         modelOptions,
         equipmentOptions,
         showMoreVisible,
+        handleBrandChange,
         handleModelChange,
         handleEquipmentChange,
         handleShowMore

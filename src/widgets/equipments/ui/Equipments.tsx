@@ -14,11 +14,14 @@ export function Equipments({ idSection, titleSection }: { idSection: string, tit
         displayedEquipments,
         isLoading,
         error,
+        selectedBrand,
         selectedModel,
         selectedEquipment,
+        brandOptions,
         modelOptions,
         equipmentOptions,
         showMoreVisible,
+        handleBrandChange,
         handleModelChange,
         handleEquipmentChange,
         handleShowMore
@@ -27,7 +30,7 @@ export function Equipments({ idSection, titleSection }: { idSection: string, tit
 
     if (isLoading) {
         return (
-            <div className={styles.loading}>Загрузка моделей...</div>
+            <div className={styles.loading}>Загрузка комплектаций...</div>
         )
     }
 
@@ -43,6 +46,15 @@ export function Equipments({ idSection, titleSection }: { idSection: string, tit
             <div className={`${styles.top} container`} >
                 <h2 className={`${styles.title} section-title`}>{titleSection}</h2>
                 <div className={styles.filters}>
+                    <Select
+                        options={brandOptions}
+                        value={selectedBrand}
+                        onChange={handleBrandChange}
+                        placeholder="Бренд"
+                        className={styles.select}
+                        styles={customSelectStyles}
+                        isClearable
+                    />
                     <Select
                         options={modelOptions}
                         value={selectedModel}

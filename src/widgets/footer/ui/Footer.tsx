@@ -67,6 +67,7 @@ export function Footer() {
                             alt='logo'
                             width={245}
                             height={30}
+                            className={styles.logoImage}
                         />
                     </Link>
                     <div className={styles.social}>
