@@ -49,6 +49,7 @@ export const customSelectStyles = {
 		border: "1px solid #959393",
 		boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
 		overflow: "hidden",
+		zIndex: 3,
 	}),
 	option: (base: any, state: any) => ({
 		...base,

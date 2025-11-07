@@ -95,17 +95,75 @@ export interface UseYandexMapReturn {
 	error: string | null;
 }
 
+// export interface Stock {
+// 	id: number;
+// 	dmsCarId: number;
+// 	vin: string;
+// 	is_new: number;
+// 	brand_id: number;
+// 	model_id: number;
+// 	mileage: number;
+// 	year: number;
+// 	modification: string;
+// 	equipment: null;
+// 	power: number;
+// 	drive: string;
+// 	wheel: string;
+// 	body: string;
+// 	gear: string;
+// 	engine: string;
+// 	volume: number;
+// 	owners_number: string;
+// 	pts: string;
+// 	doors_count: number;
+// 	custom: string;
+// 	color: string;
+// 	description: string;
+// 	state: string;
+// 	discountCredit: number;
+// 	discountInsurance: number;
+// 	discountTradeIn: number;
+// 	max_discount: number;
+// 	sellingPrice: number;
+// 	discountSellingPrice: number;
+// 	published: number;
+// 	created_at: string;
+// 	updated_at: string;
+// 	generation: string;
+// 	source: string;
+// 	pseudoModel: string;
+// 	sellingPricePercent: number;
+// 	brand: {
+// 		id: number;
+// 		autoru_id: number | null;
+// 		name: string;
+// 	};
+// 	model: {
+// 		id: number;
+// 		autoru_id: number | null;
+// 		name: string;
+// 		brand_id: number;
+// 	};
+// 	options: any;
+// 	photos: {
+// 		id: number;
+// 		car_id: number;
+// 		path: string;
+// 		order: number;
+// 	}[];
+// }
+
 export interface Stock {
 	id: number;
-	dmsCarId: number;
-	vin: string;
+	dmsCarId: string;
 	is_new: number;
-	brand_id: number;
-	model_id: number;
+	brand: string;
+	model: string;
 	mileage: number;
 	year: number;
 	modification: string;
-	equipment: null;
+	equipment_id: number;
+	equipment_name: string;
 	power: number;
 	drive: string;
 	wheel: string;
@@ -113,42 +171,46 @@ export interface Stock {
 	gear: string;
 	engine: string;
 	volume: number;
-	owners_number: string;
-	pts: string;
-	doors_count: number;
-	custom: string;
+	owners_count: string | number;
 	color: string;
-	description: string;
-	state: string;
+	color_code: string;
+	description?: string | null;
 	discountCredit: number;
 	discountInsurance: number;
 	discountTradeIn: number;
 	max_discount: number;
 	sellingPrice: number;
 	discountSellingPrice: number;
-	published: number;
 	created_at: string;
 	updated_at: string;
 	generation: string;
-	source: string;
 	pseudoModel: string;
-	sellingPricePercent: number;
-	brand: {
-		id: number;
-		autoru_id: number | null;
-		name: string;
+	status: number;
+	options?: OptionStock[];
+	photos: PhotoStock[];
+	pivot?: {
+		site_setting_id: number;
+		stock_model_id: number;
+		sort_order_site: number;
 	};
-	model: {
-		id: number;
-		autoru_id: number | null;
-		name: string;
-		brand_id: number;
-	};
-	options: any;
-	photos: {
-		id: number;
+	site_setting_id?: number;
+	sort_order_site?: number;
+	stock_model_id?: number;
+}
+
+export interface OptionStock {
+	id: number;
+	name: string;
+	category_id: number;
+	key: string;
+	created_at: string;
+	updated_at: string;
+	pivot: {
 		car_id: number;
-		path: string;
-		order: number;
-	}[];
+		option_id: number;
+	};
+}
+
+export interface PhotoStock {
+	value: string;
 }
