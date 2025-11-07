@@ -204,8 +204,24 @@
 			padding-bottom: 0;
 		}
 
-		> p:not(:last-child) {
+		.disclaimer {
+			overflow: hidden;
+			transition: max-height 0.3s ease-in-out;
+
+			&.show {
+				max-height: 500px;
+			}
+			&:not(.show) {
+				max-height: 1rem;
+			}
+		}
+
+		.btnDisclaimer {
 			padding-bottom: 10px;
+
+			&:hover {
+				color: $color-primary;
+			}
 		}
 	}
 

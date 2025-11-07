@@ -22,6 +22,7 @@ export function Equipments({
 		displayedEquipments,
 		isLoading,
 		error,
+		// filteredEquipments,
 		selectedBrand,
 		selectedModel,
 		selectedEquipment,
@@ -33,6 +34,7 @@ export function Equipments({
 		handleModelChange,
 		handleEquipmentChange,
 		handleShowMore,
+		// resetFilters,
 	} = useEquipments();
 
 	if (isLoading) {
@@ -78,6 +80,20 @@ export function Equipments({
 						/>
 					</div>
 				</div>
+
+				{/*Можно ещё как в stock добавить это, нужные переменные есть в useEquipment*/}
+				{/*<div className="container">*/}
+				{/*	<div className={styles.filtersInfo}>*/}
+				{/*		<div className={styles.resultsCount}>Найдено: {filteredEquipments.length} комплектаций</div>*/}
+				{/*		<Button onClick={resetFilters} variant="outline" className={styles.resetButton}>*/}
+				{/*			Сбросить всё*/}
+				{/*		</Button>*/}
+				{/*	</div>*/}
+				{/*</div>*/}
+
+				{/*{displayedEquipments.length === 0 && (*/}
+				{/*	<div className={`${styles.noResults} container`}>По вашему запросу ничего не найдено</div>*/}
+				{/*)}*/}
 
 				<div className={styles.cardWrap}>
 					{displayedEquipments.map((equip) => (
