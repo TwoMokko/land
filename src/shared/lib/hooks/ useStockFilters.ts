@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { getStocks } from "@/src/shared/api/stocks";
+import { PAGINATION_CONFIG } from "@/src/shared/config";
 import { Stock } from "@/src/shared/types/types";
 
 interface OptionType {
@@ -65,8 +66,8 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 	});
 
 	// Пагинация
-	const [visibleCount, setVisibleCount] = useState<number>(6);
-	const loadMoreCount = 3;
+	const [visibleCount, setVisibleCount] = useState<number>(PAGINATION_CONFIG.STOCK.INITIAL);
+	const loadMoreCount = PAGINATION_CONFIG.STOCK.LOAD_MORE;
 
 	// Загрузка данных
 	useEffect(() => {
@@ -232,13 +233,13 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 			brands: selectedBrands,
 			models: [], // Сбрасываем модели при изменении брендов
 		}));
-		setVisibleCount(6); // Сбрасываем пагинацию
+		setVisibleCount(PAGINATION_CONFIG.STOCK.INITIAL); // Сбрасываем пагинацию
 	};
 
 	const handleModelChange = (selectedOptions: any) => {
 		const selectedModels = selectedOptions ? selectedOptions.map((opt: any) => opt.value) : [];
 		setFilters((prev) => ({ ...prev, models: selectedModels }));
-		setVisibleCount(6);
+		setVisibleCount(PAGINATION_CONFIG.STOCK.INITIAL);
 	};
 
 	const handleCategoryChange = (selectedOption: any) => {
@@ -246,7 +247,7 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 			...prev,
 			category: selectedOption?.value || "",
 		}));
-		setVisibleCount(6);
+		setVisibleCount(PAGINATION_CONFIG.STOCK.INITIAL);
 	};
 
 	const handleSortChange = (selectedOption: any) => {
@@ -254,7 +255,7 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 			...prev,
 			sort: selectedOption?.value || "",
 		}));
-		setVisibleCount(6);
+		setVisibleCount(PAGINATION_CONFIG.STOCK.INITIAL);
 	};
 
 	// Показать еще
@@ -270,7 +271,7 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 			category: "",
 			sort: "",
 		});
-		setVisibleCount(6);
+		setVisibleCount(PAGINATION_CONFIG.STOCK.INITIAL);
 	};
 
 	return {

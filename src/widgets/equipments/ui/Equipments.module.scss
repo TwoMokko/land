@@ -173,3 +173,26 @@
 		margin: auto;
 	}
 }
+
+.filtersInfo {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	column-gap: 40px;
+	padding: 24px 0;
+
+	@include mobile {
+		gap: 10px;
+		padding: 10px 0;
+	}
+
+	.resultsCount {
+		flex: none;
+	}
+
+	.resetButton {
+		width: fit-content;
+	}
+}
+.noResults {
+}

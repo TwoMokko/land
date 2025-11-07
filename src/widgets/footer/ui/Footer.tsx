@@ -22,7 +22,8 @@ export function Footer() {
 	const { ensureModelVisible, models } = useModels();
 	const { handleSubmit, isLoading } = useSubmit();
 	const { phoneValue, onPhoneChange } = usePhoneMask();
-	const [isAgreed, setIsAgreed] = useState(true);
+	const [showDisclaimer, setShowDisclaimer] = useState<boolean>(false);
+	const [isAgreed, setIsAgreed] = useState<boolean>(true);
 	const [formData, setFormData] = useState<FormData>({
 		name: "переписать, чтобы было необязательным",
 		phone: "",
@@ -165,14 +166,23 @@ export function Footer() {
 					</div>
 				</div>
 				<div className={styles.info}>
-					<p>
-						Обращаем Ваше внимание на то, что вся представленная на сайте информация,
-						носит информационный характер и ни при каких условиях не является публичной
-						офертой, определяемой положениями Статьи 437 (2) Гражданского кодекса
-						Российской Федерации. Наличие конкретных комплектаций, опций и оборудования
-						по доступным автомобилям уточняйте у продавцов консультантов. Условия акций
-						ограничены, подробности уточняйте в отделе продаж дилерского центра.
-					</p>
+					<div className={`${styles.disclaimer} ${showDisclaimer ? styles.show : ""}`}>
+						<p>
+							Обращаем Ваше внимание на то, что вся представленная на сайте
+							информация, носит информационный характер и ни при каких условиях не
+							является публичной офертой, определяемой положениями Статьи 437 (2)
+							Гражданского кодекса Российской Федерации. Наличие конкретных
+							комплектаций, опций и оборудования по доступным автомобилям уточняйте у
+							продавцов консультантов. Условия акций ограничены, подробности уточняйте
+							в отделе продаж дилерского центра.
+						</p>
+					</div>
+					<button
+						className={styles.btnDisclaimer}
+						onClick={() => setShowDisclaimer((prevState) => !prevState)}
+					>
+						{showDisclaimer ? "Скрыть" : "Показать"}
+					</button>
 					<p>
 						*Instagram — проект Meta Platforms Inc., деятельность которой запрещена в
 						России

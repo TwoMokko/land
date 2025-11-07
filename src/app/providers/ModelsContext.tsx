@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 import { getModels } from "@/src/shared/api";
+import { PAGINATION_CONFIG } from "@/src/shared/config";
 import { Model } from "@/src/shared/types/types";
 
 interface ModelsContextType {
@@ -21,12 +22,12 @@ const ModelsContext = createContext<ModelsContextType | undefined>(undefined);
 export function ModelsProvider({ children }: { children: React.ReactNode }) {
 	const [models, setModels] = useState<Model[]>([]);
 	const [displayedModels, setDisplayedModels] = useState<Model[]>([]);
-	const [visibleCount, setVisibleCount] = useState<number>(3);
+	const [visibleCount, setVisibleCount] = useState<number>(PAGINATION_CONFIG.MODEL.INITIAL);
 	const [showMoreVisible, setShowMoreVisible] = useState<boolean>(true);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
 
-	const itemsPerPage = 3;
+	const itemsPerPage = PAGINATION_CONFIG.MODEL.LOAD_MORE;
 
 	// Загрузка моделей
 	useEffect(() => {
@@ -56,6 +57,7 @@ export function ModelsProvider({ children }: { children: React.ReactNode }) {
 		setVisibleCount((prevCount) => prevCount + itemsPerPage);
 	};
 
+	// Если модель не в области видимости, то делаем кол-во видимых элементов равное индексу нужной модели и плавно скролим
 	const ensureModelVisible = (modelSlug: string): void => {
 		const modelIndex = models.findIndex((model) => model.slug === modelSlug);
 		if (modelIndex !== -1 && modelIndex >= visibleCount) {
