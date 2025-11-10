@@ -54,6 +54,7 @@ export function StockCard({ stock }: StockCardProps) {
 										src={photo.value}
 										alt={`${stock.model} - изображение ${index + 1}`}
 										fill
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw"
 										className={styles.image}
 									/>
 								</div>

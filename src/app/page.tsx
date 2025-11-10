@@ -17,6 +17,7 @@ import { Credit } from "@/src/widgets/credit";
 import { Equipments } from "@/src/widgets/equipments";
 import { Hero } from "@/src/widgets/hero";
 import { Models } from "@/src/widgets/models";
+import { Reels } from "@/src/widgets/reels";
 import { Social } from "@/src/widgets/social";
 import { StockModels } from "@/src/widgets/stock";
 import { Trade } from "@/src/widgets/trade";
@@ -41,6 +42,7 @@ export default function Home() {
 				titleSection={sectionTitles[SectionId.STOCK]}
 			/>
 			<Credit idSection={SectionId.CREDIT} />
+			<Reels />
 			<Contacts
 				idSection={SectionId.CONTACTS}
 				titleSection={sectionTitles[SectionId.CONTACTS]}
