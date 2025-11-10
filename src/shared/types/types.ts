@@ -34,6 +34,19 @@ export interface ActionItem {
 	link: ModalType;
 	icon: React.ReactNode;
 }
+export type ModalData = SubmitModel | ReelsData | null;
+export interface ReelsData {
+	videos: ReelsItem[];
+	initialIndex?: number;
+}
+
+export interface ReelsItem {
+	id: string | number;
+	url: string;
+	title?: string;
+	subtitle?: string;
+	icon?: string;
+}
 export interface SubmitModel {
 	slug?: string;
 	brand?: string;

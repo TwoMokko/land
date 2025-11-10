@@ -114,6 +114,7 @@ export const useEquipments = (): UseEquipmentsReturn => {
 
 	// Опции для комплектаций (зависят от выбранных бренда и модели)
 	const equipmentOptions = useMemo(() => {
+		// Тут и ниже в filteredEquipments дублируется (можно ли использовать тот код здесь)
 		let filteredEquipments = allEquipments;
 
 		if (filters.brand) {

@@ -8,3 +8,4 @@ export { modelImagesConfig, colorNames } from "./model-images";
 export { customSelectStyles } from "./model-select-styles";
 export { yaMapConfig, pinConfig, mapControls, scrollLoadThreshold } from "./model-map";
 export { PAGINATION_CONFIG } from "./model-count-cards";
+export { modelReels } from "./model-reels";

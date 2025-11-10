@@ -108,15 +108,17 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 			return allModels.map((model) => ({ value: model, label: model }));
 		}
 
+		// Сначала выбираем модели для отображения по бренду
 		const filteredModels = allStocks
 			.filter((car) => filters.brands.includes(car.brand))
 			.map((car) => car.model);
 
+		// А на основе моделей для отображения меняем select моделей
 		const uniqueModels = [...new Set(filteredModels)];
 		return uniqueModels.map((model) => ({ value: model, label: model }));
 	}, [allStocks, filters.brands]);
 
-	// Опции для категорий
+	// Опции для категорий (можно вынести для удобного изменения)
 	const categoryOptions = useMemo(
 		() => [
 			{ value: "", label: "Все" },
@@ -126,7 +128,7 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 		[],
 	);
 
-	// Опции для сортировки
+	// Опции для сортировки (можно вынести для удобного изменения)
 	const sortOptions = useMemo(
 		() => [
 			{ value: "", label: "По умолчанию" },
@@ -226,8 +228,10 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 	const showMoreVisible = visibleCount < filteredStocks.length;
 
 	// Обработчики изменений фильтров
-	const handleBrandChange = (selectedOptions: any) => {
-		const selectedBrands = selectedOptions ? selectedOptions.map((opt: any) => opt.value) : [];
+	const handleBrandChange = (selectedOptions: OptionType[]) => {
+		const selectedBrands = selectedOptions
+			? selectedOptions.map((opt: OptionType) => opt.value)
+			: [];
 		setFilters((prev) => ({
 			...prev,
 			brands: selectedBrands,
@@ -236,13 +240,15 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 		setVisibleCount(PAGINATION_CONFIG.STOCK.INITIAL); // Сбрасываем пагинацию
 	};
 
-	const handleModelChange = (selectedOptions: any) => {
-		const selectedModels = selectedOptions ? selectedOptions.map((opt: any) => opt.value) : [];
+	const handleModelChange = (selectedOptions: OptionType[]) => {
+		const selectedModels = selectedOptions
+			? selectedOptions.map((opt: OptionType) => opt.value)
+			: [];
 		setFilters((prev) => ({ ...prev, models: selectedModels }));
 		setVisibleCount(PAGINATION_CONFIG.STOCK.INITIAL);
 	};
 
-	const handleCategoryChange = (selectedOption: any) => {
+	const handleCategoryChange = (selectedOption: OptionType) => {
 		setFilters((prev) => ({
 			...prev,
 			category: selectedOption?.value || "",
@@ -250,7 +256,7 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 		setVisibleCount(PAGINATION_CONFIG.STOCK.INITIAL);
 	};
 
-	const handleSortChange = (selectedOption: any) => {
+	const handleSortChange = (selectedOption: OptionType) => {
 		setFilters((prev) => ({
 			...prev,
 			sort: selectedOption?.value || "",
