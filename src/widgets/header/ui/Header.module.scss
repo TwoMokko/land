@@ -412,3 +412,51 @@
 		}
 	}
 }
+
+// Другие цвета для страниц политики
+.coloredHeader {
+	.header {
+		background-color: $color-light;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+		.headerLogo {
+			background-image: url("/images/icons/logo-scroll.svg");
+		}
+
+		nav .headerNav li a {
+			color: $color-dark;
+
+			&:hover {
+				color: $color-primary;
+			}
+		}
+	}
+
+	.headerContacts {
+		background-color: $color-primary;
+
+		.container {
+			background-color: transparent;
+
+			a,
+			div {
+				color: #fff;
+			}
+		}
+
+		.headerTopBtn {
+			background-color: transparent;
+			color: #fff;
+			border-color: #fff;
+
+			svg path {
+				fill: #fff;
+			}
+
+			&:hover {
+				color: #fff;
+				border-color: #fff;
+			}
+		}
+	}
+}

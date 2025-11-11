@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { useModal } from "@/src/app/_providers/ModalProvider";
 import { about, navigationLinks, scrollThreshold } from "@/src/shared/config";
@@ -20,6 +21,8 @@ export function Header() {
 	const [burgerOpen, setBurgerOpen] = useState(false);
 	const burgerMenuRef = useRef<HTMLDivElement>(null);
 	const burgerButtonRef = useRef<HTMLDivElement>(null);
+	const pathname = usePathname();
+	const isPolicyOrTerms = pathname === "/policy" || pathname === "/terms-of-use";
 
 	useEffect(() => {
 		document.body.classList.toggle("lock", burgerOpen);
@@ -81,7 +84,11 @@ export function Header() {
 		));
 
 	return (
-		<header className={`${styles.headerWrapper} ${burgerOpen ? styles.active : ""}`}>
+		<header
+			className={`${styles.headerWrapper} ${burgerOpen ? styles.active : ""} ${
+				isPolicyOrTerms ? styles.coloredHeader : ""
+			}`}
+		>
 			{isReady && !isMobile && (
 				<div className={styles.headerContacts}>
 					<div className={`${styles.container} container`}>
