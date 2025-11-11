@@ -47,6 +47,36 @@ export interface ReelsItem {
 	subtitle?: string;
 	icon?: string;
 }
+export interface ReviewAuthor {
+	name: string;
+	date: string;
+	avatarSrc?: string | null;
+}
+
+export interface ReviewPhotoCard {
+	id: number;
+	type: "photo";
+	author: ReviewAuthor;
+	photoSrc: string;
+}
+
+export interface ReviewTextCard {
+	id: number;
+	type: "text";
+	author: ReviewAuthor;
+	text: string;
+	link: string;
+}
+
+export interface ReviewDoubleSlide {
+	id: number;
+	type: "double";
+	items: [ReviewTextCard, ReviewTextCard];
+}
+
+export type ReviewDesktopSlide = ReviewPhotoCard | ReviewDoubleSlide;
+export type ReviewMobileSlide = ReviewPhotoCard | ReviewTextCard;
+
 export interface SubmitModel {
 	slug?: string;
 	brand?: string;
@@ -68,6 +98,7 @@ export enum SectionId {
 	SOCIAL = "social",
 	EQUIPMENTS = "equipments",
 	TRADE_IN = "tradein",
+	REVIEWS = "reviews",
 	CONTACTS = "contacts",
 	CREDIT = "credit",
 	STOCK = "stock",

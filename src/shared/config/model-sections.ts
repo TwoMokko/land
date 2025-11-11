@@ -5,6 +5,7 @@ export const sectionTitles = {
 	[SectionId.SOCIAL]: "Социальные сети",
 	[SectionId.EQUIPMENTS]: "Комплектации",
 	[SectionId.TRADE_IN]: "Трейд-ин",
+	[SectionId.REVIEWS]: "Отзывы клиентов",
 	[SectionId.CONTACTS]: "Контакты",
 	[SectionId.CREDIT]: "Кредит",
 	[SectionId.STOCK]: "Авто в наличии",
