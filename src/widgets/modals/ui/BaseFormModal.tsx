@@ -5,7 +5,7 @@ import { MdDone, MdOutlineClose } from "react-icons/md";
 
 import Link from "next/link";
 
-import { useModal } from "@/src/app/providers/ModalProvider";
+import { useModal } from "@/src/app/_providers/ModalProvider";
 import { usePhoneMask } from "@/src/shared/lib/hooks/usePhoneMask";
 import { useSubmit } from "@/src/shared/lib/hooks/useSubmit";
 import { FormData } from "@/src/shared/types/types";

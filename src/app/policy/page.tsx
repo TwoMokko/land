@@ -6,7 +6,7 @@ export const metadata: Metadata = metaDataPolicyPage;
 
 export default function Policy() {
 	return (
-		<div>
+		<div className="other-page container">
 			<h1>Политика</h1>
 			<p>Текст политики</p>
 		</div>

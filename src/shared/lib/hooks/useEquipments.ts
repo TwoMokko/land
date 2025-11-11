@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { useModels } from "@/src/app/providers/ModelsContext";
+import { useModels } from "@/src/app/_providers/ModelsContext";
 import { getEquipments } from "@/src/shared/api/equipments";
 import { PAGINATION_CONFIG } from "@/src/shared/config";
 import { Equipment } from "@/src/shared/types/types";

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import React, { useRef } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-import { useModal } from "@/src/app/providers/ModalProvider";
+import { useModal } from "@/src/app/_providers/ModalProvider";
 import { dataActions } from "@/src/shared/config/model-actions";
 
 import styles from "./Actions.module.scss";

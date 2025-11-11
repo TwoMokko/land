@@ -4,38 +4,134 @@
 .reels {
 	padding-top: 120px;
 
-	.reelsLine {
+	@include mobile {
+		padding-top: 60px;
+	}
+
+	.reelsSwiperWrap {
+		gap: 20px;
 		display: flex;
-		gap: 10px;
+		align-items: center;
+		justify-content: space-between;
 
-		.reelsItem {
-			position: relative;
-			max-height: 400px;
-			border: 1px solid $color-light-gray;
-			aspect-ratio: 9 / 16;
-			cursor: pointer;
+		@include mobile {
+		}
 
-			.video {
+		.reelsSwiper {
+			height: fit-content;
+
+			.videoItem {
+				position: relative;
 				width: 100%;
 				height: 100%;
-				object-fit: cover;
-			}
+				aspect-ratio: 9 / 16;
+				cursor: pointer;
+				border-radius: 16px;
+				overflow: hidden;
 
-			.play {
-				position: absolute;
-				inset: 0;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				color: $color-light;
-				transition: scale 0.3s ease-in-out;
-			}
+				@include mobile {
+					width: 60%;
+				}
 
-			&:hover {
+				.video {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					display: block;
+				}
+
+				&::after {
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: 140px;
+					background: linear-gradient(
+						180deg,
+						rgba(0, 0, 0, 0) 0%,
+						rgba(0, 0, 0, 0.61) 50%,
+						#000000 100%
+					);
+					pointer-events: none; // Чтобы не мешал кликам
+					z-index: 1;
+				}
+
+				// дубликат вынести в миксин
+				.videoInfo {
+					.videoIconWrap {
+						height: 30px;
+						width: fit-content;
+						position: absolute;
+						top: 0;
+						padding: 16px 16px 0;
+
+						img {
+							height: 30px;
+							width: auto;
+						}
+					}
+
+					.videoText {
+						color: $color-light;
+						line-height: 100%;
+						font-size: 16px;
+						position: absolute;
+						bottom: 0;
+						padding: 0 16px 16px;
+						z-index: 2;
+
+						.videoTitle {
+							padding-bottom: 4px;
+							font-weight: 600;
+						}
+
+						.videoSubtitle {
+						}
+					}
+				}
+
 				.play {
-					scale: 1.2;
+					position: absolute;
+					inset: 0;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					color: $color-light;
+					transition: scale 0.3s ease-in-out;
+				}
+
+				&:hover {
+					.play {
+						scale: 1.2;
+					}
 				}
 			}
+		}
+		.swiperButtonPrev,
+		.swiperButtonNext {
+			background: $color-primary;
+			color: $color-light;
+			border-radius: 50%;
+			padding: 4px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid $color-primary;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.7;
+			}
+
+			@include mobile {
+				display: none;
+			}
+		}
+
+		:global(.swiper-button-disabled) {
+			background-color: $color-light;
+			color: $color-primary;
 		}
 	}
 }
