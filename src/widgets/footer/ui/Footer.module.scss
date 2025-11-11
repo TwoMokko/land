@@ -206,7 +206,6 @@
 
 		.disclaimer {
 			overflow: hidden;
-			transition: max-height 0.3s ease-in-out;
 
 			&.show {
 				max-height: 500px;
@@ -218,6 +217,7 @@
 
 		.btnDisclaimer {
 			padding-bottom: 10px;
+			text-decoration: underline;
 
 			&:hover {
 				color: $color-primary;

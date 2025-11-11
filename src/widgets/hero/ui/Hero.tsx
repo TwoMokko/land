@@ -7,7 +7,7 @@ import React from "react";
 
 import Image from "next/image";
 
-import { useModal } from "@/src/app/providers/ModalProvider";
+import { useModal } from "@/src/app/_providers/ModalProvider";
 import { useDevice } from "@/src/shared/lib/hooks/useDevice";
 import { Button } from "@/src/shared/ui/button/Button";
 

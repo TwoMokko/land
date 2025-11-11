@@ -3,12 +3,11 @@ import React from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
-import { Providers } from "@/src/app/providers/Providers";
+import { Providers } from "@/src/app/_providers/Providers";
+import "@/src/shared/styles/reset.scss";
+import { Footer } from "@/src/widgets/footer";
+import { Header } from "@/src/widgets/header";
 
-import { Footer } from "../widgets/footer";
-import { Header } from "../widgets/header";
-
-import "../shared/styles/reset.scss";
 import "./globals.scss";
 
 const alibabaSans = localFont({

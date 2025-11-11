@@ -1,4 +1,4 @@
-import { ModalType } from "@/src/app/providers/ModalProvider";
+import { ModalType } from "@/src/app/_providers/ModalProvider";
 
 export interface Model {
 	id: number;
@@ -43,9 +43,9 @@ export interface ReelsData {
 export interface ReelsItem {
 	id: string | number;
 	url: string;
-	title?: string;
-	subtitle?: string;
-	icon?: string;
+	title: string;
+	subtitle: string;
+	icon: string;
 }
 export interface ReviewAuthor {
 	name: string;

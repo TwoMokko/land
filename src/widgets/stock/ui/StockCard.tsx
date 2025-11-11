@@ -7,7 +7,7 @@ import React from "react";
 
 import Image from "next/image";
 
-import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
+import { ModalType, useModal } from "@/src/app/_providers/ModalProvider";
 import { countOwners } from "@/src/shared/lib/utils/count-owners";
 import { formatPrice } from "@/src/shared/lib/utils/format-price";
 import { Stock, SubmitModel } from "@/src/shared/types/types";

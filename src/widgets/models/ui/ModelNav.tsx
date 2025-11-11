@@ -8,7 +8,7 @@ import React from "react";
 
 import Image from "next/image";
 
-import { useModels } from "@/src/app/providers/ModelsContext";
+import { useModels } from "@/src/app/_providers/ModelsContext";
 import { useDevice } from "@/src/shared/lib/hooks/useDevice";
 import styles from "@/src/widgets/models/ui/Models.module.scss";
 

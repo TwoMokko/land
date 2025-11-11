@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useModels } from "@/src/app/providers/ModelsContext";
+import { useModels } from "@/src/app/_providers/ModelsContext";
 import { Button } from "@/src/shared/ui/button/Button";
 import { ModelCard } from "@/src/widgets/models/ui/ModelCard";
 import { ModelNav } from "@/src/widgets/models/ui/ModelNav";

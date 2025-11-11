@@ -5,7 +5,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 import Link from "next/link";
 
-import { useModal } from "@/src/app/providers/ModalProvider";
+import { useModal } from "@/src/app/_providers/ModalProvider";
 import { about, navigationLinks, scrollThreshold } from "@/src/shared/config";
 import { useDevice } from "@/src/shared/lib/hooks/useDevice";
 import { NavigationLink } from "@/src/shared/types/types";

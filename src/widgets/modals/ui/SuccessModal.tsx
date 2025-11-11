@@ -3,7 +3,7 @@
 import React from "react";
 import { MdOutlineClose } from "react-icons/md";
 
-import { useModal } from "@/src/app/providers/ModalProvider";
+import { useModal } from "@/src/app/_providers/ModalProvider";
 
 import styles from "./Modals.module.scss";
 
