@@ -18,6 +18,7 @@ import { Equipments } from "@/src/widgets/equipments";
 import { Hero } from "@/src/widgets/hero";
 import { Models } from "@/src/widgets/models";
 import { Reels } from "@/src/widgets/reels";
+import { Reviews } from "@/src/widgets/reviews";
 import { Social } from "@/src/widgets/social";
 import { StockModels } from "@/src/widgets/stock";
 import { Trade } from "@/src/widgets/trade";
@@ -40,6 +41,10 @@ export default function Home() {
 			<StockModels
 				idSection={SectionId.STOCK}
 				titleSection={sectionTitles[SectionId.STOCK]}
+			/>
+			<Reviews
+				idSection={SectionId.REVIEWS}
+				titleSection={sectionTitles[SectionId.REVIEWS]}
 			/>
 			<Credit idSection={SectionId.CREDIT} />
 			<Reels />
