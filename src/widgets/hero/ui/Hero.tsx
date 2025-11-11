@@ -1,6 +1,6 @@
 "use client";
 
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import React from "react";
@@ -26,7 +26,7 @@ export function Hero() {
 	return (
 		<div className={styles.hero}>
 			<Swiper
-				modules={[Navigation, Pagination]}
+				modules={[Navigation, Pagination, Autoplay]}
 				slidesPerView={1}
 				pagination={{
 					clickable: true,
