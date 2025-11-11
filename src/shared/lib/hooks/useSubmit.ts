@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-import { useModal } from "@/src/app/providers/ModalProvider";
-import { FormData } from "@/src/shared/types/types";
+import { useModal } from "@/src/app/_providers/ModalProvider";
+import { FormData, SubmitModel } from "@/src/shared/types/types";
 
 export function useSubmit() {
 	const { openModal, modalData } = useModal();
+	const modalFormData = modalData as  SubmitModel;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const handleSubmit = async (formData: FormData) => {
@@ -24,13 +25,13 @@ export function useSubmit() {
 				},
 				body: JSON.stringify({
 					...formData,
-					slug: modalData?.slug,
-					brand: modalData?.brand,
-					model: modalData?.model,
-					equipment: modalData?.equipment,
-					price: modalData?.price,
-					reprice: modalData?.reprice,
-					color: modalData?.color,
+					slug: modalFormData?.slug,
+					brand: modalFormData?.brand,
+					model: modalFormData?.model,
+					equipment: modalFormData?.equipment,
+					price: modalFormData?.price,
+					reprice: modalFormData?.reprice,
+					color: modalFormData?.color,
 				}),
 			});
 

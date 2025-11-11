@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 
-import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
-import { useModels } from "@/src/app/providers/ModelsContext";
+import { ModalType, useModal } from "@/src/app/_providers/ModalProvider";
+import { useModels } from "@/src/app/_providers/ModelsContext";
 import { Equipment, SubmitModel } from "@/src/shared/types/types";
 import { Button } from "@/src/shared/ui/button/Button";
 

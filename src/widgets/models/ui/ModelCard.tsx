@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 
-import { ModalType, useModal } from "@/src/app/providers/ModalProvider";
+import { ModalType, useModal } from "@/src/app/_providers/ModalProvider";
 import { useModelImages } from "@/src/shared/lib/hooks/useModelImages";
 import { formatPrice } from "@/src/shared/lib/utils/format-price";
 import { Model, SubmitModel } from "@/src/shared/types/types";

@@ -1,14 +1,18 @@
 "use client";
 
 import type { Swiper as SwiperType } from "swiper";
-import { EffectCoverflow, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { FaPlay } from "react-icons/fa";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdOutlineClose } from "react-icons/md";
 
-import { useModal } from "@/src/app/providers/ModalProvider";
+import Image from "next/image";
+
+import { useModal } from "@/src/app/_providers/ModalProvider";
+import { useDevice } from "@/src/shared/lib/hooks/useDevice";
 import { ReelsData } from "@/src/shared/types/types";
 
 import styles from "./ReelsModal.module.scss";
@@ -16,8 +20,13 @@ import styles from "./ReelsModal.module.scss";
 export function ReelsModal() {
 	const { closeModal, modalData } = useModal();
 	const reelsData = modalData as ReelsData;
+	const { isMobile } = useDevice();
 	const swiperRef = useRef<SwiperType | null>(null);
 	const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
+	const [activeVideoState, setActiveVideoState] = useState<{
+		index: number;
+		isPlaying: boolean;
+	}>({ index: 0, isPlaying: true });
 
 	const isValidData = reelsData?.videos?.length > 0;
 
@@ -28,15 +37,19 @@ export function ReelsModal() {
 
 			if (index === activeIndex) {
 				video.muted = false;
-				video.controls = true;
+				video.controls = false;
 
 				const playPromise = video.play();
 				if (playPromise !== undefined) {
-					playPromise.catch((error) => {
-						if (error.name !== "AbortError") {
-							console.warn("Video play failed:", error);
-						}
-					});
+					playPromise
+						.then(() => {
+							setActiveVideoState({ index: activeIndex, isPlaying: true });
+						})
+						.catch((error) => {
+							if (error.name !== "AbortError") {
+								console.warn("Video play failed:", error);
+							}
+						});
 				}
 			} else {
 				video.pause();
@@ -46,6 +59,27 @@ export function ReelsModal() {
 			}
 		});
 	}, []);
+
+	// Клик по видео для паузы/воспроизведения
+	const handleVideoClick = (index: number) => {
+		// Если это не активное видео, переключаемся на него
+		if (swiperRef.current?.activeIndex !== index) {
+			swiperRef.current?.slideTo(index);
+			return;
+		}
+
+		// Если это активное видео - управляем воспроизведением
+		const video = videoRefs.current.get(index);
+		if (!video) return;
+
+		if (video.paused) {
+			video.play();
+			setActiveVideoState({ index, isPlaying: true });
+		} else {
+			video.pause();
+			setActiveVideoState({ index, isPlaying: false });
+		}
+	};
 
 	// Обработчик клавиш
 	const handleKeyDown = useCallback(
@@ -68,7 +102,19 @@ export function ReelsModal() {
 				case "Enter":
 					e.preventDefault();
 					if (activeVideo) {
-						activeVideo.paused ? activeVideo.play() : activeVideo.pause();
+						if (activeVideo.paused) {
+							activeVideo.play();
+							setActiveVideoState({
+								index: swiperRef.current.activeIndex,
+								isPlaying: true,
+							});
+						} else {
+							activeVideo.pause();
+							setActiveVideoState({
+								index: swiperRef.current.activeIndex,
+								isPlaying: false,
+							});
+						}
 					}
 					break;
 			}
@@ -97,6 +143,10 @@ export function ReelsModal() {
 
 		setTimeout(() => {
 			manageVideoPlayback(reelsData.initialIndex || 0);
+			setActiveVideoState({
+				index: reelsData.initialIndex || 0,
+				isPlaying: true,
+			});
 		}, 100);
 	};
 
@@ -111,6 +161,18 @@ export function ReelsModal() {
 					closeModal();
 				} else {
 					swiperRef.current?.slideTo(index + 1);
+				}
+			};
+
+			el.onplay = () => {
+				if (index === swiperRef.current?.activeIndex) {
+					setActiveVideoState({ index, isPlaying: true });
+				}
+			};
+
+			el.onpause = () => {
+				if (index === swiperRef.current?.activeIndex) {
+					setActiveVideoState({ index, isPlaying: false });
 				}
 			};
 		} else {
@@ -130,45 +192,75 @@ export function ReelsModal() {
 
 			<div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
 				<Swiper
-					effect={"coverflow"}
 					grabCursor={true}
 					centeredSlides={true}
 					slidesPerView={"auto"}
 					spaceBetween={20}
 					initialSlide={reelsData.initialIndex || 0}
-					coverflowEffect={{
-						rotate: 0,
-						stretch: 0,
-						depth: 0,
-						modifier: 0,
-						scale: 0.7,
-						slideShadows: false,
-					}}
 					navigation={{
 						nextEl: `.${styles.swiperButtonNext}`,
 						prevEl: `.${styles.swiperButtonPrev}`,
 					}}
-					modules={[EffectCoverflow, Navigation]}
+					modules={[Navigation]}
 					className={styles.videoSwiper}
 					onTransitionEnd={(swiper) => {
 						manageVideoPlayback(swiper.activeIndex);
+						setActiveVideoState({
+							index: swiper.activeIndex,
+							isPlaying: true,
+						});
 					}}
 					onSwiper={handleSwiperInit}
 					slideToClickedSlide={true}
+					centerInsufficientSlides={true}
+					watchSlidesProgress={true}
 				>
 					{reelsData.videos.map((video, index) => (
 						<SwiperSlide key={video.id} className={styles.videoSlide}>
-							<div className={styles.videoContainer}>
+							<div
+								className={styles.videoContainer}
+								onClick={() => handleVideoClick(index)}
+							>
 								<video
 									ref={handleVideoRef(index)}
 									src={video.url}
 									muted
 									preload="auto"
 									playsInline
+									controls={false}
+									className={styles.videoElement}
 								/>
-								{video.title && (
-									<div className={styles.videoTitle}>{video.title}</div>
-								)}
+
+								{activeVideoState.index === index &&
+									!activeVideoState.isPlaying && (
+										<div className={styles.play}>
+											<FaPlay size={24} />
+										</div>
+									)}
+
+								<div className={styles.videoInfo}>
+									{video.icon && (
+										<div className={styles.videoIconWrap}>
+											<Image
+												src={video.icon}
+												alt={video.title ?? "icon"}
+												width={30}
+												height={30}
+												className={styles.videoIcon}
+											/>
+										</div>
+									)}
+									<div className={styles.videoText}>
+										{video.title && (
+											<div className={styles.videoTitle}>{video.title}</div>
+										)}
+										{video.subtitle && (
+											<div className={styles.videoSubtitle}>
+												{video.subtitle}
+											</div>
+										)}
+									</div>
+								</div>
 							</div>
 						</SwiperSlide>
 					))}

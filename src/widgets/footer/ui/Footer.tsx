@@ -10,7 +10,7 @@ import { RiTelegram2Fill, RiVkFill } from "react-icons/ri";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useModels } from "@/src/app/providers/ModelsContext";
+import { useModels } from "@/src/app/_providers/ModelsContext";
 import { about, socialLinks } from "@/src/shared/config/model-base";
 import { usePhoneMask } from "@/src/shared/lib/hooks/usePhoneMask";
 import { useSubmit } from "@/src/shared/lib/hooks/useSubmit";
@@ -130,7 +130,7 @@ export function Footer() {
 							{models.map((itm) => (
 								<a
 									key={itm.slug}
-									href={`#${itm.slug}`}
+									href={`/#${itm.slug}`}
 									className={styles.navLink}
 									onClick={() => ensureModelVisible(itm.slug)}
 								>
@@ -140,13 +140,13 @@ export function Footer() {
 						</div>
 					</div>
 					<div className={styles.navSections}>
-						<a href={`#${SectionId.CREDIT}`} className={styles.navLink}>
+						<a href={`/#${SectionId.CREDIT}`} className={styles.navLink}>
 							Автокредит
 						</a>
-						<a href={`#${SectionId.TRADE_IN}`} className={styles.navLink}>
+						<a href={`/#${SectionId.TRADE_IN}`} className={styles.navLink}>
 							Trade-in
 						</a>
-						<a href={`#${SectionId.EQUIPMENTS}`} className={styles.navLink}>
+						<a href={`/#${SectionId.EQUIPMENTS}`} className={styles.navLink}>
 							Комплектации
 						</a>
 					</div>
@@ -181,7 +181,7 @@ export function Footer() {
 						className={styles.btnDisclaimer}
 						onClick={() => setShowDisclaimer((prevState) => !prevState)}
 					>
-						{showDisclaimer ? "Скрыть" : "Показать"}
+						{showDisclaimer ? "Скрыть" : "Раскрыть полный текст"}
 					</button>
 					<p>
 						*Instagram — проект Meta Platforms Inc., деятельность которой запрещена в
@@ -191,7 +191,7 @@ export function Footer() {
 				<div className={styles.links}>
 					<span className={styles.link}>2025 SWM</span>
 					<Link
-						href="/policy"
+						href="/terms-of-use"
 						target="_blank"
 						rel="noopener noreferrer"
 						className={styles.link}
