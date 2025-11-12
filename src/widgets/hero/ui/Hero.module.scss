@@ -2,107 +2,160 @@
 @use "../../../shared/styles/mixins" as *;
 
 .hero {
-	overflow: hidden;
 	position: relative;
-	line-height: 0;
-	font-size: 0;
+}
 
-	.image {
-		width: 100vw;
-		height: auto;
-		object-fit: cover;
-		object-position: top;
-	}
-
-	.infoWrap {
-		position: absolute;
-		inset: 0;
-		padding-top: 160px;
-
-		@include laptop {
-			padding-top: 130px;
-		}
+.heroSwiper {
+	:global(.swiper-wrapper) {
+		width: 100%;
+		height: 92vh;
 
 		@include mobile {
-			padding-top: 90px;
+			height: 90vh;
+		}
+	}
+}
+
+.heroItem {
+	padding-top: 115px;
+	color: var(--color-light);
+
+	@include mobile {
+		padding-top: 90px;
+	}
+
+	.heroImage {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		z-index: -2;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.slideTop {
+		padding-bottom: 30px;
+
+		@include mobile {
+			padding-bottom: 5px;
+			padding-top: 10px;
 		}
 
-		.subtitle {
-			position: relative;
-			display: inline-block;
-			padding: 12px 24px;
-			border-radius: 12px;
-			background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
-			backdrop-filter: blur(18px);
-			-webkit-backdrop-filter: blur(18px);
-			color: white;
-			font-size: 20px;
-			letter-spacing: 0.5px;
-			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-			margin-bottom: 16px;
+		.subTitle {
+			font-weight: 400;
+			font-size: 30px;
+			line-height: 100%;
 
 			@include mobile {
 				font-size: 16px;
 			}
 
-			> span {
-				font-weight: 700;
-			}
-		}
-
-		.title {
-			color: $color-light;
-			font-size: 58px;
-			font-weight: 700;
-			line-height: 90%;
-			padding-bottom: 20px;
-			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-
-			@include laptop {
-				font-size: 40px;
-			}
-
-			@include mobile {
-				font-size: 30px;
-				line-height: 110%;
-			}
-
-			> span {
-				color: $color-primary;
-				font-size: 40px;
+			.promoBanner {
+				position: relative;
+				display: inline-block;
+				padding: 12px 24px;
+				border-radius: 12px;
+				background: linear-gradient(
+					to right,
+					rgba(255, 255, 255, 0.2),
+					rgba(255, 255, 255, 0)
+				);
+				backdrop-filter: blur(18px);
+				-webkit-backdrop-filter: blur(18px);
+				color: white;
+				font-size: 20px;
+				letter-spacing: 0.5px;
+				text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 				@include mobile {
-					font-size: 30px;
+					font-size: 16px;
+					padding: 8px 16px;
+				}
+
+				.heroBold {
+					font-weight: bold;
+					color: white;
+				}
+
+				&::after {
+					content: "";
+					position: absolute;
+					top: -2px;
+					left: -2px;
+					right: -2px;
+					bottom: -2px;
+					border-radius: 14px;
+					background: linear-gradient(to right, #da3738, rgba(218, 55, 56, 0));
+					z-index: -1;
+					mask:
+						linear-gradient(#fff 0 0) content-box,
+						linear-gradient(#fff 0 0);
+					mask-composite: exclude;
+					-webkit-mask:
+						linear-gradient(#fff 0 0) content-box,
+						linear-gradient(#fff 0 0);
+					-webkit-mask-composite: xor !important;
+					padding: 2px;
 				}
 			}
 		}
 
-		@include mobile {
-			.buttonWrap {
-				width: fit-content;
+		.heroTitle {
+			font-weight: 600;
+			font-size: 58px;
+			line-height: 110%;
+			padding: 20px 0 0 0;
+			color: $color-light;
+
+			@include mobile {
+				font-size: 30px;
+				padding-bottom: 18px;
+			}
+
+			.titleBanner {
+				font-size: 55px;
+				color: #e73843;
+				font-weight: 700;
+
+				@include mobile {
+					font-size: 30px;
+					padding-bottom: 90px;
+				}
 			}
 		}
 	}
 
-	// пагинация
-	:global(.swiper-pagination-bullet) {
-		width: 12px;
-		height: 12px;
-		background: transparent;
-		opacity: 1;
-		border: 1px solid $color-light;
+	.slideBottom {
+		.btn {
+			width: 242px;
 
-		&:global(.swiper-pagination-bullet-active) {
-			background: $color-light;
+			@include mobile {
+				width: 212px;
+			}
 		}
 	}
+}
 
-	:global(.swiper-pagination) {
-		bottom: 30px !important;
+// пагинация
+:global(.swiper-pagination-bullet) {
+	width: 12px;
+	height: 12px;
+	background: transparent;
+	opacity: 1;
+	border: 1px solid $color-light;
 
-		@media (max-width: 768px) {
-			bottom: 20px !important;
-		}
+	&:global(.swiper-pagination-bullet-active) {
+		background: $color-light;
+	}
+}
+
+:global(.swiper-pagination) {
+	bottom: 30px !important;
+
+	@media (max-width: 768px) {
+		bottom: 20px !important;
 	}
 }

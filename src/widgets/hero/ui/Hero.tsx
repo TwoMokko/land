@@ -36,60 +36,80 @@ export function Hero() {
 					disableOnInteraction: false,
 				}}
 				loop={true}
-				className={styles.swiper}
+				className={styles.heroSwiper}
 			>
-				<SwiperSlide>
+				<SwiperSlide className={styles.heroItem}>
 					<Image
 						src={imageSrc}
 						alt="hero"
 						width={100}
 						height={100}
 						sizes="100vw"
-						className={styles.image}
+						className={styles.heroImage}
 						loading="eager"
 					/>
-					<div className={styles.infoWrap}>
-						<div className="container">
-							<p className={styles.subtitle}>
-								выгоды до <span>700 000 ₽ на все модели</span>
-							</p>
-							<h1 className={styles.title}>
-								Осенний ценопад на новые SWM <br></br>
-								<span>от 1 604 250 ₽</span>
-							</h1>
-							<div className={styles.buttonWrap}>
-								<Button minWidth={240} onClick={() => openModal("order")}>
-									Зафиксировать цену
-								</Button>
+					<div className="container">
+						<div className={styles.slideTop}>
+							<div className={styles.subTitle}>
+								<div className={styles.promoBanner}>
+									Выгоды до{" "}
+									<span className={styles.heroBold}>
+										{" "}
+										700 000 ₽ на все модели!
+									</span>
+								</div>
 							</div>
+							<h1 className={styles.heroTitle}>
+								Осенний ценопад на новые SWM <br className="desk-hide" /> <br />{" "}
+								<span className={styles.titleBanner}>от 1 604 250 ₽</span>
+							</h1>
+						</div>
+						<div className={styles.slideBottom}>
+							<Button
+								minWidth={242}
+								onClick={() => openModal("order")}
+								className={styles.btn}
+							>
+								Зафиксировать цену
+							</Button>
 						</div>
 					</div>
 				</SwiperSlide>
 
-				<SwiperSlide>
+				<SwiperSlide className={styles.heroItem}>
 					<Image
 						src={imageSrc}
 						alt="hero"
 						width={100}
 						height={100}
 						sizes="100vw"
-						className={styles.image}
+						className={styles.heroImage}
 						loading="eager"
 					/>
-					<div className={styles.infoWrap}>
-						<div className="container">
-							<p className={styles.subtitle}>
-								выгоды до <span>700 000 ₽ на все модели</span>
-							</p>
-							<h1 className={styles.title}>
-								Осенний ценопад на новые SWM <br></br>
-								<span>от 1 604 250 ₽</span>
-							</h1>
-							<div className={styles.buttonWrap}>
-								<Button minWidth={240} onClick={() => openModal("order")}>
-									Зафиксировать цену
-								</Button>
+					<div className="container">
+						<div className={styles.slideTop}>
+							<div className={styles.subTitle}>
+								<div className={styles.promoBanner}>
+									Выгоды до{" "}
+									<span className={styles.heroBold}>
+										{" "}
+										700 000 ₽ на все модели!
+									</span>
+								</div>
 							</div>
+							<h1 className={styles.heroTitle}>
+								Осенний ценопад на новые SWM <br className="desk-hide" /> <br />{" "}
+								<span className={styles.titleBanner}>от 1 604 250 ₽</span>
+							</h1>
+						</div>
+						<div className={styles.slideBottom}>
+							<Button
+								minWidth={242}
+								onClick={() => openModal("order")}
+								className={styles.btn}
+							>
+								Зафиксировать цену
+							</Button>
 						</div>
 					</div>
 				</SwiperSlide>
