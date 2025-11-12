@@ -3,9 +3,10 @@
 
 .trade {
 	position: relative;
+	margin-bottom: 120px;
 
 	@include mobile {
-		margin: 0 10px;
+		margin: 0 10px 60px;
 	}
 
 	.imgWrap {

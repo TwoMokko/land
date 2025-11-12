@@ -10,11 +10,9 @@
 }
 
 .equipments {
-	margin-top: 120px;
 	padding-bottom: 120px;
 
 	@include mobile {
-		margin-top: 60px;
 		padding-bottom: 60px;
 	}
 

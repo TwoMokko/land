@@ -71,11 +71,11 @@
 }
 
 .reviews {
-	padding: 120px 0;
+	margin-bottom: 120px;
 	position: relative;
 
 	@include mobile {
-		padding: 60px 0;
+		margin-bottom: 60px;
 	}
 
 	:global(.section-title) {

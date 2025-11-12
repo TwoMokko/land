@@ -2,10 +2,10 @@
 @use "../../../shared/styles/mixins" as *;
 
 .reels {
-	padding-top: 120px;
+	margin-bottom: 120px;
 
 	@include mobile {
-		padding-top: 60px;
+		margin-bottom: 60px;
 	}
 
 	.reelsSwiperWrap {

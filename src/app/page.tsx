@@ -42,12 +42,12 @@ export default function Home() {
 				idSection={SectionId.STOCK}
 				titleSection={sectionTitles[SectionId.STOCK]}
 			/>
+			<Reels />
 			<Reviews
 				idSection={SectionId.REVIEWS}
 				titleSection={sectionTitles[SectionId.REVIEWS]}
 			/>
 			<Credit idSection={SectionId.CREDIT} />
-			<Reels />
 			<Contacts
 				idSection={SectionId.CONTACTS}
 				titleSection={sectionTitles[SectionId.CONTACTS]}
