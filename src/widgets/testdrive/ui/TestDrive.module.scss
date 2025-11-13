@@ -1,0 +1,188 @@
+@use "../../../shared/styles/variables" as *;
+@use "../../../shared/styles/mixins" as *;
+
+.testDrive {
+	margin-bottom: 120px;
+	display: flex;
+	gap: 20px;
+	position: relative;
+
+	@include mobile {
+		margin-bottom: 60px;
+		gap: 10px;
+	}
+
+	.item {
+		display: flex;
+		gap: 40px;
+		height: 510px;
+		overflow: hidden;
+		position: relative;
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+		@include mobile {
+			gap: 20px;
+			height: 400px;
+		}
+
+		.imageWrap {
+			position: relative;
+			flex-shrink: 0;
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+			.image {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.3s ease;
+			}
+		}
+
+		.info {
+			flex-shrink: 0;
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			min-width: 0;
+			flex: none;
+
+			.title {
+				font-size: 24px;
+				margin-bottom: 20px;
+			}
+
+			.text {
+				font-weight: 700;
+				line-height: 100%;
+				font-size: 40px;
+				margin-bottom: 30px;
+				white-space: nowrap;
+
+				@include mobile {
+					font-size: 28px;
+				}
+
+				span {
+					color: $color-primary;
+				}
+			}
+
+			.form {
+				.formInputs {
+					display: flex;
+					flex-direction: column;
+					gap: 15px;
+					margin-bottom: 20px;
+
+					input {
+						padding: 12px 16px;
+						border: none;
+						border-bottom: 1px solid $color-gray;
+						font-size: 16px;
+						text-align: center;
+
+						&:focus {
+							outline: none;
+							border-color: $color-primary;
+						}
+					}
+				}
+
+				.checkboxWrap {
+					display: flex;
+					align-items: flex-start;
+					gap: 10px;
+					cursor: pointer;
+					font-size: 12px;
+					color: $color-gray;
+
+					input[type="checkbox"] {
+						display: none;
+					}
+
+					.checkbox {
+						width: 20px;
+						height: 20px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-shrink: 0;
+						transition: all 0.2s ease;
+						background-color: $color-light-gray;
+
+						svg {
+							color: $color-dark;
+						}
+					}
+
+					.policyLink {
+						text-decoration: underline;
+						margin-left: 4px;
+
+						&:hover {
+							color: $color-primary;
+						}
+					}
+				}
+			}
+		}
+
+		// Активный элемент
+		&.active {
+			flex: 1;
+
+			.imageWrap {
+				width: 100%;
+				flex: auto;
+
+				@include mobile {
+					width: 50%;
+				}
+			}
+
+			.info {
+				opacity: 1;
+				width: auto;
+				max-width: 500px;
+				transform: translateX(0);
+				visibility: visible;
+
+				@include mobile {
+					max-width: 300px;
+				}
+			}
+
+			//&:hover .imageWrap .image {
+			//	transform: scale(1.05);
+			//}
+		}
+
+		&.inactive {
+			width: 230px;
+			flex-shrink: 0;
+			cursor: pointer;
+
+			.imageWrap {
+				width: 100%; // Занимает всю ширину неактивного элемента
+			}
+
+			.info {
+				opacity: 0;
+				width: 0;
+				transform: translateX(-20px);
+				pointer-events: none;
+				visibility: hidden;
+			}
+
+			&:hover .imageWrap .image {
+				transform: scale(1.05);
+			}
+
+			@include mobile {
+				width: 150px;
+			}
+		}
+	}
+}
