@@ -21,6 +21,7 @@ import { Reels } from "@/src/widgets/reels";
 import { Reviews } from "@/src/widgets/reviews";
 import { Social } from "@/src/widgets/social";
 import { StockModels } from "@/src/widgets/stock";
+import { TestDrive } from "@/src/widgets/testdrive";
 import { Trade } from "@/src/widgets/trade";
 
 export const metadata: Metadata = metaDataHomePage;
@@ -48,6 +49,7 @@ export default function Home() {
 				titleSection={sectionTitles[SectionId.REVIEWS]}
 			/>
 			<Credit idSection={SectionId.CREDIT} />
+			<TestDrive />
 			<Contacts
 				idSection={SectionId.CONTACTS}
 				titleSection={sectionTitles[SectionId.CONTACTS]}

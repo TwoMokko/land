@@ -5,7 +5,7 @@ import { FormData, SubmitModel } from "@/src/shared/types/types";
 
 export function useSubmit() {
 	const { openModal, modalData } = useModal();
-	const modalFormData = modalData as  SubmitModel;
+	const modalFormData = modalData as SubmitModel;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const handleSubmit = async (formData: FormData) => {
