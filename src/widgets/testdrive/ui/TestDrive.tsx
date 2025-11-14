@@ -1,6 +1,7 @@
 "use client";
 
 import React, { ReactNode, useState } from "react";
+import { FaPlus } from "react-icons/fa";
 import { MdDone } from "react-icons/md";
 
 import Image from "next/image";
@@ -15,7 +16,6 @@ import { Button } from "@/src/shared/ui/button/Button";
 import styles from "./TestDrive.module.scss";
 
 // почистить, вынести логику и данные в отдельные файлы
-// itemId заменить либо на понятный текст 'trade' или на enum
 interface TestDriveItem {
 	id: number;
 	formData: FormData;
@@ -29,6 +29,11 @@ interface TestDriveItem {
 	description: ReactNode;
 }
 
+enum TestDriveId {
+	TRADE_IN,
+	TEST_DRIVE,
+}
+
 export function TestDrive() {
 	const { isMobile, isReady } = useDevice();
 	const { handleSubmit, isLoading } = useSubmit();
@@ -38,34 +43,13 @@ export function TestDrive() {
 
 	const [testDriveItems, setTestDriveItems] = useState<TestDriveItem[]>([
 		{
-			id: 1,
-			formData: { name: "", phone: "" },
-			isAgreed: true,
-			phoneValue: phoneMaskTestDrive.phoneValue,
-			nameValue: "",
-			src: "/images/testdrive/test-drive.png",
-			mobileSrc: "/images/testdrive/test-drive-mob.png",
-			desktopSrc: "/images/testdrive/test-drive.png",
-			title: "Тест-драйв",
-			description: (
-				<p className={styles.text}>
-					Запишитесь
-					<br />
-					на тест-драйв
-					<br />и получите <span>скидку 5%</span>
-					<br />
-					при покупке!
-				</p>
-			),
-		},
-		{
-			id: 2,
+			id: TestDriveId.TRADE_IN,
 			formData: { name: "", phone: "" },
 			isAgreed: true,
 			phoneValue: phoneMaskTradeIn.phoneValue,
 			nameValue: "",
 			src: "/images/testdrive/trade.png",
-			mobileSrc: "/images/testdrive/trade-mob.png",
+			mobileSrc: "/images/testdrive/trade.png",
 			desktopSrc: "/images/testdrive/trade.png",
 			title: "Трейд-ин",
 			description: (
@@ -84,9 +68,30 @@ export function TestDrive() {
 				</p>
 			),
 		},
+		{
+			id: TestDriveId.TEST_DRIVE,
+			formData: { name: "", phone: "" },
+			isAgreed: true,
+			phoneValue: phoneMaskTestDrive.phoneValue,
+			nameValue: "",
+			src: "/images/testdrive/test-drive.png",
+			mobileSrc: "/images/testdrive/test-drive.png",
+			desktopSrc: "/images/testdrive/test-drive.png",
+			title: "Тест-драйв",
+			description: (
+				<p className={styles.text}>
+					Запишитесь
+					<br />
+					на тест-драйв
+					<br />и получите <span>скидку 5%</span>
+					<br />
+					при покупке!
+				</p>
+			),
+		},
 	]);
 
-	const [activeId, setActiveId] = useState(1);
+	const [activeId, setActiveId] = useState(TestDriveId.TRADE_IN);
 
 	const handleItemClick = (clickedId: number) => {
 		setActiveId(clickedId);
@@ -110,9 +115,9 @@ export function TestDrive() {
 	const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>, itemId: number) => {
 		const { value } = e.target;
 
-		if (itemId === 1) {
+		if (itemId === TestDriveId.TEST_DRIVE) {
 			phoneMaskTestDrive.onPhoneChange(e);
-		} else if (itemId === 2) {
+		} else if (itemId === TestDriveId.TRADE_IN) {
 			phoneMaskTradeIn.onPhoneChange(e);
 		}
 
@@ -151,8 +156,8 @@ export function TestDrive() {
 	};
 
 	const getPhoneValue = (itemId: number) => {
-		if (itemId === 1) return phoneMaskTestDrive.phoneValue;
-		if (itemId === 2) return phoneMaskTradeIn.phoneValue;
+		if (itemId === TestDriveId.TEST_DRIVE) return phoneMaskTestDrive.phoneValue;
+		if (itemId === TestDriveId.TRADE_IN) return phoneMaskTradeIn.phoneValue;
 		return "";
 	};
 
@@ -173,6 +178,11 @@ export function TestDrive() {
 								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw"
 								className={styles.image}
 							/>
+							{activeId !== item.id && (
+								<div className={styles.plus}>
+									<FaPlus size={10} />
+								</div>
+							)}
 						</div>
 						<div className={styles.info}>
 							<div className={styles.title}>{item.title}</div>
