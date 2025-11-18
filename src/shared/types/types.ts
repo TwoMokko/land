@@ -46,6 +46,7 @@ export interface ReelsItem {
 	title: string;
 	subtitle: string;
 	icon: string;
+	poster?: string;
 }
 export interface ReviewAuthor {
 	name: string;

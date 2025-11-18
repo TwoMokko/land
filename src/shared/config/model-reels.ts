@@ -5,6 +5,7 @@ export const modelReels = [
 		title: "title 1",
 		subtitle: "subtitle 1",
 		icon: "https://peleton.ru/samovar/front/img/svg/social-inst-bg.svg",
+		poster: "/images/socials-with-reels/reels-preview/1.webp",
 	},
 	{
 		id: 2,
@@ -12,6 +13,7 @@ export const modelReels = [
 		title: "title 2",
 		subtitle: "subtitle 2",
 		icon: "https://peleton.ru/samovar/front/img/svg/social-inst-bg.svg",
+		poster: "/images/socials-with-reels/reels-preview/2.webp",
 	},
 	{
 		id: 3,
@@ -19,6 +21,7 @@ export const modelReels = [
 		title: "title 3",
 		subtitle: "subtitle 3",
 		icon: "https://peleton.ru/samovar/front/img/svg/social-inst-bg.svg",
+		poster: "/images/socials-with-reels/reels-preview/3.webp",
 	},
 	{
 		id: 4,
@@ -26,6 +29,7 @@ export const modelReels = [
 		title: "title 4",
 		subtitle: "subtitle 4",
 		icon: "https://peleton.ru/samovar/front/img/svg/reels-peleton-1.svg",
+		poster: "/images/socials-with-reels/reels-preview/4.webp",
 	},
 	{
 		id: 5,
@@ -33,6 +37,7 @@ export const modelReels = [
 		title: "title 5",
 		subtitle: "subtitle 5",
 		icon: "https://peleton.ru/samovar/front/img/svg/reels-peleton-1.svg",
+		poster: "/images/socials-with-reels/reels-preview/5.webp",
 	},
 	{
 		id: 6,
@@ -40,6 +45,7 @@ export const modelReels = [
 		title: "title 6",
 		subtitle: "subtitle 6",
 		icon: "https://peleton.ru/samovar/front/img/svg/reels-peleton-1.svg",
+		poster: "/images/socials-with-reels/reels-preview/6.webp",
 	},
 	{
 		id: 7,
@@ -47,6 +53,7 @@ export const modelReels = [
 		title: "title 7",
 		subtitle: "subtitle 7",
 		icon: "https://peleton.ru/samovar/front/img/svg/reels-peleton-1.svg",
+		poster: "/images/socials-with-reels/reels-preview/7.webp",
 	},
 	{
 		id: 8,
@@ -54,5 +61,6 @@ export const modelReels = [
 		title: "title 6",
 		subtitle: "subtitle 6",
 		icon: "https://peleton.ru/samovar/front/img/svg/reels-peleton-1.svg",
+		poster: "/images/socials-with-reels/reels-preview/8.webp",
 	},
 ];

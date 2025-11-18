@@ -1,12 +1,17 @@
 @use "../shared/styles/variables" as *;
 @use "../shared/styles/mixins" as *;
 
+// :root {
+// 	--scale-factor: 1;
+// }
+
 html {
 	scroll-behavior: smooth;
 	scroll-padding-top: 84px;
 
 	@include mobile {
 		scroll-padding-top: 70px;
+		--scale-factor: calc(100 / 360 * 1vw);
 	}
 }
 

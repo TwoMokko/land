@@ -1,0 +1,328 @@
+@use "../../../shared/styles/variables" as *;
+@use "../../../shared/styles/mixins" as *;
+
+.reelsWrapper {
+	position: relative;
+	margin-bottom: 30px;
+
+	@include mobile {
+		margin-bottom: 0;
+		overflow: hidden;
+	}
+
+	.container {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 1280px;
+		overflow: visible;
+
+		@include mobile {
+			overflow: hidden;
+		}
+
+		@include laptop {
+			max-width: 1240px;
+		}
+	}
+}
+
+.reelsSwiper {
+	display: flex;
+	gap: 4px;
+	flex-wrap: wrap;
+	justify-content: center;
+	max-width: 1280px;
+	width: 100%;
+
+	@include laptop {
+		max-width: 1216px;
+	}
+
+	@include mobile {
+		display: block;
+		overflow: visible;
+	}
+}
+
+.videoWrapper {
+	transition: all 0.3s;
+	padding: 8px;
+	border: 1.5px solid transparent;
+	border-radius: 22px;
+	background: transparent;
+	max-height: 466px;
+	max-width: 252px !important;
+	width: auto !important;
+
+	@include mobile {
+		width: calc(170 * var(--scale-factor)) !important;
+		height: calc(363 * var(--scale-factor));
+		max-width: 100% !important;
+		max-height: 100% !important;
+		padding: 0;
+		margin: 0 calc(8 * var(--scale-factor));
+		border: none;
+	}
+
+	// Стили для laptop (исключая мобильные)
+	@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-laptop - 1px}) {
+		max-height: 419px;
+		max-width: 240px !important;
+	}
+
+	&:hover {
+		border: 1.5px solid $color-primary;
+
+		@include mobile {
+			border: none;
+		}
+	}
+}
+
+.videoItem {
+	display: block;
+	width: 100%;
+	max-width: 234px;
+	aspect-ratio: 9 / 16;
+	overflow: hidden;
+	border-radius: 16px;
+	position: relative;
+	transition: all 0.3s;
+	background: #000;
+	cursor: pointer;
+
+	@include mobile {
+		max-width: 100%;
+		border-radius: 20px;
+		cursor: default;
+		height: 100%;
+	}
+}
+
+.video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	border-radius: 16px;
+
+	@include mobile {
+		display: none;
+		position: absolute;
+		inset: 0;
+		border-radius: 16px;
+		z-index: 2;
+	}
+}
+
+// Показываем видео только на активном слайде на мобильных
+@include mobile {
+	:global(.swiper-slide-active) .video {
+		display: block;
+	}
+}
+
+.overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 50%, #000000 100%);
+	color: #fff;
+	padding: 60px 16px 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	z-index: 2;
+
+	@include mobile {
+		padding: calc(26 * var(--scale-factor)) calc(8 * var(--scale-factor))
+			calc(8 * var(--scale-factor));
+	}
+}
+
+.reelTitle {
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 1;
+	letter-spacing: -0.04em;
+
+	@include mobile {
+		font-size: calc(11 * var(--scale-factor));
+		margin-bottom: 0;
+	}
+}
+
+.reelViews {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 120%;
+	letter-spacing: -0.04em;
+
+	@include mobile {
+		display: none;
+	}
+}
+
+.reelsNavWrapper {
+	display: flex;
+	justify-content: center;
+	width: 75%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1;
+	height: 0;
+	pointer-events: none;
+
+	@include laptop {
+		top: auto;
+		bottom: -10px;
+	}
+}
+
+.reelsNav {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	z-index: 1;
+	height: 0;
+	pointer-events: none;
+
+	@include laptop {
+		justify-content: center;
+		gap: 20px;
+		top: auto;
+		bottom: -35px;
+	}
+
+	@include mobile {
+		justify-content: center;
+		gap: 8px;
+		width: fit-content;
+		position: relative;
+		top: auto;
+		height: auto;
+		pointer-events: auto;
+		bottom: auto;
+	}
+}
+
+.reelsPrev,
+.reelsNext {
+	border: none;
+	background: rgba(0, 0, 0, 0.05);
+	border-radius: 50%;
+	width: 48px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	pointer-events: auto;
+	transition: opacity 0.3s;
+	color: #000;
+
+	@include mobile {
+		width: 40px;
+		height: 40px;
+	}
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+.soundToggle {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	border: none;
+	background: rgba(0, 0, 0, 0.45);
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	z-index: 3;
+
+	@include mobile {
+		display: flex;
+	}
+}
+
+.reelsPhone {
+	position: absolute;
+	top: 43.5px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: calc(249 * var(--scale-factor));
+	z-index: 1;
+	pointer-events: none;
+
+	@include desktop {
+		display: none;
+	}
+}
+
+.reelsNavMob {
+	display: flex;
+	height: max-content;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 16px;
+	margin-top: calc(50 * var(--scale-factor));
+	position: relative;
+
+	@include desktop {
+		display: none;
+	}
+
+	&.descHide {
+		display: flex !important;
+		bottom: auto;
+		top: calc(464 * var(--scale-factor));
+		padding: 0 16px;
+	}
+}
+
+.reelsPagination {
+	position: relative;
+	left: auto !important;
+	transform: none !important;
+	bottom: auto !important;
+	top: auto !important;
+	width: max-content !important;
+
+	:global(.swiper-pagination-bullet) {
+		width: 4px;
+		height: 4px;
+		background: #979797;
+		opacity: 1;
+		transition: all 0.3s;
+	}
+
+	:global(.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next) {
+		transform: scale(1) !important;
+	}
+
+	:global(.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next-next) {
+		transform: scale(0.77) !important;
+	}
+
+	:global(.swiper-pagination-bullet-active) {
+		width: 20px;
+		height: 4px;
+		background: #979797;
+		opacity: 1;
+		border-radius: 30px;
+	}
+}

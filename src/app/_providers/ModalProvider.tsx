@@ -8,11 +8,19 @@ import {
 	ErrorModal,
 	OrderModal,
 	ReelsModal,
+	SocialsReelsModal,
 	SuccessModal,
 	TradeModal,
 } from "@/src/widgets/modals";
 
-export type ModalType = "order" | "credit" | "trade" | "success" | "error" | "video";
+export type ModalType =
+	| "order"
+	| "credit"
+	| "trade"
+	| "success"
+	| "error"
+	| "video"
+	| "socials-video";
 
 interface ModalProps {
 	order: SubmitModel;
@@ -21,6 +29,7 @@ interface ModalProps {
 	success: SubmitModel;
 	error: SubmitModel;
 	video: ReelsData;
+	"socials-video": ReelsData;
 }
 
 interface ModalContextType {
@@ -58,6 +67,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
 			{currentModal === "success" && <SuccessModal />}
 			{currentModal === "error" && <ErrorModal />}
 			{currentModal === "video" && <ReelsModal />}
+			{currentModal === "socials-video" && <SocialsReelsModal />}
 		</ModalContext.Provider>
 	);
 }
