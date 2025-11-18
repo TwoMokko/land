@@ -76,10 +76,9 @@ export const useStockFilters = (): UseStockFiltersReturn => {
 				setIsLoading(true);
 				const stocksData = await getStocks();
 
-				// Фильтруем только электромобили и гибриды с фото
+				// Фильтруем только с фото (если фото нет, мы не отобразим)
 				const filteredStocks = stocksData.filter(
 					(car) =>
-						(car.engine === "Электро" || car.engine === "Гибрид") &&
 						Array.isArray(car.photos) &&
 						car.photos.length > 0,
 				);
